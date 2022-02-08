@@ -1,6 +1,10 @@
 .container {
     max-width: 960px;
   }
+
+  footer {
+      background-color: #aeaeae;
+  }
   
   /*
    * Custom translucent site header
