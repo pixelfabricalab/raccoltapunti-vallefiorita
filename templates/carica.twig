@@ -1,1 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.twig" %}
+{% block content %}
+<div class="card mt-3 d-block mx-auto" style="max-width: 40rem;">
+  <div class="card-body">
+    <h5 class="card-title">Carica il tuo scontrino per la scansione</h5>
+    <p class="card-text">La scansione potrebbe richiedere qualche minuto, a seconda del numero di richieste.</p>
+    <form action="upload.php" method="post">
+        <div class="mb-3">
+            <label for="formFileLg" class="form-label">Carica foto</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Carica foto</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
