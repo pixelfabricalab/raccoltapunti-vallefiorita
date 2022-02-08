@@ -1,0 +1,4 @@
+# Composer
+# escludi i vendor
+vendor
+vendor/*
