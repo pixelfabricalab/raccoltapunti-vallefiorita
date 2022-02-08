@@ -2,3 +2,7 @@
 # escludi i vendor
 vendor
 vendor/*
+
+#escludi la cartella degli upload
+uploads/
+uploads/*
