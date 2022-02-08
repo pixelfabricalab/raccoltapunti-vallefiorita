@@ -1,0 +1,120 @@
+{% extends "base.twig" %}
+{% block title %}Gestisci dizionario scansioni - Vallefiorita{% endblock %}
+{% block content %}
+<div class="card mt-3 d-block mx-auto" style="max-width: 40rem;">
+  <div class="card-body">
+    <h5 class="card-title">Dizionario scansioni</h5>
+    <p class="card-text">Il dizionario scansioni può essere popolato e aggiornato per aiutare il motore OCR a individuare i prodotti o le keyword sugli scontrini.</p>
+    <ul>
+        <li>[ NOME INSEGNA ]</li>
+        <li>[ LOCALITA ]</li>
+        <li>[CAP]</li>
+        <li>P.IVA </li>
+        <li>P. IVA</li>
+        <li>PIVA </li>
+        <li>P.I.</li>
+        <li>PI </li>
+        <li>P. I.V.A.</li>
+        <li>P.I.V.A. </li>
+        <li>DOCUMENTO COMMERCIALE </li>
+        <li>DESCRIZIONE</li>
+        <li>VALLEFIORITA</li>
+        <li>VALLE FIORITA</li>
+        <li>VALLEF.</li>
+        <li>V.F.</li>
+        <li>VF</li>
+        <li>BASE</li>
+        <li>BASI</li>
+        <li>PIZZA</li>
+        <li>PIZZ.</li>
+        <li>GRANI</li>
+        <li>BASI PER PIZZA</li>
+        <li>BASI PIZZA</li>
+        <li>BASI X PIZZA</li>
+        <li>BASE PER PIZZA</li>
+        <li>MARE</li>
+        <li>ACQUA</li>
+        <li>ACQUA DI MARE</li>
+        <li>INTEGRALE</li>
+        <li>BASE PIZZA READYNAPOLI 1x280g d29</li>
+        <li>BASE per PIZZA 2x230g A&F</li>
+        <li>BASE per PIZZA F.F. 2x230g ARTE&FARINA</li>
+        <li>BASE Pizza POMODORO 2x 220gr IL GRANAIO</li>
+        <li>BASI PIZZA cfz.2x230gr expo "IL GRANAIO"</li>
+        <li>BASI PIZZA cfz.4x230gr expo "IL GRANAIO"</li>
+        <li>Base PIZZA Pomodoro 2x220gr VALLE F.</li>
+        <li>Base PIZZA cfz.2x230g VALLE F</li>
+        <li>Base PIZZA 1x18pz 230g V.F. Cong.</li>
+        <li>Base PIZZA Integr. 2x230g VALLE F</li>
+        <li>Base PIZZA GraniAntichi 2x230g VALLE F</li>
+        <li>Base PIZZA Farro 2x230g VALLE F d30/31</li>
+        <li>Base PIZZA Pomodoro 220gr PERTE frig</li>
+        <li>Base PIZZA cfz.1x230g PERTE</li>
+        <li>Base PIZZA cfz.2x230g Itali5sensi</li>
+        <li>Base PIZZA cfz.3x230g QUELLI d. PIZZA</li>
+        <li>BasePIZZAbaby cfz.3x170g Qdp</li>
+        <li>Base PIZZA cfz.3x140g QUELLI d. PIZZA</li>
+        <li>Base PIZZA 2x230g Terre&Tesori</li>
+        <li>Base PIZZA Integ. 2x230g Terre&Tesori</li>
+        <li>PUCCIA</li>
+        <li>PUCCIA SALENTINA</li>
+        <li>PUCCIA VALLEFIORITA     </li>
+        <li>PUCCIA VALLE FIORITA</li>
+        <li>PUCCIA MENU cfz.2x115gr.</li>
+        <li>PUCCIA cfz.2x115g F.F. ARTE&F. (ctx12)</li>
+        <li>PUCCIA cfz.4x115gr. EXPO "IL GRANAIO"</li>
+        <li>PUCCIA cfz.2x115g F.F "IL GRANAIO"</li>
+        <li>PUCCIA V.F. cfz.6x115gr.</li>
+        <li>PUCCIA V.F. cfz.2x115gr.</li>
+        <li>PUCCIA V.F. cfz.2x115gr.Frigo</li>
+        <li>PUCCIA V.F. cfz.2x115gr. EXPO</li>
+        <li>PUCCIA V.F. cfz.4x115gr. EXPO</li>
+        <li>PUCCIA V.F. cfz.2x115gr.Frigo (ctx8)</li>
+        <li>PUCCIA dist. V.F. cfz.4x110gr.</li>
+        <li>PUCCIA V.F. BIO cfz.2x115gr.</li>
+        <li>PUCCIA mini V.F. BIO cfz.3x50gr.</li>
+        <li>PUCCIA  V.F. cfz.12x115gr.</li>
+        <li>PUCCIA Multicereali V.F. cfz.2x115gr.</li>
+        <li>PUCCIA V.F. cfz.1x64(115g) congelate</li>
+        <li>PUCCIA V.F. cfz.64x115gr. s.conser CONG.</li>
+        <li>PUCCIA V.F. cfz.2x115gr.(3x28cfz EXPO)</li>
+        <li>PUCCIA V.F. BIO Cereali cfz.2x115gr.</li>
+        <li>PUCCIA Mini  cfz.3x50gr. distr.</li>
+        <li>Puccia Mini  cfz.3x60gr. V.F.</li>
+        <li>FocacciaAllaPala 1x250g ValleF. ambient</li>
+        <li>FocacciaAllaPala BIO 1x250g ValleF.</li>
+        <li>FocacciaAllaPala 1x250g ValleF.  frigo</li>
+        <li>PanPIZZA cfz 1x180gr  Valle F.</li>
+        <li>PanPIZZA cfz 1x180gr  ValleF</li>
+        <li>PANSURPRISE GRANAIO GR.550</li>
+        <li>Pansurprise 700g IL GRANAIO</li>
+        <li>Pansurprise 250g IL GRANAIO</li>
+        <li>Pansurprise 550g CEREALI GRANAIO (Tmc60)</li>
+        <li>Pansurprise FARCITO 1kg IL GRANAIO</li>
+        <li>Pansurprise CLASSIQUE 550g VALLE (FR)</li>
+        <li>Pansurprise MULTICEREALES 550g Valle(FR)</li>
+        <li>Pansurprise FARCITO 400g Valle Fiorita</li>
+        <li>Pansurprise 550g Valle Fiorita</li>
+        <li>Pansurprise 250g Valle Fiorita</li>
+        <li>Pansurprise 550g CEREALI VF</li>
+        <li>Pansurprise 550g Valle Fiorita</li>
+        <li>Pansurprise 550g CEREALI Valle F. NL</li>
+        <li>Pansurprise Farcito 1kg - PASQUA 2020</li>
+        <li>Pansurprise 550g VALLE FIORITA</li>
+        <li>Pansurprise 700g Valle Fiorita</li>
+        <li>Pansurprise 250g Valle Fiorita</li>
+        <li>Pansurprise 550g CEREALI VF</li>
+        <li>Pansurprise 250g CEREALI Valle Fiorita</li>
+        <li>Pansurprise 550g VALLE F. Busta_Neutra</li>
+        <li>Pansurprise 550g VALLE F. (3x8cfz EXPO)</li>
+        <li>Pansurprise FARCITO 1kg Valle Fiorita</li>
+        <li>Pansurprise FARCITO 1kg Valle Fiorita</li>
+        <li>Pansurprise 550g Break</li>
+        <li>[Data] [Ora]</li>
+        <li>Documento n.ro [n.ro documento]</li>
+        <li>RT [n.ro RT] ⇒ univoco</li>
+        <li>Dettaglio pagamento [Modalità di pagamento]</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
