@@ -5,5 +5,5 @@
   $loader = new \Twig\Loader\FilesystemLoader('./templates');
   $twig = new \Twig\Environment($loader);
 
-  echo $twig->render('demo.twig', ['name' => 'Fabien']);
+  echo $twig->render('index.twig');
   ?>
