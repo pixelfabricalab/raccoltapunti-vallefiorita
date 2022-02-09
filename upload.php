@@ -28,7 +28,10 @@ function aggiornaTemplate($safefilename, $originalfilename, $response) {
     <div class='card mt-3 mt-3 mb-3' style='max-width: 25rem;'>
       <img class='card-img-top' src='". $safefilename ."' alt='Card image cap'>
       <div class='card-body'>
-        <h5 class='card-title'>Scansione scontrino ". $originalfilename . "</h5>
+        <h5 class='card-title'>Scansione scontrino <em>". $originalfilename . "</em></h5>
+        <h6>Dettagli scontrino</h6>
+        <p>Scansionato il: <strong>" . date('d-m-Y'). "</strong><br />
+        alle ore: <strong>" . date('H:i:s') ."</strong><br />
         <pre>". $response . "</pre>
       </div>
     </div>
