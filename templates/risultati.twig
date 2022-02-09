@@ -1,10 +1,16 @@
 {% extends "base.twig" %}
 {% block content %}
-<div class="card mt-3 mb-3 d-block mx-auto" style="max-width: 95%;">
-  <div class="card-body">
-    <h5 class="card-title">Risultati scansioni effettuate</h5>
-    {{ risultati | raw }}
-    <a href="./risultati.php"class="btn btn-primary">Ricarica la pagina</a>
-  </div>
-</div>
+    <div class="row">
+        <div class="col">
+            <h5 class="h3">Risultati scansioni effettuate</h5>
+        </div>
+    </div>
+    <div class="row">
+        {{ risultati | raw }}
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <a href="./risultati.php" class="btn btn-primary">Ricarica la pagina</a>
+        </div>
+    </div>
 {% endblock %}
