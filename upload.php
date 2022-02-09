@@ -1,6 +1,6 @@
 <?php
 
-function ocrFile($imagefile) {
+function scansionaFile($imagefile) {
   $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -21,8 +21,27 @@ curl_close($curl);
   return $response;
 }
 
+function aggiornaTemplate($safefilename, $originalfilename, $response) {
+  $myfile = fopen("./data/includifile.txt", "a") or die("Unable to open file!");
+  $template = "
+  <div class='col'>
+    <div class='card mt-3 mt-3 mb-3' style='max-width: 25rem;'>
+      <img class='card-img-top' src='". $safefilename ."' alt='Card image cap'>
+      <div class='card-body'>
+        <h5 class='card-title'>Scansione scontrino ". $originalfilename . "</h5>
+        <pre>". $response . "</pre>
+      </div>
+    </div>
+  </div>
+  ";
+fwrite($myfile, $template);
+fclose($myfile);
+}
+
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["formFileLg"]["name"]);
+$complete = explode('.',($_FILES["formFileLg"]["name"]));
+$filename = hash('sha256', $complete[0].time()).'.'. $complete[1];
+$target_file = $target_dir . $filename;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -64,6 +83,8 @@ if ($uploadOk == 0) {
 } else {
   if (move_uploaded_file($_FILES["formFileLg"]["tmp_name"], $target_file)) {
     //echo "Il file ". htmlspecialchars(basename( $_FILES["formFileLg"]["name"])). " è stato caricato.";
+    $response = scansionaFile($target_file);
+    aggiornaTemplate($target_file, $_FILES["formFileLg"]["name"], $response);
     header("Location: ./file-caricato-con-successo.php");
   } else {
     echo "Non è stato possibile caricare il tuo file.";
