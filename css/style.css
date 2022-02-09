@@ -81,12 +81,6 @@
     transform: scale(1.5)
 }
 
-.btn1 {
-    height: 140px;
-    width: 140px;
-    border-radius: 50%
-}
-
 .name {
     font-size: 22px;
     font-weight: bold
@@ -110,15 +104,6 @@
     font-size: 12px;
     font-weight: 500;
     color: #444444
-}
-
-.btn1 {
-    height: 40px;
-    width: 150px;
-    border: none;
-    background-color: #000;
-    color: #aeaeae;
-    font-size: 15px
 }
 
 .text span {
