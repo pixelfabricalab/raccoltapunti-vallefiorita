@@ -41,7 +41,8 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
   if (move_uploaded_file($_FILES["formFileLg"]["tmp_name"], $target_file)) {
-    echo "Il file ". htmlspecialchars(basename( $_FILES["formFileLg"]["name"])). " è stato caricato.";
+    //echo "Il file ". htmlspecialchars(basename( $_FILES["formFileLg"]["name"])). " è stato caricato.";
+    header("Location: ./file-caricato-con-successo.php");
   } else {
     echo "Non è stato possibile caricare il tuo file.";
   }
