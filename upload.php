@@ -1,12 +1,12 @@
 <?php
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . basename($_FILES["formFileLg"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  $check = getimagesize($_FILES["formFileLg"]["tmp_name"]);
   if($check !== false) {
     echo "Il file caricato è un'immagine. - " . $check["mime"] . ".";
     $uploadOk = 1;
@@ -23,7 +23,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["formFileLg"]["size"] > 500000) {
   echo "Ops. Sembra che il tuo file sia troppo grande.";
   $uploadOk = 0;
 }
@@ -40,8 +40,8 @@ if ($uploadOk == 0) {
   echo "Il tuo file non è stato caricato.";
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "Il file ". htmlspecialchars(basename( $_FILES["fileToUpload"]["name"])). " è stato caricato.";
+  if (move_uploaded_file($_FILES["formFileLg"]["tmp_name"], $target_file)) {
+    echo "Il file ". htmlspecialchars(basename( $_FILES["formFileLg"]["name"])). " è stato caricato.";
   } else {
     echo "Non è stato possibile caricare il tuo file.";
   }
