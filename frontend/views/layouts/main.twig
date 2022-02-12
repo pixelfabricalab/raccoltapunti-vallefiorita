@@ -33,7 +33,10 @@
                         %}
                     {% else %}
                         {% set menuItems = menuItems|merge([
+                            {'label' : 'Home', 'url' : ['/site/login']},
                             {'label' : 'login', 'url' : ['/site/login']},
+                            {'label' : 'Scansiona Scontrino', 'url' : ['/site/login']},
+                            {'label' : 'Contattaci', 'url' : ['/site/login']},
                         ])
                         %}
                     {% endif %}
