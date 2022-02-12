@@ -91,7 +91,9 @@ class SiteController extends Controller
           <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
         </div>
       </div>';
+      $title = 'Home';
         return $this->render('index.twig', [
+            'title' => $title,
             'content' => $content,
         ]);
     }

@@ -5,7 +5,7 @@
         <head>
             <meta charset="{{ app.charset }}">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{{ html.encode(this.title) }}</title>
+            <title>Raccolta punti Vallefiorita - {% block title %}{% endblock %}</title>
             {{ html.csrfMetaTags | raw }}
             {{   void(this.head) }}
         </head>
