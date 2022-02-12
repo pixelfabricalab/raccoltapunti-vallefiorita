@@ -46,6 +46,7 @@ return [
         */
         'view' => [
             'class' => 'yii\web\View',
+            'defaultExtension' => 'twig',
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
@@ -65,5 +66,6 @@ return [
             ],
         ],
     ],
+    'layout' => false,
     'params' => $params,
 ];
