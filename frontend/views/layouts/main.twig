@@ -49,10 +49,39 @@
                     }}
                     {{ nav_bar_end() }}
             </section>
+            {% block hero %}
+            {% endblock %}
             {% block content %}
             {% endblock %}
-            <footer class="footer">
+            {% block footer %}
+            <footer class="px-5 py-5">
+                <div class="row">
+                    <div class="col-12 col-md">
+                      <div class="logo"><img src="./assets/logo/vallefiorita.png" alt="logo"/></div>
+                    </div>
+                    <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Cool stuff</a></li>
+                        <li><a class="link-secondary" href="#">Random feature</a></li>
+                        <li><a class="link-secondary" href="#">Team feature</a></li>
+                        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
+                        <li><a class="link-secondary" href="#">Another one</a></li>
+                        <li><a class="link-secondary" href="#">Last time</a></li>
+                    </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Resource name</a></li>
+                        <li><a class="link-secondary" href="#">Resource</a></li>
+                        <li><a class="link-secondary" href="#">Another resource</a></li>
+                        <li><a class="link-secondary" href="#">Final resource</a></li>
+                    </ul>
+                    </div>
+                </div>
             </footer>
+            {% endblock %}
             {{   void(this.endBody()) }}
         </body>
     </html>
