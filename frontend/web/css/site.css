@@ -137,3 +137,7 @@ hr .new1 {
   height: 15vw;
   object-fit: cover;
 }
+
+ul li.nav-item {
+    display: inline-block;
+}
