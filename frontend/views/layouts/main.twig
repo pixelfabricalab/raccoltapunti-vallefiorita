@@ -16,7 +16,7 @@
                         'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'./assets/logo/vallefiorita.png" alt="logo"/></div>',
                         'brandUrl' : app.homeUrl,
                         'options' : {
-                        'class' : 'container d-flex flex-column flex-md-row justify-content-between navbar nav navbar-nav navbar-right',
+                        'class' : 'col-12 d-flex flex-column flex-md-row justify-content-between navbar nav navbar-nav navbar-right nav justify-content-end',
                         }
                         })
                     }}
@@ -42,7 +42,7 @@
                         {% endif %}
                     {{ nav_widget({
                         'options': {
-                        'class': 'navbar-nav navbar-right',
+                        'class': 'nav justify-content-end',
                         },
                         'items': menuItems
                         })
