@@ -44,6 +44,26 @@ return [
             ],
         ],
         */
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => [
+                        'html' => '\yii\helpers\Html',
+                        'url' => '\yii\helpers\Url',
+                        'Yii' => '\Yii',
+                    ],
+                    'uses' => ['yii\bootstrap5'],
+                ],
+                // ...
+            ],
+        ],
     ],
     'params' => $params,
 ];
