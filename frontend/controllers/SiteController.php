@@ -24,6 +24,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+    public $layout = 'main.twig';
     public function behaviors()
     {
         return [
