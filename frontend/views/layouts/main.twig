@@ -1,4 +1,4 @@
-{{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
+    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
@@ -11,55 +11,47 @@
         </head>
         <body>
             {{   void(this.beginBody()) }}
-            <section id="header">
-                {{ nav_bar_begin({
-                    'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
-                    'brandUrl' : app.homeUrl,
-                    'options' : {
-                    'class' : 'header navbar navbar-fixed-top',
-                    }})
-                }}
-                {% set menuItems = [] %}
-                    {% if app.user.isGuest == false %}
-                        {% set menuItems = menuItems|merge([
-                            {'label' : 'Main', 'url' : ['/site/index']},
-                            {'label' : 'About', 'url' : ['/site/about']},
-                            {
-                                'label' : 'logout (' ~ app.user.identity.username ~ ')',
-                                'url' : ['/site/logout'],
-                                'linkOptions' : {'data-method' : 'post'}
-                            }
-                            ])
-                        %}
-                    {% else %}
-                        {% set menuItems = menuItems|merge([
-                            {'label' : 'Home', 'url' : ['/site/login']},
-                            {'label' : 'login', 'url' : ['/site/login']},
-                            {'label' : 'Scansiona Scontrino', 'url' : ['/site/login']},
-                            {'label' : 'Contattaci', 'url' : ['/site/login']},
-                        ])
-                        %}
-                    {% endif %}
+            <header class="site-header sticky-top py-1">
+                    {{ nav_bar_begin({
+                        'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'./assets/logo/vallefiorita.png" alt="logo"/></div>',
+                        'brandUrl' : app.homeUrl,
+                        'options' : {
+                        'class' : 'container d-flex flex-column flex-md-row justify-content-between',
+                        }
+                        })
+                    }}
+                    {% set menuItems = [] %}
+                        {% if app.user.isGuest == false %}
+                            {% set menuItems = menuItems|merge([
+                                {'label' : 'Home', 'url' : ['/site/index']},
+                                {'label' : 'Chi Siamo', 'url' : ['/site/about']},
+                                {'label' : 'Scansiona scontrino', 'url' : ['/scontrino/carica']},
+                                {'label' : 'Lista Scontrini', 'url' : ['/scontrino/lista']},
+                                {'label' : 'Profilo e Saldo punti', 'url' : ['/profilo']},
+                                {'label' : 'Premi', 'url' : ['/premi']},
+                                {'label' : 'Logout (' ~ app.user.identity.username ~ ')', 'url' : ['/site/logout'], 'linkOptions' : {'data-method' : 'post'}}
+                                ])
+                            %}
+                        {% else %}
+                            {% set menuItems = menuItems|merge([
+                                {'label' : 'Home', 'url' : ['/site/index']},
+                                {'label' : 'Chi Siamo', 'url' : ['/site/about']},
+                                {'label' : 'Accedi', 'url' : ['/site/login']},
+                                ])
+                            %}
+                        {% endif %}
                     {{ nav_widget({
                         'options': {
-                            'class': 'navbar-nav navbar-right',
+                        'class': 'navbar-nav navbar-right',
                         },
                         'items': menuItems
-                    })
+                        })
                     }}
-                {{ nav_bar_end() }}
+                    {{ nav_bar_end() }}
             </section>
-                {{ void(this.beginBlock('content')) }}
-                    {{ content | raw }}
-                {{ void(this.endBlock()) }}
-
+            {% block content %}
+            {% endblock %}
             <footer class="footer">
-                {{ void(this.beginBlock('footer')) }}
-                    <div class="container">
-                            <p class="pull-left">&copy; My Company {{ 'now'| date('Y') }}</p>
-                            <p class="pull-right">{{ Yii.powered() | raw }}</p>
-                    </div>
-                {{ void(this.endBlock()) }}
             </footer>
             {{   void(this.endBody()) }}
         </body>
