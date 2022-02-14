@@ -7,7 +7,7 @@ use frontend\models\ScontrinoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * ScontrinoController implements the CRUD actions for Scontrino model.
  */
@@ -70,8 +70,25 @@ class ScontrinoController extends Controller
         $model = new Scontrino();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            $model->load($this->request->post());
+            $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
+            if ($model->upload()) {
+                $complete = explode(".", $model->imageFile->name);
+                $filename = $complete[0];
+                $extension = $complete[1];
+                $model->nomefile = $complete;
+                $model->hashnomefile = hash('sha256', $filename . time());
+                $model->estensionefile = $extension;
+                $model->proprietario_id = NULL;
+                $model->datacattura = date('d-m-Y H:i:s');
+                $model->nomefile = './uploads/scontrini/' . hash('sha256', $filename . time()). '.'. $extension;
+                $response = $model->scansionaFile($model->nomefile);
+                $righe = $model->esplodiRighe($response);
+                var_dump($response);
+                die;
+                if ($model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
