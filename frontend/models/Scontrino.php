@@ -68,7 +68,8 @@ class Scontrino extends \yii\db\ActiveRecord
             'numerodocumento' => 'Numerodocumento',
         ];
     }
-
+    
+    /* funzione che esegue l'upload del file */
     public function upload() {
         $base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
         if ($this->validate()) {
@@ -77,5 +78,33 @@ class Scontrino extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+    
+    /* funzione che lancia l'OCR in maniera sincrona */
+    public function scansionaFile($imagefile) {
+        $curl = curl_init();
+      
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://89.148.181.23:9090/analizza',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('image'=> new \CURLFILE($imagefile),'modo' => '3','engine' => '3'),
+      ));
+      
+      $response = curl_exec($curl);
+      
+      curl_close($curl);
+        return $response;
+      }
+    
+    /* funzione che ritorna un array con tutte le righe esplose */
+    public function esplodiRighe($response) {
+        $righe = explode('\r', $response);
+        return $righe;
     }
 }
