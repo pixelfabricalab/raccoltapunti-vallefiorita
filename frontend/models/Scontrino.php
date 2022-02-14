@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "scontrino".
@@ -29,6 +30,12 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return 'scontrino';
     }
+
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
 
     /**
      * {@inheritdoc}
@@ -60,5 +67,15 @@ class Scontrino extends \yii\db\ActiveRecord
             'dataemissione' => 'Dataemissione',
             'numerodocumento' => 'Numerodocumento',
         ];
+    }
+
+    public function upload() {
+        $base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
+        if ($this->validate()) {
+            $this->imageFile->saveAs($base . hash('sha256', $this->imageFile->baseName . time()) . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
