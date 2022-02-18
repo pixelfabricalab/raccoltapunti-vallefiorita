@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use yii\web\UploadedFile;
 
+
 /**
  * This is the model class for table "scontrino".
  *
@@ -99,12 +100,12 @@ class Scontrino extends \yii\db\ActiveRecord
       $response = curl_exec($curl);
       
       curl_close($curl);
-        return $response;
+        return utf8_encode($response);
       }
     
     /* funzione che ritorna un array con tutte le righe esplose */
-    public function esplodiRighe($response) {
-        $righe = explode('\r', $response);
+    public function esplodiRighe($response, $terminatore) {
+        $righe = explode($terminatore, $response);
         return $righe;
     }
 }
