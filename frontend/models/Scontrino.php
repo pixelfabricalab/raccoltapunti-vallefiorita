@@ -81,31 +81,50 @@ class Scontrino extends \yii\db\ActiveRecord
         }
     }
     
-    /* funzione che lancia l'OCR in maniera sincrona */
+    /* funzione che lancia l'OCR in maniera sincrona - ritorna un array di stringhe */
     public function scansionaFile($imagefile) {
+        // inizializza curl
         $curl = curl_init();
-      
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://89.148.181.23:9090/analizza',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('image'=> new \CURLFILE($imagefile),'modo' => '3','engine' => '3'),
-      ));
-      
-      $response = curl_exec($curl);
-      
-      curl_close($curl);
-        return utf8_encode($response);
-      }
+        // setta le opzioni per curl, la richiesta viene fatta con una POST su un form -- CURLOPT_POSTFIELDS - generata con Postman
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://89.148.181.23:9090/analizza',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array('image'=> new \CURLFILE($imagefile),'modo' => '3','engine' => '3'),
+        ));
+        // ottiene la risposta eseguendo curl
+        $response = curl_exec($curl);
+        // chiude la sessione curl
+        curl_close($curl);
+        // esegue l'encoding della response (utile per lettere accentate e terminatori di riga)
+        $encoded_response = utf8_encode($response);
+        //esplode la response basandosi su ogni EOL presente - primo parsing
+        $righe_scontrino = $this->esplodiRighe($encoded_response, PHP_EOL);
+        $righe_scontrino = $this->analizzaContenutoScontrino($righe_scontrino);
+        return $righe_scontrino;
+    }
     
     /* funzione che ritorna un array con tutte le righe esplose */
     public function esplodiRighe($response, $terminatore) {
         $righe = explode($terminatore, $response);
         return $righe;
+    }
+
+    /* check della validità dei campi e dei testi presenti nello scontrino post-response da Tesseract */
+    public function analizzaContenutoScontrino($righe_scontrino) {
+        //inizializzo un array dove catalogherò tutte le informazioni sicuramente OK
+        $info_scontrino = [];
+        // rimuovi primo elemento dell'array -- che è sicuramente RIS:...
+        unset($righe_scontrino[0]);
+        $righe_scontrino = array_filter($righe_scontrino);
+        $nomenegozio = $righe_scontrino[1];
+        // da fare, creare una funzione che ricerca (stile pregmatch) le occorrenze sullo scontrino
+        // https://stackoverflow.com/questions/6228581/how-to-search-array-of-string-in-another-string-in-php
+        return $info_scontrino;
     }
 }
