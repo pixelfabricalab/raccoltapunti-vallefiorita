@@ -82,7 +82,8 @@ class ScontrinoController extends Controller
                 $model->proprietario_id = NULL;
                 $model->datacattura = date('d-m-Y H:i:s');
                 $model->nomefile = './uploads/scontrini/' . hash('sha256', $filename . time()). '.'. $extension;
-                $response = $model->scansionaFile($model->nomefile);
+                $righe_scontrino = $model->scansionaFile($model->nomefile);
+                var_dump($righe_scontrino);
                 die;
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
