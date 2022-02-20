@@ -4,6 +4,9 @@ namespace frontend\models;
 
 use Yii;
 use yii\web\UploadedFile;
+use DragonBe\Vies\Vies;
+use DragonBe\Vies\ViesException;
+use DragonBe\Vies\ViesServiceException;
 
 
 /**
@@ -122,9 +125,19 @@ class Scontrino extends \yii\db\ActiveRecord
         // rimuovi primo elemento dell'array -- che è sicuramente RIS:...
         unset($righe_scontrino[0]);
         $righe_scontrino = array_filter($righe_scontrino);
+        // da verificare, non so come. Si presuppone che il primo elemento dell'array dopo la rimozione dell'elemento 0 sia il nome dell'attività commerciale
         $nomenegozio = $righe_scontrino[1];
         // da fare, creare una funzione che ricerca (stile pregmatch) le occorrenze sullo scontrino
         // https://stackoverflow.com/questions/6228581/how-to-search-array-of-string-in-another-string-in-php
-        return $info_scontrino;
+        // https://stackoverflow.com/questions/18338915/check-array-for-partial-match-php
+        $piva = preg_grep("/P.IVA/", $righe_scontrino);
+        $piva_nonparsata = explode(':', $piva[4]);
+        $piva_nonparsata = explode(' ', $piva_nonparsata[1]);
+        $pivaeu = $piva_nonparsata[0];
+        $vies = new Vies();
+        $vatresult = $vies->validateVat('IT', $pivaeu);
+        var_dump($vatresult);
+        var_dump($piva_nonparsata);
+        return $righe_scontrino;
     }
 }
