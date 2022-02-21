@@ -4,9 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\web\UploadedFile;
-use DragonBe\Vies\Vies;
-use DragonBe\Vies\ViesException;
-use DragonBe\Vies\ViesServiceException;
+use frontend\components\AnalisiScontrino;
 
 
 /**
@@ -122,22 +120,25 @@ class Scontrino extends \yii\db\ActiveRecord
     public function analizzaContenutoScontrino($righe_scontrino) {
         //inizializzo un array dove catalogherò tutte le informazioni sicuramente OK
         $info_scontrino = [];
+        //inizializzo componente per la validazione dello scontrino
+        $analisiscontrino = new AnalisiScontrino;
         // rimuovi primo elemento dell'array -- che è sicuramente RIS:...
         unset($righe_scontrino[0]);
+        // rimuove le righe vuote dall'array
         $righe_scontrino = array_filter($righe_scontrino);
         // da verificare, non so come. Si presuppone che il primo elemento dell'array dopo la rimozione dell'elemento 0 sia il nome dell'attività commerciale
         $nomenegozio = $righe_scontrino[1];
-        // da fare, creare una funzione che ricerca (stile pregmatch) le occorrenze sullo scontrino
+        // ricerca della partita IVA
         // https://stackoverflow.com/questions/6228581/how-to-search-array-of-string-in-another-string-in-php
         // https://stackoverflow.com/questions/18338915/check-array-for-partial-match-php
-        $piva = preg_grep("/P.IVA/", $righe_scontrino);
-        $piva_nonparsata = explode(':', $piva[4]);
-        $piva_nonparsata = explode(' ', $piva_nonparsata[1]);
-        $pivaeu = $piva_nonparsata[0];
-        $vies = new Vies();
-        $vatresult = $vies->validateVat('IT', $pivaeu);
-        var_dump($vatresult);
-        var_dump($piva_nonparsata);
+        $piva_nonparsata = preg_grep("/P.IVA/", $righe_scontrino);
+
+        //parsing della riga che contiene *presumibilmente* la partita IVA
+        $piva = explode(':', $piva_nonparsata[4]);
+        $piva = explode(' ', $piva[1]);
+        var_dump($piva);
+        $ris = $analisiscontrino->validaVIES('IT', '03117590756');
+        var_dump($ris);
         return $righe_scontrino;
     }
 }
