@@ -124,21 +124,22 @@ class Scontrino extends \yii\db\ActiveRecord
         $analisiscontrino = new AnalisiScontrino;
         // rimuovi primo elemento dell'array -- che è sicuramente RIS:...
         unset($righe_scontrino[0]);
-        // rimuove le righe vuote dall'array
-        $righe_scontrino = array_filter($righe_scontrino);
+        // rimuove le righe vuote dall'array, effettuo prima il trim, poi la rimozione delle righe ed infine poi il riordino degli indici.
+        $righe_scontrino = array_values(array_filter(array_map('trim', $righe_scontrino)));
         // da verificare, non so come. Si presuppone che il primo elemento dell'array dopo la rimozione dell'elemento 0 sia il nome dell'attività commerciale
         $nomenegozio = $righe_scontrino[1];
         // ricerca della partita IVA
         // https://stackoverflow.com/questions/6228581/how-to-search-array-of-string-in-another-string-in-php
         // https://stackoverflow.com/questions/18338915/check-array-for-partial-match-php
-        $piva_nonparsata = preg_grep("/P.IVA/", $righe_scontrino);
 
-        //parsing della riga che contiene *presumibilmente* la partita IVA
-        $piva = explode(':', $piva_nonparsata[4]);
-        $piva = explode(' ', $piva[1]);
-        var_dump($piva);
-        $ris = $analisiscontrino->validaVIES('IT', '03117590756');
-        var_dump($ris);
-        return $righe_scontrino;
+        $info_scontrino = [
+            'nomenegozio' => $nomenegozio,
+            'partitaiva' => 'IT....',
+            'dataemissione' => '14/10/2022',
+            'rtcassa' => 'RT2173423',
+            'output_completo' => $righe_scontrino
+        ];
+
+        return $info_scontrino;
     }
 }
