@@ -137,13 +137,13 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Mostra la pagina Chi Siamo.
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionChisiamo()
     {
-        return $this->render('about');
+        return $this->render('chisiamo');
     }
 
     /**
