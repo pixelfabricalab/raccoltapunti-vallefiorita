@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use common\components\PixelNavBar;
 
 AppAsset::register($this);
 ?>
@@ -25,17 +26,21 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header>
+<header class="site-header sticky-top py-1">
     <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+    PixelNavBar::begin([
+        'brandLabel' => '<img src="./assets/logo/vallefiorita.png" />',
         'brandUrl' => Yii::$app->homeUrl,
+        'collapseOptions' => false,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-expand-md navbar-white bg-white fixed-top',
         ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Chi Siamo', 'url' => ['/site/chisiamo']],
+        ['label' => 'Come funziona', 'url' => ['/site/regolamento']],
+        ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -50,15 +55,15 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
+        'options' => ['class' => 'navbar-nav justify-content-end'],
         'items' => $menuItems,
     ]);
-    NavBar::end();
+    PixelNavBar::end();
     ?>
 </header>
 
 <main role="main" class="flex-shrink-0">
-    <div class="container">
+    <div class="container-fluid">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
