@@ -26,7 +26,7 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header class="site-header sticky-top py-1">
+<header class="site-header sticky-top py-1 mb-5">
     <?php
     PixelNavBar::begin([
         'brandLabel' => '<img src="./assets/logo/vallefiorita.png" />',
@@ -37,7 +37,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Home', 'url' => ['/site/index'], 'class' =>'mx-2'],
         ['label' => 'Chi Siamo', 'url' => ['/site/chisiamo']],
         ['label' => 'Come funziona', 'url' => ['/site/regolamento']],
         ['label' => 'Premi', 'url' => ['/site/premi']],
@@ -62,7 +62,7 @@ AppAsset::register($this);
     ?>
 </header>
 
-<main role="main" class="flex-shrink-0">
+<main role="main" class="flex-shrink-0 mb-5">
     <div class="container-fluid">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
