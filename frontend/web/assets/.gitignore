@@ -4,3 +4,5 @@
 !logo/*
 !js/*
 !.gitignore
+!images
+!images/*
