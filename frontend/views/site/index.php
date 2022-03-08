@@ -6,11 +6,11 @@ $this->title = 'Raccolta punti - Vallefiorita';
 ?>
 <div class="site-index">
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div class="position-relative overflow-hidden p-3 m-md-3 text-center hero-back">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 fw-normal">Punny headline</h1>
-      <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
-      <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+      <h1 class="display-4 fw-normal">Raccolta punti Vallefiorita</h1>
+      <p class="lead fw-normal">Una raccolta punti non è mai stata così semplice. Inquadra lo scontrino, scatta una foto e inviala con l'applicazione!</p>
+      <a class="btn btn-outline-secondary" href="#">Inizia subito</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

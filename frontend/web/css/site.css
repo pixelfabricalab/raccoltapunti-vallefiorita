@@ -141,3 +141,7 @@ hr .new1 {
 ul li.nav-item {
     display: inline-block;
 }
+
+.hero-back {
+  background: url('../assets/images/hero.jpg') center center no-repeat;
+}
