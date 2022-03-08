@@ -5,9 +5,8 @@
 use yii\helpers\Html;
 
 $this->title = 'Chi Siamo';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
+<div class="site-about container">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
