@@ -147,6 +147,26 @@ class SiteController extends Controller
     }
 
     /**
+     * Mostra la pagina Regolamento.
+     *
+     * @return mixed
+    */
+    public function actionRegolamento()
+    {
+        return $this->render('regolamento');
+    }
+
+    /**
+     * Mostra la pagina Premi.
+     *
+     * @return mixed
+    */
+    public function actionPremi()
+    {
+        return $this->render('premi');
+    }
+
+    /**
      * Signs user up.
      *
      * @return mixed
