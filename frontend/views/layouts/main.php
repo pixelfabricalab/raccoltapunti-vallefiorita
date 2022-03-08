@@ -26,12 +26,12 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header class="site-header sticky-top py-1 mb-5">
+<header class="site-header sticky-top py-5 mb-5">
     <?php
-    PixelNavBar::begin([
+    NavBar::begin([
         'brandLabel' => '<img src="./assets/logo/vallefiorita.png" />',
         'brandUrl' => Yii::$app->homeUrl,
-        'collapseOptions' => false,
+        'collapseOptions' => [],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-white bg-white fixed-top',
         ],
@@ -46,7 +46,9 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+            . Html::beginForm(
+                ['/site/logout'], 'post', ['class' => 'form-inline']
+                )
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
@@ -58,7 +60,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav justify-content-end'],
         'items' => $menuItems,
     ]);
-    PixelNavBar::end();
+    NavBar::end();
     ?>
 </header>
 
