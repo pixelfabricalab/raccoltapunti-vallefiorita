@@ -12,8 +12,6 @@ $this->title = 'Raccolta punti - Vallefiorita';
       <p class="lead fw-normal">Una raccolta punti non è mai stata così semplice. Inquadra lo scontrino, scatta una foto e inviala con l'applicazione!</p>
       <a class="btn btn-outline-secondary" href="#">Inizia subito</a>
     </div>
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
     <div class="body-content">
