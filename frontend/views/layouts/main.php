@@ -31,6 +31,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => '<img src="./assets/logo/vallefiorita.png" />',
         'brandUrl' => Yii::$app->homeUrl,
+        'togglerContent' => '<i class="fa-solid fa-bars mobile-menu-toggler"></i>',
         'collapseOptions' => ['class'=>'justify-content-end'],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-white bg-white fixed-top',
