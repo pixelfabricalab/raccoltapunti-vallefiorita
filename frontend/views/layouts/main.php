@@ -31,7 +31,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => '<img src="./assets/logo/vallefiorita.png" />',
         'brandUrl' => Yii::$app->homeUrl,
-        'collapseOptions' => [],
+        'collapseOptions' => ['class'=>'justify-content-end'],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-white bg-white fixed-top',
         ],
@@ -57,7 +57,7 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav justify-content-end'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,
     ]);
     NavBar::end();
