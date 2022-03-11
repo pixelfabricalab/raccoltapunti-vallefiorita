@@ -49,17 +49,14 @@ $this->title = 'Registrati';
             </div>
             <div class="row">
                 <div class="col">
-                <?= $form->field($model, 'trattamentodati')->radioList([
-                    0 => 'Acconsento al trattamento dei dati', 
-                    1 => 'Non acconsento al trattamento dei dati'
+                <?= $form->field($model, 'trattamentodati')->checkboxList([
+                    1 => 'Acconsento al trattamento dei dati', 
                 ])->label('Trattamento dei dati generico'); ?>
-                <?= $form->field($model, 'marketing')->radioList([
-                    0 => 'Acconsento al trattamento dei dati ai fini marketing', 
-                    1 => 'Non acconsento al trattamento dei dati ai fini marketing'
+                <?= $form->field($model, 'marketing')->checkboxList([
+                    1 => 'Acconsento al trattamento dei dati ai fini marketing'
                 ])->label('Trattamento dei dati ai fini marketing'); ?>
-                <?= $form->field($model, 'profilazione')->radioList([
-                    0 => 'Acconsento al trattamento dei dati a fine di profilazione', 
-                    1 => 'Non acconsento al trattamento dei dati a fine di profilazione'
+                <?= $form->field($model, 'profilazione')->checkboxList([
+                    1 => 'Acconsento al trattamento dei dati a fine di profilazione'
                 ])->label('Trattamento dei dati per profilazione e statistica'); ?>
                 </div>
             </div>
