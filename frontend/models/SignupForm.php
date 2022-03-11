@@ -57,10 +57,8 @@ class SignupForm extends Model
             ['trattamentodati', 'required'],
             ['trattamentodati', 'boolean'],
 
-            ['marketing', 'required'],
             ['marketing', 'boolean'],
             
-            ['profilazione', 'required'],
             ['profilazione', 'boolean'],
         ];
     }
