@@ -10,7 +10,7 @@ $this->title = 'Raccolta punti - Vallefiorita';
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal">Raccolta punti Vallefiorita</h1>
       <p class="lead fw-normal">Una raccolta punti non è mai stata così semplice. Inquadra lo scontrino, scatta una foto e inviala con l'applicazione!</p>
-      <a class="btn btn-outline-secondary" href="#">Inizia subito</a>
+      <a class="btn btn-outline-secondary btn-vallefiorita-palette" href="#">Inizia subito</a>
     </div>
   </div>
 
