@@ -149,3 +149,8 @@ ul li.nav-item {
 .mobile-menu-toggler {
   font-size: 38px;
 }
+
+.btn-vallefiorita-palette {
+  background-color: #14302a !important;
+  color:white !important;
+}
