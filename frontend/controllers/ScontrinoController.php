@@ -4,15 +4,21 @@ namespace frontend\controllers;
 
 use frontend\models\Scontrino;
 use frontend\models\ScontrinoSearch;
+use frontend\models\ScontrinoData;
+use frontend\models\ProdottiScontrinoData;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\components\ScontrinoHelper;
 use yii\web\UploadedFile;
+use Yii;
+
 /**
  * ScontrinoController implements the CRUD actions for Scontrino model.
  */
 class ScontrinoController extends Controller
 {
+
     /**
      * @inheritDoc
      */
@@ -30,6 +36,20 @@ class ScontrinoController extends Controller
             ]
         );
     }
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+    
+        if (!\Yii::$app->user->can('navigasemplice')) {
+            return $this->redirect(['site/login']);
+        }
+    
+        return true; // or false to not run the action
+    }
+
+
 
     /**
      * Lists all Scontrino models.
@@ -68,6 +88,10 @@ class ScontrinoController extends Controller
     public function actionCreate()
     {
         $model = new Scontrino();
+        $modeldata = new ScontrinoData();
+        $modelprodottidata = new ProdottiScontrinoData();
+
+        $helper = new ScontrinoHelper();
 
         if ($this->request->isPost) {
             $model->load($this->request->post());
@@ -79,14 +103,34 @@ class ScontrinoController extends Controller
                 $model->nomefile = $complete;
                 $model->hashnomefile = hash('sha256', $filename . time());
                 $model->estensionefile = $extension;
-                $model->proprietario_id = NULL;
-                $model->datacattura = date('d-m-Y H:i:s');
+                $model->id_proprietario = Yii::$app->user->id;
+                $model->data_caricamento = date('Y-m-d H:i:s');
                 $model->nomefile = './uploads/scontrini/' . hash('sha256', $filename . time()). '.'. $extension;
-                $righe_scontrino = $model->scansionaFile($model->nomefile);
-                var_dump($righe_scontrino);
-                die;
+                $json = $helper->scanOCR($model->nomefile);
+                //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
+                // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                // popola i campi per la demo
+                $modeldata->id_scontrino = $model->id;
+                // set campi a null in attesa della procedura di Alessandro
+                $modeldata->rfscontrino = null;
+                $modeldata->numerodocumento = null;
+                $modeldata->dataemissione = null;
+                $modeldata->ragionesociale = null;
+                $modeldata->indirizzo = null;
+                $modeldata->provincia = null;
+                $modeldata->citta = null;
+                $modeldata->cap = null;
+                $modeldata->telefono = null;
+                $modeldata->piva = null;
+                $modeldata->pivaisvalid = 0;
+                $modeldata->pivaisvies = 0;
+                $modeldata->dati_validi = 0;
+                // popola il campo outputocr
+                $modeldata->outputocr = $json->content;
+                    if ($modeldata->save()) {
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
                 }
             }
         } else {
