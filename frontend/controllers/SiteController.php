@@ -73,6 +73,13 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+
+    
+    public function actionListascontrini()
+    {
+        return $this->redirect(['scontrino/index']);
+    }
+
     public function actionIndex()
     {
         return $this->render('index');
