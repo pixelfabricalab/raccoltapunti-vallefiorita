@@ -18,7 +18,7 @@ class ScontrinoSearch extends Scontrino
     {
         return [
             [['id', 'id_proprietario'], 'integer'],
-            [['nomefile', 'hashnomefile', 'estensionefile', 'data_caricamento'], 'safe'],
+            [['nomefile', 'hashnomefile', 'estensionefile', 'data_caricamento', 'id_proprietario'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ScontrinoSearch extends Scontrino
      */
     public function search($params)
     {
-        $query = Scontrino::find();
+        $query = Scontrino::find()->where(['id_proprietario' => \Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
@@ -65,7 +65,8 @@ class ScontrinoSearch extends Scontrino
 
         $query->andFilterWhere(['like', 'nomefile', $this->nomefile])
             ->andFilterWhere(['like', 'hashnomefile', $this->hashnomefile])
-            ->andFilterWhere(['like', 'estensionefile', $this->estensionefile]);
+            ->andFilterWhere(['like', 'estensionefile', $this->estensionefile])
+            ->andFilterWhere(['like', 'id_proprietario', $this->id_proprietario]);
 
         return $dataProvider;
     }
