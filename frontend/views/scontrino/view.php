@@ -24,7 +24,7 @@ $this->title = 'Scontrino n°'. $model->id;
     ]) ?>
     <hr />
     <?= DetailView::widget([
-        'model' => $datamodel,
+        'model' => $datamodel[0],
         'attributes' => [
             'rfscontrino' => 'Rfscontrino',
             'numerodocumento' => 'Numerodocumento',
