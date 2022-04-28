@@ -80,6 +80,11 @@ class SiteController extends Controller
         return $this->redirect(['scontrino/index']);
     }
 
+    public function actionCaricascontrino()
+    {
+        return $this->redirect(['scontrino/create']);
+    }
+
     public function actionIndex()
     {
         return $this->render('index');
