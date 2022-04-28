@@ -77,7 +77,7 @@ class ScontrinoController extends Controller
     {
         
         $datamodel = ScontrinoData::find()->where(['id_scontrino' => $id])->all();
-        $dataprodottimodel = ProdottiScontrinoData::find()->where(['id_scontrino_data' => $datamodel->getId()])->all();
+        $dataprodottimodel = ProdottiScontrinoData::find()->where(['id_scontrino_data' => $datamodel[0]->getId()])->all();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
