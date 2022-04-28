@@ -11,15 +11,9 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $nome;
-    public $cognome;
     public $username;
     public $email;
     public $password;
-    public $datanascita;
-    public $marketing;
-    public $trattamentodati;
-    public $profilazione;
 
 
     /**
@@ -28,15 +22,6 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-
-            ['nome', 'trim'],
-            ['nome', 'required'],
-            ['nome', 'string', 'min' => 2, 'max' => 255],
-
-            ['cognome', 'trim'],
-            ['cognome', 'required'],
-            ['cognome', 'string', 'min' => 2, 'max' => 255],
-
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
@@ -50,16 +35,6 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
-            
-            ['datanascita', 'required'],
-            ['datanascita', 'date'],
-
-            ['trattamentodati', 'required'],
-            ['trattamentodati', 'boolean'],
-
-            ['marketing', 'boolean'],
-            
-            ['profilazione', 'boolean'],
         ];
     }
 
