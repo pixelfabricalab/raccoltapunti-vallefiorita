@@ -128,7 +128,6 @@ class ScontrinoController extends Controller
                 $modeldata->dati_validi = 0;
                 // popola il campo outputocr
                 $modeldata->outputocr = $json->content;
-                var_dump($json->content);
                 $mydata = json_encode($json->content);
                 var_dump($mydata);
                 die;
