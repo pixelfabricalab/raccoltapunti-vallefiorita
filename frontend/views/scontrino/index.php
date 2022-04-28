@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use frontend\models\Scontrino;
+use frontend\models\ScontrinoData;
+use frontend\models\ProdottiScontrinoData;
 
 
 /* @var $this yii\web\View */
