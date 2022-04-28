@@ -26,14 +26,33 @@ $this->title = 'Scontrino n°'. $model->id;
     <?= DetailView::widget([
         'datamodel' => $datamodel,
         'attributes' => [
-            'nomefile',
+            'rfscontrino' => 'Rfscontrino',
+            'numerodocumento' => 'Numerodocumento',
+            'dataemissione' => 'Dataemissione',
+            'ragionesociale' => 'Ragionesociale',
+            'indirizzo' => 'Indirizzo',
+            'provincia' => 'Provincia',
+            'citta' => 'Citta',
+            'cap' => 'Cap',
+            'telefono' => 'Telefono',
+            'piva' => 'Piva',
+            'pivaisvalid' => 'Pivaisvalid',
+            'pivaisvies' => 'Pivaisvies',
+            'dati_validi' => 'Dati Validi',
         ],
     ]) ?>
     <hr />
     <?= DetailView::widget([
         'dataprodottimodel' => $dataprodottimodel,
         'attributes' => [
-            'nomefile',
+            'nomeprodotto' => 'Nomeprodotto',
+            'prezzo_prodotto' => 'Prezzo Prodotto',
+            'tipo_prodotto' => 'Tipo Prodotto',
+            'iva_prodotto' => 'Iva Prodotto',
+            'multiprodotto' => 'Multiprodotto',
+            'conteggio_stesso_prodotto_per_riga' => 'Conteggio Stesso Prodotto Per Riga',
+            'punti_per_prodotto' => 'Punti Per Prodotto',
+            'numeropunti' => 'Numeropunti',
         ],
     ]) ?>
 </div>
