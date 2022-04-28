@@ -23,7 +23,7 @@ $this->title = 'Scontrino n°'. $model->id;
         ],
     ]) ?>
     <hr />
-    <?= DetailView::widget([
+    <?= GridView::widget([
         'model' => $datamodel[0],
         'attributes' => [
             'rfscontrino' => 'Rfscontrino',
@@ -41,18 +41,5 @@ $this->title = 'Scontrino n°'. $model->id;
             'dati_validi' => 'Dati Validi',
         ],
     ]) ?>
-    <hr />
-    <?= DetailView::widget([
-        'model' => $dataprodottimodel[0],
-        'attributes' => [
-            'nomeprodotto' => 'Nomeprodotto',
-            'prezzo_prodotto' => 'Prezzo Prodotto',
-            'tipo_prodotto' => 'Tipo Prodotto',
-            'iva_prodotto' => 'Iva Prodotto',
-            'multiprodotto' => 'Multiprodotto',
-            'conteggio_stesso_prodotto_per_riga' => 'Conteggio Stesso Prodotto Per Riga',
-            'punti_per_prodotto' => 'Punti Per Prodotto',
-            'numeropunti' => 'Numeropunti',
-        ],
-    ]) ?>
+  
 </div>
