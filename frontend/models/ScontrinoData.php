@@ -73,4 +73,8 @@ class ScontrinoData extends \yii\db\ActiveRecord
         $id = $this->id;
         return $id;
     }
+    public function getPiva() {
+        $piva = $this->piva;
+        return $piva;
+    }
 }
