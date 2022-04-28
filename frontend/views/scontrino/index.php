@@ -4,12 +4,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use frontend\models\Scontrino;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ScontrinoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Scontrinos';
+$this->title = 'Le mie scansioni';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="scontrino-index">
