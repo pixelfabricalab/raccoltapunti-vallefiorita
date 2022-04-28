@@ -24,7 +24,7 @@ $this->title = 'Scontrino n°'. $model->id;
     ]) ?>
     <hr />
     <?= DetailView::widget([
-        'datamodel' => $datamodel[0],
+        'model' => $datamodel,
         'attributes' => [
             'rfscontrino' => 'Rfscontrino',
             'numerodocumento' => 'Numerodocumento',
@@ -43,7 +43,7 @@ $this->title = 'Scontrino n°'. $model->id;
     ]) ?>
     <hr />
     <?= DetailView::widget([
-        'dataprodottimodel' => $dataprodottimodel[0],
+        'model' => $dataprodottimodel[0],
         'attributes' => [
             'nomeprodotto' => 'Nomeprodotto',
             'prezzo_prodotto' => 'Prezzo Prodotto',
