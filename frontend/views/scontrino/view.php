@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Scontrino */
