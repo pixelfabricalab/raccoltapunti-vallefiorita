@@ -16,13 +16,24 @@ $this->title = 'Scontrino n°'. $model->id;
 <div class="scontrino-view container">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php if ($datamodel->piva == NULL) : ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'nomefile',
+        ],
+        'options' => [
+            'class' => 'alert-warning',
+        ],
+    ]) ?>
+    <?php else : ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'nomefile',
         ],
     ]) ?>
+    <?php endif; ?>
     <hr />
     <h3> Dettagli Scontrino</h3>
     <table id="w0" class="table table-striped table-bordered detail-view">
@@ -50,7 +61,7 @@ $this->title = 'Scontrino n°'. $model->id;
             <tr><?= $datamodel[0]->citta; ?></tr>
             <tr><?= $datamodel[0]->cap; ?></tr>
             <tr><?= $datamodel[0]->telefono; ?></tr>
-            <tr><?= $datamodel[0]->getPiva(); ?></tr>
+            <tr><?= $datamodel[0]->piva; ?></tr>
             <tr><?= $datamodel[0]->pivaisvalid; ?></tr>
             <tr><?= $datamodel[0]->pivaisvies; ?></tr>
         </tbody>
