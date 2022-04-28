@@ -41,7 +41,7 @@ $this->title = 'Scontrino n°'. $model->id;
             <th>P.IVA VIES?</th>
         </thead>
         <tbody>
-            <tr><?= $datamodel[0]; ?></tr>
+            <tr><?= $datamodel[0]->rfscontrino; ?></tr>
             <tr><?= $datamodel[0]->numerodocumento; ?></tr>
             <tr><?= $datamodel[0]->dataemissione; ?></tr>
             <tr><?= $datamodel[0]->ragionesociale; ?></tr>
