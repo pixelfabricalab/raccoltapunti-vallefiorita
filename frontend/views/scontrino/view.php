@@ -41,7 +41,7 @@ $this->title = 'Scontrino n°'. $model->id;
             <th>P.IVA VIES?</th>
         </thead>
         <tbody>
-            <tr><?= $datamodel[0]->rfscontrino; ?></tr>
+            <tr><?= $datamodel[0]; ?></tr>
             <tr><?= $datamodel[0]->numerodocumento; ?></tr>
             <tr><?= $datamodel[0]->dataemissione; ?></tr>
             <tr><?= $datamodel[0]->ragionesociale; ?></tr>
@@ -53,10 +53,33 @@ $this->title = 'Scontrino n°'. $model->id;
             <tr><?= $datamodel[0]->piva; ?></tr>
             <tr><?= $datamodel[0]->pivaisvalid; ?></tr>
             <tr><?= $datamodel[0]->pivaisvies; ?></tr>
-
         </tbody>
     </table>
     <hr />
     <h3>Prodotti Scontrino</h3>
-  
+    <table id="w0" class="table table-striped table-bordered detail-view">
+        <thead>
+            <th>Nome prodotto</th>
+            <th>Prezzo Prodotto</th>
+            <th>Tipo Prodotto</th>
+            <th>IVA Prodotto</th>
+            <th>Multiprodotto</th>
+            <th>Moltiplicatore</th>
+            <th>Punti per prodotto</th>
+            <th>Numero punti</th>
+        </thead>
+        <tbody>
+            <tr><?= $dataprodottimodel[0]->nomeprodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->prezzo_prodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->tipo_prodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->iva_prodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->multiprodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->conteggio_stesso_prodotto_per_riga; ?></tr>
+            <tr><?= $dataprodottimodel[0]->punti_per_prodotto; ?></tr>
+            <tr><?= $dataprodottimodel[0]->numeropunti; ?></tr>
+        </tbody>
+    </table>
 </div>
+
+<?php var_dump($dataprodottimodel);?>
+<?php var_dump($datamodel);?>
