@@ -50,7 +50,7 @@ $this->title = 'Scontrino n°'. $model->id;
             <tr><?= $datamodel[0]->citta; ?></tr>
             <tr><?= $datamodel[0]->cap; ?></tr>
             <tr><?= $datamodel[0]->telefono; ?></tr>
-            <tr><?= $datamodel[0]->piva; ?></tr>
+            <tr><?= $datamodel[0]->getPiva(); ?></tr>
             <tr><?= $datamodel[0]->pivaisvalid; ?></tr>
             <tr><?= $datamodel[0]->pivaisvies; ?></tr>
         </tbody>
