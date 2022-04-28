@@ -18,8 +18,8 @@ $this->title = 'Chi Siamo';
         <div class="row">
             <div class="col">
                 <div class="page-content">
-                <p><strong>Valle Fiorita</strong>&nbsp;nasce nell’ottobre del 1997 come piccola azienda produttrice di sandwich freschi in atm. In pochi anni diventa un’azienda leader sul mercato nazionale.</p>
-                <p>La produzione è interamente realizzata con farine selezionate. L’utilizzo di solo lievito naturale conferisce al prodotto elevata digeribilità e leggerezza. Inoltre l’utilizzo di olio extravergine d’oliva e sale iodato apporta pochissimi grassi saturi senza rinunciare al gusto. Questi elementi, abbinati ad una cottura su pietra per alcuni dei prodotti più ricercati, <strong>offrono al consumatore un’esperienza ricca dei sapori e dei profumi della nostra terra.</strong></p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam quod soluta itaque id nobis eius inventore fugit sequi nam quidem illo iusto enim fugiat reiciendis eos saepe, impedit distinctio cum!<br /><br />
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae et saepe qui dignissimos fugit tempora nobis asperiores maxime quidem quod earum, dolorum, ipsum sed provident quisquam vel libero voluptate sapiente?
                 </div>
             </div>
         </div>
