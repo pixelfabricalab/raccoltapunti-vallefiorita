@@ -5,6 +5,8 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Scontrino */
+/* @var $datamodel app\models\ScontrinoData */
+/* @var $dataprodottimodel app\models\ProdottiScontrinoData */
 
 $this->title = 'Scontrino n°'. $model->id;
 
@@ -20,5 +22,18 @@ $this->title = 'Scontrino n°'. $model->id;
             'nomefile',
         ],
     ]) ?>
-
+    <hr />
+    <?= DetailView::widget([
+        'datamodel' => $datamodel,
+        'attributes' => [
+            'nomefile',
+        ],
+    ]) ?>
+    <hr />
+    <?= DetailView::widget([
+        'dataprodottimodel' => $dataprodottimodel,
+        'attributes' => [
+            'nomefile',
+        ],
+    ]) ?>
 </div>
