@@ -11,6 +11,17 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-        ]
+        ],
+        'mail' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mailtrap.io',
+                'username' => 'b333154ad0b695',
+                'password' => 'f5207996b0745f',
+                'port' => '2525',
+                'encryption' => 'tls',
+            ],
+        ],
     ],
 ];
