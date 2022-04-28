@@ -12,9 +12,8 @@ use frontend\models\Scontrino;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Le mie scansioni';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="scontrino-index">
+<div class="scontrino-index container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,11 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nomefile',
-            'hashnomefile',
-            'estensionefile',
-            'dimensionefile',
             //'proprietario_id',
             //'datacattura',
             //'rfscontrino',
