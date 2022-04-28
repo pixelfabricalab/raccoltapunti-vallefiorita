@@ -18,7 +18,7 @@ $this->title = 'Le mie scansioni';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Scontrino', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Inserisci nuovo scontrino', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
