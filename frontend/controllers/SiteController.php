@@ -248,6 +248,10 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
         if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
+            // assegna il ruolo di utente registrato solo dopo la verifica dell'email
+            $auth = Yii::$app->authManager;
+            $user_role = $auth->createRole('simpleuser');
+            $auth->assign($user_role, $user->id);
             Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
             return $this->goHome();
         }
