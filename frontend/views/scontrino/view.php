@@ -24,23 +24,5 @@ $this->title = 'Scontrino n°'. $model->id;
         ],
     ]) ?>
     <hr />
-    <?= GridView::widget([
-        'model' => $datamodel[0],
-        'attributes' => [
-            'rfscontrino' => 'Rfscontrino',
-            'numerodocumento' => 'Numerodocumento',
-            'dataemissione' => 'Dataemissione',
-            'ragionesociale' => 'Ragionesociale',
-            'indirizzo' => 'Indirizzo',
-            'provincia' => 'Provincia',
-            'citta' => 'Citta',
-            'cap' => 'Cap',
-            'telefono' => 'Telefono',
-            'piva' => 'Piva',
-            'pivaisvalid' => 'Pivaisvalid',
-            'pivaisvies' => 'Pivaisvies',
-            'dati_validi' => 'Dati Validi',
-        ],
-    ]) ?>
   
 </div>
