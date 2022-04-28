@@ -91,6 +91,3 @@ $this->title = 'Scontrino n°'. $model->id;
         </tbody>
     </table>
 </div>
-
-<?php var_dump($dataprodottimodel);?>
-<?php var_dump($datamodel);?>
