@@ -4,9 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Scontrino */
-/* @var $datamodel app\models\ScontrinoData */
-/* @var $dataprodottimodel app\models\ProdottiScontrinoData */
+/* @var $model frontend\models\Scontrino */
+/* @var $datamodel frontend\models\ScontrinoData */
+/* @var $dataprodottimodel frontend\models\ProdottiScontrinoData */
 
 $this->title = 'Scontrino n°'. $model->id;
 
