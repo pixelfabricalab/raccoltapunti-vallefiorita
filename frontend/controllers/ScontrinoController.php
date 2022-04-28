@@ -128,10 +128,7 @@ class ScontrinoController extends Controller
                 $modeldata->dati_validi = 0;
                 // popola il campo outputocr
                 $modeldata->outputocr = $json->content;
-                $mydata = json_encode($json->content);
-                var_dump($mydata);
-                die;
-                    if ($modeldata->save()) {
+                if ($modeldata->save()) {
                         return $this->redirect(['view', 'id' => $model->id]);
                     }
                 }
