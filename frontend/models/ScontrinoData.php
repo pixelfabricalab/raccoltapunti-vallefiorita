@@ -68,4 +68,9 @@ class ScontrinoData extends \yii\db\ActiveRecord
             'dati_validi' => 'Dati Validi',
         ];
     }
+
+    public function getId() {
+        $id = $this->id;
+        return $id;
+    }
 }
