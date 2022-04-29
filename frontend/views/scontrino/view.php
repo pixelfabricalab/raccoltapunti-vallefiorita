@@ -16,7 +16,7 @@ $this->title = 'Scontrino n°'. $model->id;
 <div class="scontrino-view container">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php if ($datamodel->piva == NULL) : ?>
+    <?php if ($datamodel[0]->piva == NULL) : ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -52,18 +52,8 @@ $this->title = 'Scontrino n°'. $model->id;
             <th>P.IVA VIES?</th>
         </thead>
         <tbody>
-            <tr><?= $datamodel[0]->rfscontrino; ?></tr>
-            <tr><?= $datamodel[0]->numerodocumento; ?></tr>
-            <tr><?= $datamodel[0]->dataemissione; ?></tr>
-            <tr><?= $datamodel[0]->ragionesociale; ?></tr>
-            <tr><?= $datamodel[0]->indirizzo; ?></tr>
-            <tr><?= $datamodel[0]->provincia; ?></tr>
-            <tr><?= $datamodel[0]->citta; ?></tr>
-            <tr><?= $datamodel[0]->cap; ?></tr>
-            <tr><?= $datamodel[0]->telefono; ?></tr>
-            <tr><?= $datamodel[0]->piva; ?></tr>
-            <tr><?= $datamodel[0]->pivaisvalid; ?></tr>
-            <tr><?= $datamodel[0]->pivaisvies; ?></tr>
+    
+
         </tbody>
     </table>
     <hr />
@@ -79,15 +69,8 @@ $this->title = 'Scontrino n°'. $model->id;
             <th>Punti per prodotto</th>
             <th>Numero punti</th>
         </thead>
-        <tbody>
-            <tr><?= $dataprodottimodel[0]->nomeprodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->prezzo_prodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->tipo_prodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->iva_prodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->multiprodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->conteggio_stesso_prodotto_per_riga; ?></tr>
-            <tr><?= $dataprodottimodel[0]->punti_per_prodotto; ?></tr>
-            <tr><?= $dataprodottimodel[0]->numeropunti; ?></tr>
-        </tbody>
     </table>
+    <hr />
+    <h3>Output per OCR</h3>
+        <textarea rows="10"><?= $datamodel[0]->outputocr ?></textarea>
 </div>
