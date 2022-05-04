@@ -13,6 +13,7 @@ use Yii;
  * @property string|null $estensionefile
  * @property string|null $data_caricamento
  * @property int|null $id_proprietario
+ * @property int|null $dimensione
  */
 class Scontrino extends \yii\db\ActiveRecord
 {
@@ -36,7 +37,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             [['data_caricamento'], 'safe'],
-            [['id_proprietario'], 'integer'],
+            [['id_proprietario', 'dimensione'], 'integer'],
             [['nomefile', 'hashnomefile', 'estensionefile'], 'string', 'max' => 255],
         ];
     }
@@ -51,6 +52,7 @@ class Scontrino extends \yii\db\ActiveRecord
             'nomefile' => 'Nomefile',
             'hashnomefile' => 'Hashnomefile',
             'estensionefile' => 'Estensionefile',
+            'dimensione' => 'Dimensione',
             'data_caricamento' => 'Data Caricamento',
             'id_proprietario' => 'Id Proprietario',
         ];
