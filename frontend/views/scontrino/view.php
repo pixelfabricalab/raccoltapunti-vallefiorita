@@ -72,5 +72,5 @@ $this->title = 'Scontrino n°'. $model->id;
     </table>
     <hr />
     <h3>Output per OCR</h3>
-        <textarea rows="10"><?= $datamodel[0]->outputocr ?></textarea>
+        <textarea rows="10" cols="100"><?= $datamodel[0]->outputocr ?></textarea>
 </div>
