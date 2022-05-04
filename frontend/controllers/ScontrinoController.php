@@ -109,6 +109,7 @@ class ScontrinoController extends Controller
                 $model->nomefile = $complete;
                 $model->hashnomefile = hash('sha256', $filename . time());
                 $model->estensionefile = $extension;
+                $model->dimensione = getimagesize($complete);
                 $model->id_proprietario = Yii::$app->user->id;
                 $model->data_caricamento = date('Y-m-d H:i:s');
                 $model->nomefile = './uploads/scontrini/' . hash('sha256', $filename . time()). '.'. $extension;
