@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "scontrino".
@@ -38,7 +39,7 @@ class Scontrino extends \yii\db\ActiveRecord
         return [
             [['data_caricamento'], 'safe'],
             [['id_proprietario', 'dimensione'], 'integer'],
-            [['nomefile', 'hashnomefile', 'estensionefile'], 'string', 'max' => 255],
+            [['nomefile', 'hashnomefile', 'estensionefile', 'mimetype', 'tmpfilename'], 'string', 'max' => 255],
         ];
     }
 
@@ -55,6 +56,8 @@ class Scontrino extends \yii\db\ActiveRecord
             'dimensione' => 'Dimensione',
             'data_caricamento' => 'Data Caricamento',
             'id_proprietario' => 'Id Proprietario',
+            'mimetype' => 'Tipo File',
+            'tmpfilename' => 'Nome temporaneo file',
         ];
     }
 
@@ -62,8 +65,16 @@ class Scontrino extends \yii\db\ActiveRecord
     public function upload() {
         $base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
         if ($this->validate()) {
-            $this->imageFile->saveAs($base . hash('sha256', $this->imageFile->baseName . time()) . '.' . $this->imageFile->extension);
-            return true;
+            $fileparams = [];
+            $filename = $this->imageFile->baseName;
+            $mimetype = $this->imageFile->type;
+            $size = $this->imageFile->size;
+            $extension = $this->imageFile->extension;
+            $tmpfilename = $this->imageFile->tempName;
+            $hashfilename = hash('sha256', $this->imageFile->baseName . time());
+            $this->imageFile->saveAs($base . $hashfilename . '.' . $extension);
+            $fileparams = ['filename' => $filename, 'tempName' => $tmpfilename, 'mimetype' => $mimetype, 'size' => $size, 'extension' => $extension, 'hashfilename' => $hashfilename];
+            return $fileparams;
         } else {
             return false;
         }
