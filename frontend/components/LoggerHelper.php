@@ -13,7 +13,7 @@
         }
 
         public function logOCROutput($output) {
-            $logfile = fopen("./uploads/scontrini/ocroutput.log", "w+") or die("Unable to open file!");
+            $logfile = fopen("./uploads/scontrini/ocroutput.log", "a") or die("Unable to open file!");
             fwrite($logfile, $output);
             fclose($logfile);
             return true;
