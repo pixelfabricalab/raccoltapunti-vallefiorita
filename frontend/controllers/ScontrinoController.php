@@ -9,6 +9,7 @@ use frontend\models\ProdottiScontrinoData;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\components\LoggerHelper;
 use frontend\components\ScontrinoHelper;
 use yii\web\UploadedFile;
 use Yii;
@@ -98,6 +99,7 @@ class ScontrinoController extends Controller
         $modelprodottidata = new ProdottiScontrinoData();
 
         $helper = new ScontrinoHelper();
+        $logger = new LoggerHelper();
 
         if ($this->request->isPost) {
             $model->load($this->request->post());
@@ -115,7 +117,10 @@ class ScontrinoController extends Controller
                 $model->nomefile = './uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 $model->dimensione = $fileparams['size'];
                 $model->tmpfilename = $fileparams['tempName'];
+                $model->mimetype = $fileparams['mimetype'];
                 $json = $helper->scanOCR($model->nomefile);
+                $log_ocr_content = "Scansione OCR \n ======== \n File scansionato: ". $fileparams['filename'] . "." . $fileparams['extension'] . "\n Rif. server file: " . $model->nomefile . "\n Contenuto Scansione OCR: ". $json->content ."\n\n ======== \n\n";
+                $logger->logOCROutput($log_ocr_content);
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
