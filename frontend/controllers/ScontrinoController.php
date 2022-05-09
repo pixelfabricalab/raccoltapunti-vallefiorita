@@ -119,7 +119,7 @@ class ScontrinoController extends Controller
                 $model->tmpfilename = $fileparams['tempName'];
                 $model->mimetype = $fileparams['mimetype'];
                 $json = $helper->scanOCR($model->nomefile);
-                $log_ocr_content = "Scansione OCR \n ======== \n File scansionato: ". $fileparams['filename'] . "." . $fileparams['extension'] . "\n Rif. server file: " . $model->nomefile . "\n Contenuto Scansione OCR: ". $json->content ."\n\n ======== \n\n";
+                $log_ocr_content = "Scansione OCR \n ======== \n File scansionato: ". $fileparams['filename'] . "." . $fileparams['extension'] . "\n Rif. server file: " . $model->nomefile . "\n Contenuto Scansione OCR: ". $json->content ."\n ======== \n\n";
                 $logger->logOCROutput($log_ocr_content);
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
