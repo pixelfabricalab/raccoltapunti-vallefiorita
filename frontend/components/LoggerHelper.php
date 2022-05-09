@@ -5,16 +5,17 @@
 
     class LoggerHelper {
         public function logUpload($content) {
-            $logfile = fopen("./uploads/scontrini/uploads.log", "w+") or die("Unable to open file!");
-            fwrite($myfile, $content);
-            fclose($myfile);
+            //$base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
+            $logfile = fopen("./uploads/scontrini/uploads.log", "a") or die("Unable to open file!");
+            fwrite($logfile, $content);
+            fclose($logfile);
             return true;
         }
 
         public function logOCROutput($output) {
-            $logocr = fopen("./uploads/scontrini/ocroutput.log", "w+") or die("Unable to open file!");
-            fwrite($logocr, $output);
-            fclose($logocr);
+            $logfile = fopen("./uploads/scontrini/ocroutput.log", "w+") or die("Unable to open file!");
+            fwrite($logfile, $output);
+            fclose($logfile);
             return true;
         }
     }
