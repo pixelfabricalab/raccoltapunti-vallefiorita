@@ -103,20 +103,18 @@ class ScontrinoController extends Controller
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
             $fileparams = $model->upload();
-            if ($model->upload() !== false) {
+            if ($fileparams !== false) {
                 $complete = explode(".", $model->imageFile->name);
-                var_dump($fileparams);
-                die;
                 $filename = $fileparams['filename'];
                 $extension = $fileparams['extension'];
                 $model->nomefile = $fileparams['filename'] . '.' . $fileparams['extension'];
-                $model->hashnomefile = $fileparams['hashnomefile'];
+                $model->hashnomefile = $fileparams['hashfilename'];
                 $model->estensionefile = $fileparams['extension'];
                 $model->id_proprietario = Yii::$app->user->id;
                 $model->data_caricamento = date('Y-m-d H:i:s');
-                $model->nomefile = './uploads/scontrini/' . $fileparams['hashnomefile']. '.'. $fileparams['extension'];
+                $model->nomefile = './uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 $model->dimensione = $fileparams['size'];
-                $model->tmpfilename = $fileparams['tmpfilename'];
+                $model->tmpfilename = $fileparams['tempName'];
                 $json = $helper->scanOCR($model->nomefile);
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
