@@ -74,7 +74,7 @@ class Scontrino extends \yii\db\ActiveRecord
             $extension = $this->imageFile->extension;
             $tmpfilename = $this->imageFile->tempName;
             $upload_date = date('d-m-Y H:i:s');
-            $hashfilename = hash('sha256', $this->imageFile->baseName . time());
+            $hashfilename = hash('sha256', $filename . time());
             $this->imageFile->saveAs($base . $hashfilename . '.' . $extension);
             $fileparams = ['filename' => $filename, 'tempName' => $tmpfilename, 'mimetype' => $mimetype, 'size' => $size, 'extension' => $extension, 'hashfilename' => $hashfilename];
             $logcontent = "Upload \n ============== \n\n nomefile: ". $filename. "\n nometemporaneo: ". $tmpfilename ."\n tipo file: ". $mimetype . "\n dimensione: " . $size . "\n estensione: " . $extension . "\n hashnomefile: ". $hashfilename . "\n data upload: ". $upload_date ."\n\n =================\n\n";
