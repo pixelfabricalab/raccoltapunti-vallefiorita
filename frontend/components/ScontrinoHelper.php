@@ -4,7 +4,7 @@
     use yii\web\Response;
 
     class ScontrinoHelper {
-        public function scanOCR($nomefile) {
+        public function scanOCR($nomefile, $modo, $engine, $dpi, $desk) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -16,7 +16,7 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('image'=> new \CURLFILE($nomefile),'modo' => '3','engine' => '3'),
+            CURLOPT_POSTFIELDS => array('image'=> new \CURLFILE($nomefile),'modo' => "{$modo}",'engine' => "{$engine}", 'densita' => "{$dpi}", "desk" => "{$desk}"),
             ));
 
             $response_curl = curl_exec($curl);
