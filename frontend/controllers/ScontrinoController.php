@@ -9,8 +9,8 @@ use frontend\models\ProdottiScontrinoData;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use frontend\components\LoggerHelper;
-use frontend\components\ScontrinoHelper;
+use common\components\LoggerHelper;
+use common\components\ScontrinoHelper;
 use yii\web\UploadedFile;
 use Yii;
 
