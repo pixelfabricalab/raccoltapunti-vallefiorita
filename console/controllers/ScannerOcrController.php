@@ -21,7 +21,7 @@
           $scanner = new ScontrinoHelper;
           $modes_psm = [1,2,3];
           $engines_lstm = [1,2,3];
-          $dpis_scansione = [150,200,300,400];
+          $dpis_scansione = [200,300,400];
           $desks_foto = [0,1];
           $extension_to_search = array('jpg','png','jpeg','gif');
           $url = $request->getBaseUrl();
