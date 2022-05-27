@@ -39,7 +39,7 @@
                       foreach($desks_foto as $desk) {
                         $response = $scanner->scanOCR($dir_scontrini_da_scansionare.$value, $mode, $engine, $dpi,$desk);
                         $output = "Elaborazione OCR file {$value}:\n\nDettagli:\nModo: {$mode}\nEngine:{$engine}\n,Densità:{$dpi}\nDesk:{$desk}\n\nRisultati scansione:\n{$response->content}";
-                        //$logger->logBatchOCROutput($output);
+                        $logger->logBatchOCROutput($output);
                         echo "file {$value} elaborato con successo con modo {$mode} - engine {$engine} - dpi {$dpi} - desk {$desk}.\n\n";
                       }
                     }
