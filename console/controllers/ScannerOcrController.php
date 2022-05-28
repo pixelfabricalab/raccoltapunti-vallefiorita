@@ -16,40 +16,72 @@
         }
 
         public function actionScan() {
+          // inizializza i costruttori necessari per lo script
           $request = new Request;
           $logger = new LoggerHelper;
           $scanner = new ScontrinoHelper;
+
+          // array per dimensioni
           $dimensioni_scansione = [1600,2200,2800,3200];
+          // array per modalità di segmentazione pagina
           $modes_psm = [1,3];
+          // array per engine segmentazione pagina
           $engines_lstm = [1,2,3,6,11,12];
+          // array per dpi scansione 
           $dpis_scansione = [300,400,600];
+          // array con valori boolean: 0 e 1 per attivare e disattivare funzione di raddrizzamento automatico - non utilizzata su suggerimento di Ale. Non funziona bene.
           $desks_foto = [0];
+          // numero di scansioni totali per file: 144
+
+          // array di estensioni di file valevoli per la scansione
           $extension_to_search = array('jpg','png','jpeg','gif');
+
+          // individua l'url base
           $url = $request->getBaseUrl();
+
+          // directory contenente gli scontrini da scansionare
           $dir_scontrini_da_scansionare = "{$url}/frontend/web/uploads/scontrini/";
+          
+          // funzione per scansionare il numero di file nella cartella
           $files = scandir($dir_scontrini_da_scansionare);
           $found = false;
+          
+          // inizializzo i contatori a 0 e a 1. mi servono per contare i file elaborati e i task per ogni file.
           $count = 0;
           $task = 1;
+
+          // primo ciclo - per ogni file presente nell'array files, verifica che si tratti di un'immagine
           foreach($files as $key => $value) {
             $ext = pathinfo($value, PATHINFO_EXTENSION);
+            // controllo a monte per verificare che i file nella cartella siano immagini
             if(in_array($ext,$extension_to_search)) {
               echo "file: {$count}\n"; 
                 echo "file: {$value}\n";
                 $count = 1;
+                // inizio i cicli delle scansioni
+                  // 1. ciclo per array dimensioni
                 foreach($dimensioni_scansione as $dimensione) {
+                  // 2. ciclo per array modi
                   foreach($modes_psm as $mode) {
+                  // 3. ciclo per array engines
                     foreach($engines_lstm as $engine) {
+                  // 4. ciclo per array dpi
                       foreach($dpis_scansione as $dpi) {
+                  // 5. ciclo per array desk - non utilizzato e settato fisso a 0.
                         foreach($desks_foto as $desk) {
                           echo "task: {$task}:\n";
+                          // chiamata della funzione scanOCR dall'helper ScontrinoHelper con il passaggio dei nuovi argomenti della funzione
                           $response = $scanner->scanOCR($dir_scontrini_da_scansionare.$value, $dimensione, $mode, $engine, $dpi);
+                          // se il contenuto della risposta è vuota (per il momento) interrompi lo script
                           if ($response->content != NULL || $response->content != '') {
                             $output = "\n\nElaborazione OCR file {$value}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}";
+                            // chiamata della funzione logBatchOCROutput dall'helper LoggerHelper
                             $logger->logBatchOCROutput($output);
                             echo "file {$value} elaborato con successo con dimensione {$dimensione} - modo {$mode} - engine {$engine} - dpi {$dpi}.\n\n";
+                            // incrementa task al termine della singola scansione.
                             $task++;
                           } else {
+                            // esce con errore I/O se response->content è vuota o Null
                             ExitCode::IOERR;
                           }
                       }
@@ -57,8 +89,12 @@
                   }
                 }
               }
+                // aumenta il conto dei file al termine di TUTTE le elaborazioni del singolo file
                 $count++;
+                // to fix: sposta il file in un'altra directory in modo che uploads risulti sempre vuota. NON FUNZIONA?
                 move_uploaded_file($dir_scontrini_da_scansionare.$value, "{$url}/frontend/web/uploads/elapsed/{$value}");
+                // todo: implementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
+                ExitCode::OK;
             }
         }
         echo "Conto totale file: {$count}";
