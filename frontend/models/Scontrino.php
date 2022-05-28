@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\web\UploadedFile;
-use frontend\components\LoggerHelper;
+use common\components\LoggerHelper;
 
 /**
  * This is the model class for table "scontrino".
