@@ -9,8 +9,6 @@ use frontend\models\ProdottiScontrinoData;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\components\LoggerHelper;
-use common\components\ScontrinoHelper;
 use yii\web\UploadedFile;
 use Yii;
 
@@ -95,11 +93,6 @@ class ScontrinoController extends Controller
     public function actionCreate()
     {
         $model = new Scontrino();
-        $modeldata = new ScontrinoData();
-        $modelprodottidata = new ProdottiScontrinoData();
-
-        $helper = new ScontrinoHelper();
-        $logger = new LoggerHelper();
 
         if ($this->request->isPost) {
             $model->load($this->request->post());
@@ -118,33 +111,11 @@ class ScontrinoController extends Controller
                 $model->dimensione = $fileparams['size'];
                 $model->tmpfilename = $fileparams['tempName'];
                 $model->mimetype = $fileparams['mimetype'];
-                $json = $helper->scanOCR($model->nomefile, $model->modoscansione, $model->enginescansione, $model->dpiscansione, $model->raddrizzascansione);
-                $log_ocr_content = "Scansione OCR \n ======== \n File scansionato: ". $fileparams['filename'] . "." . $fileparams['extension'] . "\n Rif. server file: " . $model->nomefile . "\n Contenuto Scansione OCR: ". $json->content ."\n ======== \n\n";
-                $logger->logOCROutput($log_ocr_content);
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
-                // popola i campi per la demo
-                $modeldata->id_scontrino = $model->id;
-                // set campi a null in attesa della procedura di Alessandro
-                $modeldata->rfscontrino = null;
-                $modeldata->numerodocumento = null;
-                $modeldata->dataemissione = null;
-                $modeldata->ragionesociale = null;
-                $modeldata->indirizzo = null;
-                $modeldata->provincia = null;
-                $modeldata->citta = null;
-                $modeldata->cap = null;
-                $modeldata->telefono = null;
-                $modeldata->piva = null;
-                $modeldata->pivaisvalid = 0;
-                $modeldata->pivaisvies = 0;
-                $modeldata->dati_validi = 0;
-                // popola il campo outputocr
-                $modeldata->outputocr = $json->content;
-                if ($modeldata->save()) {
-                        return $this->redirect(['view', 'id' => $model->id]);
-                    }
+                    Yii::$app->getSession()->addFlash('success', 'File caricato con successo.');
+                    $this->redirect(['index']);
                 }
             }
         } else {
