@@ -18,10 +18,6 @@ use frontend\components\LoggerHelper;
  * @property string|null $tmpfilename
  * @property int|null $id_proprietario
  * @property int|null $dimensione
- * @property int|null $modoscansione
- * @property int|null $enginescansione
- * @property int|null $dpiscansione
- * @property int|null $raddrizzascansione
  */
 class Scontrino extends \yii\db\ActiveRecord
 {
@@ -45,7 +41,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             [['data_caricamento'], 'safe'],
-            [['id_proprietario', 'dimensione','modoscansione', 'enginescansione', 'dpiscansione', 'raddrizzascansione'], 'integer'],
+            [['id_proprietario', 'dimensione'], 'integer'],
             [['nomefile', 'hashnomefile', 'estensionefile', 'mimetype', 'tmpfilename'], 'string', 'max' => 255],
         ];
     }
@@ -65,10 +61,6 @@ class Scontrino extends \yii\db\ActiveRecord
             'id_proprietario' => 'Id Proprietario',
             'mimetype' => 'Tipo File',
             'tmpfilename' => 'Nome temporaneo file',
-            'modoscansione' => 'Modo Scansione',
-            'enginescansione' => 'Engine Scansione',
-            'dpiscansione' => 'DPI Scansione',
-            'raddrizzascansione' => 'Raddrizza Scansione',
         ];
     }
 
@@ -87,7 +79,7 @@ class Scontrino extends \yii\db\ActiveRecord
             $hashfilename = hash('sha256', $filename . time());
             $this->imageFile->saveAs($base . $hashfilename . '.' . $extension);
             $fileparams = ['filename' => $filename, 'tempName' => $tmpfilename, 'mimetype' => $mimetype, 'size' => $size, 'extension' => $extension, 'hashfilename' => $hashfilename];
-            $logcontent = "Upload \n ============== \n\n nomefile: ". $filename. "\n nometemporaneo: ". $tmpfilename ."\n tipo file: ". $mimetype . "\n dimensione: " . $size . "\n estensione: " . $extension . "\n hashnomefile: ". $hashfilename . "\n data upload: ". $upload_date ."\n\n =================\n Informazioni inviate al motore OCR:\n\n Modo scansione: {$this->modoscansione}\n Engine Scansione: {$this->enginescansione}\n DPI Scansione: {$this->dpiscansione}\n Raddrizza scansione: {$this->raddrizzascansione}\n\n ============\n\n";
+            $logcontent = "Upload \n ============== \n\n nomefile: ". $filename. "\n nometemporaneo: ". $tmpfilename ."\n tipo file: ". $mimetype . "\n dimensione: " . $size . "\n estensione: " . $extension . "\n hashnomefile: ". $hashfilename . "\n data upload: ". $upload_date ."\n\n =================\n";
             $logger->logUpload($logcontent);
             return $fileparams;
         } else {
