@@ -9,7 +9,7 @@
             //$base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
             $request = new Request;
             $url = $request->getBaseUrl();
-            $logfile = fopen("{$url}/uploads/scontrini/_uploads.log", "a") or die("Unable to open file!");
+            $logfile = fopen("./uploads/scontrini/_uploads.log", "a") or die("Unable to open file!");
             fwrite($logfile, $content);
             fclose($logfile);
             return true;
