@@ -24,10 +24,10 @@
             return true;
         }
 
-        public function logBatchOCROutput($output) {
+        public function logBatchOCROutput($output, $filename) {
             $request = new Request;
             $url = $request->getBaseUrl();
-            $logfile = fopen("{$url}/frontend/web/uploads/scontrini/_batchocroutput.log", "a") or die("Unable to open file!");
+            $logfile = fopen("{$url}/frontend/web/uploads/scontrini/{$filename}", "a") or die("Unable to open file!");
             fwrite($logfile, $output);
             fclose($logfile);
             return true;
