@@ -28,6 +28,7 @@
             $engines_lstm = [3];
             $dpis_scansione = [600];
             $desks_foto = [0];
+            $log_file = "_batchocroutput_TEST.log";
           } else {
             // array per dimensioni
             $dimensioni_scansione = [1600,2200,2800,3200];
@@ -40,6 +41,7 @@
             // array con valori boolean: 0 e 1 per attivare e disattivare funzione di raddrizzamento automatico - non utilizzata su suggerimento di Ale. Non funziona bene.
             $desks_foto = [0];
             // numero di scansioni totali per file: 144
+            $log_file = "_batchocroutput.log";
           }
           
           // array di estensioni di file valevoli per la scansione
@@ -85,7 +87,7 @@
                           if ($response->content != NULL || $response->content != '') {
                             $output = "\n\nElaborazione OCR file {$value}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}";
                             // chiamata della funzione logBatchOCROutput dall'helper LoggerHelper
-                            $logger->logBatchOCROutput($output);
+                            $logger->logBatchOCROutput($output, $log_file);
                             echo "file {$value} elaborato con successo con dimensione {$dimensione} - modo {$mode} - engine {$engine} - dpi {$dpi}.\n\n";
                             // incrementa task al termine della singola scansione.
                             $task++;
@@ -102,7 +104,7 @@
                 // aumenta il conto dei file al termine di TUTTE le elaborazioni del singolo file
                 $count++;
                 // to fix: sposta il file in un'altra directory in modo che uploads risulti sempre vuota. NON FUNZIONA?
-                move_uploaded_file($dir_scontrini_da_scansionare.$value, "{$url}/frontend/web/uploads/elapsed/{$value}");
+                rename($dir_scontrini_da_scansionare.$value, "{$url}/frontend/web/uploads/elapsed/{$value}");
                 // todo: implementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
                 return ExitCode::OK;
             }
