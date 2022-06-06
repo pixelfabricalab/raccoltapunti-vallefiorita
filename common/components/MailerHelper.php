@@ -6,6 +6,8 @@
 
     class MailerHelper {
         public function getTemplate($esito) {
+            $link_ocr = \Yii::getAlias("@frontend") ."web/logs/_batchocroutput.txt";
+            $link_cli = \Yii::getAlias("@frontend") ."web/logs/_cli.txt";
             $htmlbody = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html>
                 <head>
@@ -404,6 +406,8 @@
                                                     <p>Salve<br />
                                                         Ecco il risultato della scansione OCR degli ultimi scontrini caricati sull\'applicazione.<br />
                                                         Trovi tutto in allegato.<br /><br />
+                                                        Trovi il file OCR qui: <a href="'. $link_ocr .'">LOG OCR</a><br />
+                                                        Il file di log CLI invece è <a href="'.$link_cli .'">LOG CLI</a><br /><br/>
                                                         <small>N.B. I log non vengono azzerati, se non manualmente.</small>
                                                         </p>
                                                         <br>
@@ -476,8 +480,6 @@
             ->setSubject('Elaborazione OCR con CRON completata')
             ->setHtmlBody($this->getTemplate($esito))
             // consigliato path assoluto
-            ->attach(\Swift_Attachment::fromPath(\Yii::getAlias("@frontend") ."/logs/_batchocroutput.txt"))
-            ->attach(\Swift_Attachment::fromPath(\Yii::getAlias("@frontend") ."/logs/_cli.txt"))
             ->send();
         }
     }
