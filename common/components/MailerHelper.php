@@ -476,8 +476,8 @@
             ->setSubject('Elaborazione OCR con CRON completata')
             ->setHtmlBody($this->getTemplate($esito))
             // consigliato path assoluto
-            ->attach(\Swift_Attachment::fromPath("https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_batchocroutput.txt"))
-            ->attach(\Swift_Attachment::fromPath("https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_cli.txt"))
+            ->attach(\Swift_Attachment::fromPath("/home2/pixeladmin/demoapp-raccoltapunti/frontend/web/logs/_batchocroutput.txt"))
+            ->attach(\Swift_Attachment::fromPath("/home2/pixeladmin/demoapp-raccoltapunti/frontend/web/logs/_cli.txt"))
             ->send();
         }
     }
