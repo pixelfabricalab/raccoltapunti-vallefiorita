@@ -62,13 +62,12 @@
           // directory contenente gli scontrini da scansionare
           $dir_scontrini_da_scansionare = "{$url}/frontend/web/uploads/scontrini/";
           
-          // funzione per scansionare il numero di file nella cartella
-          $files = scandir($dir_scontrini_da_scansionare);
-          var_dump($files);
+          // funzione per scansionare il numero di file nella cartella - agg.to - esclude . e .. dalla lista.
+          $files = array_diff(scandir($dir_scontrini_da_scansionare), array('..', '.'));
           $found = false;
           
           // inizializzo i contatori a 0 e a 1. mi servono per contare i file elaborati e i task per ogni file.
-          $count = 1;
+          $count = 0;
           $task = 1;
           $attempts = 1;
           // primo ciclo - per ogni file presente nell'array files, verifica che si tratti di un'immagine
@@ -126,10 +125,15 @@
                 $task = 1;
                 // todo: implementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
             }
-          if ($attempts == 3) {
-            break;
-          }
-        }
+                if ($attempts == 3) {
+                  break;
+                } 
+              }
+              if ($count == 0) {
+                $cli_out = "Non ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
+                echo $cli_out;
+                $logger->logCLIWorks($cli_out, $logcli_file);
+              }
         echo "Conto totale file: {$count}";
         return ExitCode::OK;
         }
