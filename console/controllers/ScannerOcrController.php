@@ -30,6 +30,7 @@
             $desks_foto = [0];
             $log_file = "_batchocroutput_TEST.log";
             $logcli_file = "_cli_TEST.log";
+            $move_files = false;
             $mail = false;
           } else {
             // array per dimensioni
@@ -49,6 +50,7 @@
             //file di log dell'output cli
             $logcli_file = "_cli.log";
             $mail = true;
+            $move_files = true;
           }
           
           // array di estensioni di file valevoli per la scansione
@@ -117,9 +119,10 @@
                     }
                   }
                 }
-              }    
-                // to fix: sposta il file in un'altra directory in modo che uploads risulti sempre vuota. NON FUNZIONA?
-                rename($dir_scontrini_da_scansionare.$file, "{$url}/frontend/web/uploads/elapsed/{$file}");
+              } 
+                if ($move_files) {
+                  rename($dir_scontrini_da_scansionare.$file, "{$url}/frontend/web/uploads/elapsed/{$file}");
+                }
                 $task = 1;
                 // todo: implementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
             }
