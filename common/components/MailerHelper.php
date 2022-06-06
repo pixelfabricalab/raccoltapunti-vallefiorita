@@ -476,8 +476,8 @@
             ->setSubject('Elaborazione OCR con CRON completata')
             ->setHtmlBody($this->getTemplate($esito))
             // consigliato path assoluto
-            ->attach(\Swift_Attachment::fromPath("/frontend/web/logs/_batchocroutput.log"))
-            ->attach(\Swift_Attachment::fromPath("/frontend/web/logs/_cli.log"))
+            ->attach(\Swift_Attachment::fromPath("/frontend/web/logs/_batchocroutput.txt"))
+            ->attach(\Swift_Attachment::fromPath("/frontend/web/logs/_cli.txt"))
             ->send();
         }
     }

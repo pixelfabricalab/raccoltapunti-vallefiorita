@@ -30,8 +30,8 @@
             $engines_lstm = [3];
             $dpis_scansione = [600];
             $desks_foto = [0];
-            $log_file = "_batchocroutput_TEST.log";
-            $logcli_file = "_cli_TEST.log";
+            $log_file = "_batchocroutput_TEST.txt";
+            $logcli_file = "_cli_TEST.txt";
             $move_files = false;
             $mail = true;
           } else {
@@ -48,9 +48,9 @@
             // numero di scansioni totali per file: 144
 
             //file di log delle elaborazioni OCR
-            $log_file = "_batchocroutput.log";
+            $log_file = "_batchocroutput.txt";
             //file di log dell'output cli
-            $logcli_file = "_cli.log";
+            $logcli_file = "_cli.txt";
             $mail = true;
             $move_files = true;
           }
@@ -126,7 +126,7 @@
                   rename($dir_scontrini_da_scansionare.$file, "{$url}/frontend/web/uploads/elapsed/{$file}");
                 }
                 $task = 1;
-                // todo: aimplementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
+                // todo: aimplementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.txt tramite mail a me, ad Alessandro e a Fabrizio.
             }
                 if ($attempts == 3) {
                   break;
