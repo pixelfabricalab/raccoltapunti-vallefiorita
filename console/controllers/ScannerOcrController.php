@@ -133,8 +133,9 @@
                 $cli_out = "Non ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
                 echo $cli_out;
                 $logger->logCLIWorks($cli_out, $logcli_file);
+              } else {
+                echo "Conto totale file: {$count}";
               }
-        echo "Conto totale file: {$count}";
         return ExitCode::OK;
         }
     }
