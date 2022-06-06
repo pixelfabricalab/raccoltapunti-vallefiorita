@@ -6,8 +6,8 @@
 
     class MailerHelper {
         public function getTemplate($esito) {
-            $link_ocr = \Yii::getAlias("@frontend") ."web/logs/_batchocroutput.txt";
-            $link_cli = \Yii::getAlias("@frontend") ."web/logs/_cli.txt";
+            $link_ocr = "https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_batchocroutput.txt";
+            $link_cli = "https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_cli.txt";
             $htmlbody = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html>
                 <head>
@@ -381,7 +381,7 @@
                                             <td class="headerContent">
             
                                                 <!-- // Begin Module: Standard Header Image \\ -->
-                                                <img src="https://discere-guest.pusc.it/web/assets/img/mail/header-mail.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                                <!-- <img src="https://discere-guest.pusc.it/web/assets/img/mail/header-mail.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />-->
                                                 <!-- // End Module: Standard Header Image \\ -->
             
                                             </td>
