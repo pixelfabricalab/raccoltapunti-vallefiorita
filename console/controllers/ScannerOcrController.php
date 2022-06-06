@@ -3,6 +3,7 @@
     use Yii;
     use yii\console\Controller;
     use common\components\ScontrinoHelper;
+    use common\components\MailerHelper;
     use common\components\LoggerHelper;
     use common\components\Request;
     use yii\helpers\Url;
@@ -20,6 +21,7 @@
           $request = new Request;
           $logger = new LoggerHelper;
           $scanner = new ScontrinoHelper;
+          $mailer = new MailerHelper;
           
           // condizione per scansionare solo 1 modalità - necessaria per test
           if ($test == true) {
@@ -94,7 +96,8 @@
                           $response = $scanner->scanOCR($dir_scontrini_da_scansionare.$file, $dimensione, $mode, $engine, $dpi);
                           // se il contenuto della risposta è vuota (per il momento) interrompi lo script
                           if ($response->content != NULL || $response->content != '') {
-                            $output = "\n\nElaborazione OCR file {$file}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}";
+                            $date = date("d-m-Y H:i:s");
+                            $output = "\n\nData: {$date}\nElaborazione OCR file {$file}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}";
                             // chiamata della funzione logBatchOCROutput dall'helper LoggerHelper
                             $logger->logBatchOCROutput($output, $log_file);
                             if ($test) {
@@ -102,7 +105,7 @@
                             } else {
                               $demo = "";
                             }
-                            $cli_out = "{$demo} file {$file} elaborato con successo con dimensione {$dimensione} - modo {$mode} - engine {$engine} - dpi {$dpi}.\n\n";
+                            $cli_out = "{$demo}data e ora: {$date}\n file {$file} elaborato con successo con dimensione {$dimensione} - modo {$mode} - engine {$engine} - dpi {$dpi}.\n\n";
                             echo $cli_out;
                             $logger->logCLIWorks($cli_out, $logcli_file);
                             // incrementa task al termine della singola scansione.
@@ -123,7 +126,7 @@
                   rename($dir_scontrini_da_scansionare.$file, "{$url}/frontend/web/uploads/elapsed/{$file}");
                 }
                 $task = 1;
-                // todo: implementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
+                // todo: aimplementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.log tramite mail a me, ad Alessandro e a Fabrizio.
             }
                 if ($attempts == 3) {
                   break;
@@ -133,8 +136,13 @@
                 $cli_out = "Non ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
                 echo $cli_out;
                 $logger->logCLIWorks($cli_out, $logcli_file);
+                $esito ="Directory file vuota, cron saltato.";
               } else {
+                $esito = "Scansione completata correttamente.";
                 echo "Conto totale file: {$count}";
+              }
+              if ($mail) {
+                $mailer->inviaMail($esito);
               }
         return ExitCode::OK;
         }
