@@ -7,6 +7,8 @@ vendor/*
 uploads/
 uploads/*
 
+logs/*
+
 #escludi la cartella e il file delle elaborazioni
 data/
 data/*
