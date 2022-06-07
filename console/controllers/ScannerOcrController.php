@@ -33,7 +33,7 @@
             $log_file = "_batchocroutput_TEST.txt";
             $logcli_file = "_cli_TEST.txt";
             $move_files = false;
-            $mail = true;
+            $mail = false;
           } else {
             // array per dimensioni
             $dimensioni_scansione = [1600,2200,2800,3200];
