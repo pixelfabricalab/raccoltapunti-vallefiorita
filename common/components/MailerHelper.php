@@ -476,7 +476,7 @@
             $emailsender = 'ocr@pixelfabrica.it';
             Yii::$app->mailer->compose()
             ->setFrom($emailsender)
-            ->setTo('andrea.coi@pixelfabrica.biz', 'vincent.veri@pixelfabrica.biz', 'fabrizio.antinozzi@pixelfabrica.biz', 'alessandro.testa@pixelfabrica.biz')
+            ->setTo(['andrea.coi@pixelfabrica.biz', 'vincent.veri@pixelfabrica.biz', 'fabrizio.antinozzi@pixelfabrica.biz', 'alessandro.testa@pixelfabrica.biz'])
             ->setSubject('Elaborazione OCR con CRON completata')
             ->setHtmlBody($this->getTemplate($esito))
             // consigliato path assoluto
