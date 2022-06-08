@@ -4,8 +4,7 @@ namespace frontend\controllers;
 
 use frontend\models\Scontrino;
 use frontend\models\ScontrinoSearch;
-use frontend\models\ScontrinoData;
-use frontend\models\ProdottiScontrinoData;
+use common\components\DirectoryCrawler;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -121,9 +120,12 @@ class ScontrinoController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-
+        $crawler = new DirectoryCrawler;
+        $numero_scontrini = $crawler->countFiles("./uploads/scontrini/");
+        
         return $this->render('create', [
             'model' => $model,
+            'numero_scontrini' => $numero_scontrini
         ]);
     }
 
