@@ -79,6 +79,7 @@
             if(in_array($ext,$extension_to_search)) {
               echo "file: {$count}\n"; 
                 echo "file: {$file}\n";
+                $output = "Link al file: https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/uploads/elapsed/{$file}";
                 $count++;
                 // inizio i cicli delle scansioni
                   // 1. ciclo per array dimensioni
@@ -97,7 +98,7 @@
                           // se il contenuto della risposta è vuota (per il momento) interrompi lo script
                           if ($response->content != NULL || $response->content != '') {
                             $date = date("d-m-Y H:i:s");
-                            $output = "\n\nData: {$date}\nElaborazione OCR file {$file}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}";
+                            $output .= "\n\nData: {$date}\nElaborazione OCR file {$file}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}\n\n";
                             // chiamata della funzione logBatchOCROutput dall'helper LoggerHelper
                             $logger->logBatchOCROutput($output, $log_file);
                             if ($test) {
