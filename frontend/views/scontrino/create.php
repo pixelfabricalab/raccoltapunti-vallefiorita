@@ -22,6 +22,7 @@ $this->title = 'Inizia a raccogliere i punti';
     <div v-else-if="stepgioco === 1">
         <?= $this->render('_form_create', [
             'model' => $model,
+            'numero_scontrini' => $numero_scontrini,
         ]) ?>
     </div>
 

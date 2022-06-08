@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="scontrino-form">
-
+<div class="alert alert-warning"><p><strong>Attenzione!</strong><br />La piattaforma è in modalità di test. Le scansioni partono ogni 4 ore circa. Il numero consigliato di scontrini da caricare è 3-4.<br /><br />Numero scontrini in attesa di essere scansionati: <?= $numero_scontrini ?></p></div>
 <?php $form = ActiveForm::begin([
         'options'=>['enctype'=>'multipart/form-data']] // important
 ); ?>
