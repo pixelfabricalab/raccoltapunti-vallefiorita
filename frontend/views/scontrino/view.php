@@ -19,14 +19,5 @@ $this->title = 'Scontrino n°'. $model->id;
         'attributes' => [
             'nomefile',
         ],
-        'options' => [
-            'class' => 'alert-warning',
-        ],
-    ]) ?>
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'nomefile',
-        ],
     ]) ?>
 </div>
