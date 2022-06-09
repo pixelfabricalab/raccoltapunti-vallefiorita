@@ -6,7 +6,8 @@
     use common\components\MailerHelper;
     use common\components\LoggerHelper;
     use common\components\Request;
-    use yii\helpers\Url;
+use Exception;
+use yii\helpers\Url;
     use yii\console\ExitCode;
 
     class ScannerOcrController extends Controller {
@@ -34,6 +35,7 @@
             $logcli_file = "_cli_TEST.txt";
             $move_files = false;
             $mail = false;
+            $testmail = true;
           } else {
             // array per dimensioni
             $dimensioni_scansione = [1600,2200,2800,3200];
@@ -53,6 +55,7 @@
             $logcli_file = "_cli.txt";
             $mail = true;
             $move_files = true;
+            $testmail = false;
           }
           
           // array di estensioni di file valevoli per la scansione
@@ -72,6 +75,14 @@
           $count = 0;
           $task = 1;
           $attempts = 1;
+
+          // verifica che il server sia raggiungibile prima di qualsiasi azione
+          $host = '89.148.181.23'; 
+          $port = 9090; 
+          $waitTimeoutInSeconds = 1; 
+          // verifica che il server risponda aprendo un socket con i parametri assegnati
+          try {
+          $fp = fsockopen($host, $port, $errno, $errstr, $waitTimeoutInSeconds);
           // primo ciclo - per ogni file presente nell'array files, verifica che si tratti di un'immagine
           foreach($files as $file) {
             $ext = pathinfo($file, PATHINFO_EXTENSION);
@@ -115,7 +126,11 @@
                           } else {
                             // esce con errore I/O se response->content è vuota o Null
                             $attempts++;
-                            echo $attempts;
+                            $cli_out = "Il server JAVA non risponde o non è possibile elaborare lo scontrino\n";
+                            $logger->logCLIWorks($cli_out, $logcli_file);
+                            $esito = "Il server JAVA non risponde o non è possibile elaborare lo scontrino\n";
+                            echo $cli_out;
+                            ExitCode::NOHOST;
                             break;
                           }
                       }
@@ -130,21 +145,44 @@
                 // todo: aimplementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.txt tramite mail a me, ad Alessandro e a Fabrizio.
             }
                 if ($attempts == 3) {
+                  $oggetto = "Pixelfabrica | Motore OCR - Errore di rete, il server non risponde";
+                  $titolo = "Errore di rete, il server non risponde";
+                  $cli_out = "Il server JAVA non risponde o non è possibile elaborare lo scontrino";
+                  $logger->logCLIWorks($cli_out, $logcli_file);
+                  $esito = "Il server JAVA non risponde o non è possibile elaborare lo scontrino";
+                  echo $cli_out;
                   break;
                 } 
               }
               if ($count == 0) {
+                $oggetto = "Pixelfabrica | Motore OCR - Directory vuota";
+                $titolo = "Directory vuota";
                 $cli_out = "Non ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
                 echo $cli_out;
                 $logger->logCLIWorks($cli_out, $logcli_file);
                 $esito ="Directory file vuota, cron saltato.";
               } else {
+                $oggetto = "Pixelfabrica | Motore OCR - Elaborazione OCR con CRON completata";
+                $titolo = "Elaborazione OCR con CRON completata";
                 $esito = "Scansione completata correttamente.";
                 echo "Conto totale file: {$count}";
               }
               if ($mail) {
-                $mailer->inviaMail($esito);
+                $mailer->inviaMail($oggetto, $titolo, $esito, $testmail);
               }
-        return ExitCode::OK;
+        return ExitCode::OK; 
+      }
+        catch(\Exception $ex) { //used back-slash for global namespace
+          $oggetto = "Pixelfabrica | Motore OCR - Errore di rete, il server non risponde";
+          $titolo = "Errore di rete, il server non risponde";
+          $cli_out = "Errore di connessione:" . $ex;
+          $esito = "Errore di connessione al server OCR. Elaborazione non riuscita.";
+          echo $cli_out;
+          $logger->logCLIWorks($cli_out, $logcli_file);
+          if ($mail) {
+            $mailer->inviaMail($oggetto,$titolo, $esito, $testmail);
+          }
+          return ExitCode::NOHOST;
+        }
         }
     }
