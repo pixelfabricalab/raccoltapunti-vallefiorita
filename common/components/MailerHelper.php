@@ -5,7 +5,7 @@
     use common\components\Request;
 
     class MailerHelper {
-        public function getTemplate($esito) {
+        public function getTemplate($titolo, $esito) {
             $link_ocr = "https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_batchocroutput.txt";
             $link_cli = "https://demoapp-raccoltapunti.pixelfabrica.it/frontend/web/logs/_cli.txt";
             $htmlbody = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -401,7 +401,7 @@
                                         <tr>
                                             <td valign="top">
                                                 <div mc:edit="std_content00">
-                                                    <p style="font-size:22px; line-height: 24px;"><strong>Procedura OCR completata</strong><br />
+                                                    <p style="font-size:22px; line-height: 24px;"><strong>'. $titolo .'</strong><br />
                                                     Esito: '. $esito .'</p>
                                                     <p>Salve<br />
                                                         Ecco il risultato della scansione OCR degli ultimi scontrini caricati sull\'applicazione.<br />
@@ -469,16 +469,21 @@
             return $htmlbody;
         }
 
-        public function inviaMail($esito) {
-            $oggetto = 'Pixelfabrica | Motore OCR - Elaborazione OCR con CRON completata';
+        public function inviaMail($oggetto, $titolo, $esito, $testmail = false) {
+            //$oggetto = '';
             $request = new Request;
             $url = $request->getBaseUrl();
             $emailsender = 'ocr@pixelfabrica.it';
+            if ($testmail == false) {
+                $to = ['andrea.coi@pixelfabrica.biz', 'vincent.veri@pixelfabrica.biz', 'fabrizio.antinozzi@pixelfabrica.biz', 'alessandro.testa@pixelfabrica.biz'];
+            } else {
+                $to = ['andrea.coi@pixelfabrica.biz'];
+            }
             Yii::$app->mailer->compose()
             ->setFrom($emailsender)
-            ->setTo(['andrea.coi@pixelfabrica.biz', 'vincent.veri@pixelfabrica.biz', 'fabrizio.antinozzi@pixelfabrica.biz', 'alessandro.testa@pixelfabrica.biz'])
-            ->setSubject('Elaborazione OCR con CRON completata')
-            ->setHtmlBody($this->getTemplate($esito))
+            ->setTo($to)
+            ->setSubject($oggetto)
+            ->setHtmlBody($this->getTemplate($titolo, $esito))
             // consigliato path assoluto
             ->send();
         }
