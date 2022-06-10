@@ -155,9 +155,10 @@ use yii\helpers\Url;
                 } 
               }
               if ($count == 0) {
+                $data_esecuzione = date("d-m-Y H:i:s");
                 $oggetto = "Pixelfabrica | Motore OCR - Directory vuota";
                 $titolo = "Directory vuota";
-                $cli_out = "Non ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
+                $cli_out = "\n\n{$data_esecuzione}\nNon ci sono file validi da elaborare. Termino l'elaborazione.\n\n";
                 echo $cli_out;
                 $logger->logCLIWorks($cli_out, $logcli_file);
                 $esito ="Directory file vuota, cron saltato.";
@@ -175,7 +176,7 @@ use yii\helpers\Url;
         catch(\Exception $ex) { //used back-slash for global namespace
           $oggetto = "Pixelfabrica | Motore OCR - Errore di rete, il server non risponde";
           $titolo = "Errore di rete, il server non risponde";
-          $cli_out = "Errore di connessione:" . $ex;
+          $cli_out = "Errore di connessione:" . $ex . "\n\n";
           $esito = "Errore di connessione al server OCR. Elaborazione non riuscita.";
           echo $cli_out;
           $logger->logCLIWorks($cli_out, $logcli_file);
