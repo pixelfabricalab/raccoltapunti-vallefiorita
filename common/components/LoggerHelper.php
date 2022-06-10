@@ -8,7 +8,7 @@
         public function logUpload($content) {
             $request = new Request;
             $url = $request->getBaseUrl();
-            $logfile = fopen("{$url}/frontend/web/logs/_uploads.txt", "a") or die("Unable to open file!");
+            $logfile = fopen("./logs/_uploads.txt", "a") or die("Unable to open file!");
             fwrite($logfile, $content);
             fclose($logfile);
             return true;
