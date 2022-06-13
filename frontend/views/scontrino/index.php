@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-use frontend\models\Scontrino;
-use frontend\models\ScontrinoData;
-use frontend\models\ProdottiScontrinoData;
+use common\models\Scontrino;
+use common\models\ScontrinoData;
+use common\models\ProdottiScontrinoData;
 
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\ScontrinoSearch */
+/* @var $searchModel common\models\ScontrinoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Le mie scansioni';

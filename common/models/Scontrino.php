@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\web\UploadedFile;
@@ -41,7 +41,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             [['data_caricamento'], 'safe'],
-            [['id_proprietario', 'dimensione'], 'integer'],
+            [['id_proprietario', 'dimensione', 'is_elapsed'], 'integer'],
             [['nomefile', 'hashnomefile', 'estensionefile', 'mimetype', 'tmpfilename'], 'string', 'max' => 255],
         ];
     }
@@ -61,6 +61,7 @@ class Scontrino extends \yii\db\ActiveRecord
             'id_proprietario' => 'Id Proprietario',
             'mimetype' => 'Tipo File',
             'tmpfilename' => 'Nome temporaneo file',
+            'is_elapsed' => 'Elaborato',
         ];
     }
 

@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Scontrino */
+/* @var $model common\models\Scontrino */
 
 $this->title = 'Inizia a raccogliere i punti';
 ?>

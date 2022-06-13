@@ -2,8 +2,8 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Scontrino;
-use frontend\models\ScontrinoSearch;
+use common\models\Scontrino;
+use common\models\ScontrinoSearch;
 use common\components\DirectoryCrawler;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -110,6 +110,7 @@ class ScontrinoController extends Controller
                 $model->dimensione = $fileparams['size'];
                 $model->tmpfilename = $fileparams['tempName'];
                 $model->mimetype = $fileparams['mimetype'];
+                $model->is_elapsed = 0;
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {

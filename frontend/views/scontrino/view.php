@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use yii\widgets\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Scontrino */
+/* @var $model common\models\Scontrino */
 
 $this->title = 'Scontrino n°'. $model->id;
 

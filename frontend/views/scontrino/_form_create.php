@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Scontrino */
+/* @var $model common\models\Scontrino */
 /* @var $uploadmodel frontend\models\UploadForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
