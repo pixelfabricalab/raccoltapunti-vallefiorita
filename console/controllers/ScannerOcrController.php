@@ -145,7 +145,6 @@
                               $model_scansione->is_test = 0;  
                             }
                             $scontrino_data = json_decode($response->content);
-                            echo ($scontrino_data->piva);
                         
                             $model_scansione->piva = $scontrino_data->piva;
                             $model_scansione->datascontrino = $scontrino_data->data;
