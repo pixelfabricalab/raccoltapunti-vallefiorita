@@ -6,8 +6,10 @@
     use common\components\MailerHelper;
     use common\components\LoggerHelper;
     use common\components\Request;
-use Exception;
-use yii\helpers\Url;
+    use common\models\ScansioneTest;
+    use common\models\Scontrino;
+    use Exception;
+    use yii\helpers\Url;
     use yii\console\ExitCode;
 
     class ScannerOcrController extends Controller {
@@ -15,6 +17,13 @@ use yii\helpers\Url;
         public function actionIndex($search = 'test')
         {
           echo $search;
+        }
+
+        // funzione per ritornare il nomefile senza estensione
+        public function getFilename($filename) {
+          $parts = explode('.', $filename);
+          $name = $parts[0];
+          return $name;
         }
 
         public function actionScan($test = false) {
@@ -103,12 +112,48 @@ use yii\helpers\Url;
                       foreach($dpis_scansione as $dpi) {
                   // 5. ciclo per array desk - non utilizzato e settato fisso a 0.
                         foreach($desks_foto as $desk) {
+                          $model_scansione = new ScansioneTest;
+                          $hashname = $this->getFilename($file);
+                          $model_scontrino = Scontrino::find()
+                          ->where(['hashnomefile' => $hashname])
+                          ->one();
                           echo "task: {$task}:\n";
                           // chiamata della funzione scanOCR dall'helper ScontrinoHelper con il passaggio dei nuovi argomenti della funzione
                           $response = $scanner->scanOCR($dir_scontrini_da_scansionare.$file, $dimensione, $mode, $engine, $dpi);
                           // se il contenuto della risposta è vuota (per il momento) interrompi lo script
                           if ($response->content != NULL || $response->content != '') {
                             $date = date("d-m-Y H:i:s");
+                            $datedb = date("Y-m-d H:i:s");
+                            $model_scansione->id_scontrino = $model_scontrino->id;
+                            $model_scansione->nome_scontrino = $file;
+                            $model_scansione->dataora_scansione = $datedb;
+                            $model_scansione->task = $task;
+                            $model_scansione->modo_scansione = $mode;
+                            $model_scansione->engine_scansione = $engine;
+                            $model_scansione->dpi_scansione = $dpi;
+                            $model_scansione->risoluzione = $dimensione;
+                            $model_scansione->desk = $desk;
+                            $model_scansione->has_valid_content = 1;
+                            if ($mail) {
+                              $model_scansione->is_mail_sent = 1;
+                            } else {
+                              $model_scansione->is_mail_sent = 0;                              
+                            }
+                            if ($test) {
+                              $model_scansione->is_test = 1;  
+                            } else {
+                              $model_scansione->is_test = 0;  
+                            }
+                            $scontrino_data = json_decode($response->content);
+                            echo ($scontrino_data->piva);
+                        
+                            $model_scansione->piva = $scontrino_data->piva;
+                            $model_scansione->datascontrino = $scontrino_data->data;
+                            $model_scansione->ndoc = $scontrino_data->nDoc;
+                            $model_scansione->lista_articoli = json_encode($scontrino_data->listarticoli);
+                            $model_scansione->testo_rw = $scontrino_data->testoRW;
+                            $model_scansione->save();
+                            
                             $output .= "\n\nData: {$date}\nElaborazione OCR file {$file}:\n\nDettagli:\nDimensioni:{$dimensione}\nModo: {$mode}\nEngine:{$engine}\nDensità:{$dpi}\n\nRisultati scansione:\n{$response->content}\n\n";
                             // chiamata della funzione logBatchOCROutput dall'helper LoggerHelper
                             $logger->logBatchOCROutput($output, $log_file);
@@ -142,6 +187,8 @@ use yii\helpers\Url;
                   rename($dir_scontrini_da_scansionare.$file, "{$url}/frontend/web/uploads/elapsed/{$file}");
                 }
                 $task = 1;
+                $model_scontrino->is_elapsed = 1;
+                $model_scontrino->save();
                 // todo: aimplementare sistema di salvataggio output alla fine di ogni task, implementare sistema di avviso mail e invio dell'allegato _batchocroutput.txt tramite mail a me, ad Alessandro e a Fabrizio.
             }
                 if ($attempts == 3) {
@@ -151,6 +198,8 @@ use yii\helpers\Url;
                   $logger->logCLIWorks($cli_out, $logcli_file);
                   $esito = "Il server JAVA non risponde o non è possibile elaborare lo scontrino";
                   echo $cli_out;
+                  $model_scontrino->is_elapsed = 0;
+                  $model_scontrino->save();
                   break;
                 } 
               }
