@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%scansioni_test}}`.
+ * Handles the creation of table `{{%scansione_test}}`.
  */
-class m220614_075113_create_scansioni_test_table extends Migration
+class m220614_080951_create_scansione_test_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%scansioni_test}}', [
+        $this->createTable('{{%scansione_test}}', [
             'id' => $this->primaryKey(),
             'id_scontrino' => $this->integer(),
             'nome_scontrino' => $this->string(),
@@ -39,6 +39,6 @@ class m220614_075113_create_scansioni_test_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%scansioni_test}}');
+        $this->dropTable('{{%scansione_test}}');
     }
 }
