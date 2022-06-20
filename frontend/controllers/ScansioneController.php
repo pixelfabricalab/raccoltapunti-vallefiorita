@@ -21,6 +21,6 @@ class ScansioneController extends Controller {
         // associo al contenuto di response la stringa generata precedentemente
         $response->content = $json;
 
-       return $json; 
+       return $response; 
     }
 }
