@@ -151,6 +151,12 @@ $this->title = "Dashboard";
                     </div>
                 </div>
             </div>
-        </form>           
+        </form>
+        
+        <div class="row">
+            <div class="col">
+                <?= $this->render('_premi') ?>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 <?php
 use yii\bootstrap4\Html;
 use yii\widgets\Menu;
+
+$module_id = \Yii::$app->controller->module->id;
 ?>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -34,7 +36,7 @@ use yii\widgets\Menu;
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-file"></i>
-            <span>Gestione</span>
+            <span>Account</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -42,13 +44,13 @@ use yii\widgets\Menu;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Campagne', 
-                    'url' => ['/campagna/index'], 
-                    'active' => ($this->context->id == 'campagna')],
+                    'label' => 'Profilo', 
+                    'url' => ['/dashboard/profilo/index'], 
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'campagna')],
                 [
-                    'label' => 'Premi', 
-                    'url' => ['/premio/index'], 
-                    'active' => ($this->context->id == 'premio')],
+                    'label' => 'Storico attività', 
+                    'url' => ['/dashboard/report/index'], 
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
 
             ];
             echo Menu::widget([
