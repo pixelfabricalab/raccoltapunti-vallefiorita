@@ -53,7 +53,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nomefile' => 'Nomefile',
+            'nomefile' => 'File',
             'hashnomefile' => 'Hashnomefile',
             'estensionefile' => 'Estensionefile',
             'dimensione' => 'Dimensione',
@@ -61,6 +61,7 @@ class Scontrino extends \yii\db\ActiveRecord
             'id_proprietario' => 'Id Proprietario',
             'mimetype' => 'Tipo File',
             'tmpfilename' => 'Nome temporaneo file',
+            'ragionesociale' => 'Ragione sociale',
             'is_elapsed' => 'Elaborato',
         ];
     }

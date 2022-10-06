@@ -30,7 +30,7 @@ $this->title = 'Scontrini';
             //'datacattura',
             //'rfscontrino',
             //'piva',
-            //'ragionesociale',
+            'ragionesociale',
             //'dataemissione',
             //'numerodocumento',
             [
