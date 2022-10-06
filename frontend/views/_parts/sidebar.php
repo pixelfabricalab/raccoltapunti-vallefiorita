@@ -16,7 +16,7 @@ use yii\widgets\Menu;
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?=\Yii::getAlias('@web') ?>">
+        <a class="nav-link" href="<?=\Yii::getAlias('@web/dashboard') ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
