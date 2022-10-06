@@ -33,8 +33,8 @@ use yii\widgets\Menu;
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Personale</span>
+            <i class="fas fa-fw fa-file"></i>
+            <span>Gestione</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -42,41 +42,14 @@ use yii\widgets\Menu;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Agenti', 
-                    'url' => ['/agente/index'], 
-                    'active' => ($this->context->id == 'agente')],
+                    'label' => 'Campagne', 
+                    'url' => ['/campagna/index'], 
+                    'active' => ($this->context->id == 'campagna')],
                 [
-                    'label' => 'Curriculum Ricevuti', 
-                    'url' => ['/accettazione/index'], 
-                    'active' => ($this->context->id == 'accettazione')],
-                [
-                    'label' => 'Turni', 
-                    'url' => ['/turno/index'], 
-                    'active' => ($this->context->id == 'turno')],
-                [
-                    'label' => 'Richieste', 
-                    'url' => ['/richiesta/index'], 
-                    'active' => ($this->context->id == 'richiesta')],
-                [
-                    'label' => 'Comunicazioni', 
-                    'url' => ['/comunicazione/index'], 
-                    'active' => ($this->context->id == 'comunicazione')],
-                [
-                    'label' => 'Documenti', 
-                    'url' => ['/documento/index'], 
-                    'active' => ($this->context->id == 'documento')],
-                [
-                    'label' => 'Pattugliamenti', 
-                    'url' => ['/pattugliamento/index'], 
-                    'active' => ($this->context->id == 'pattugliamento')],
-                [
-                    'label' => 'Brogliaccio', 
-                    'url' => ['/brogliaccio/index'], 
-                    'active' => ($this->context->id == 'brogliaccio')],
-                [
-                    'label' => 'Relazioni di servizio', 
-                    'url' => ['/relazione/index'], 
-                    'active' => ($this->context->id == 'relazione')],
+                    'label' => 'Premi', 
+                    'url' => ['/premio/index'], 
+                    'active' => ($this->context->id == 'premio')],
+
             ];
             echo Menu::widget([
                 'options' => [
