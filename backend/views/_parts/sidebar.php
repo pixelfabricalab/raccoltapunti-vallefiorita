@@ -7,7 +7,8 @@ use yii\widgets\Menu;
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=\Yii::getAlias('@web') ?>">
         <div class="sidebar-brand-icon">
-            <?= Html::img('@web/images/logo_small.png', ['alt' => 'Fidelpol']) ?>
+            <!--<?= Html::img('@web/images/logo_small.png', ['alt' => 'Fidelpol']) ?>-->
+            Profility
         </div>
     </a>
 
