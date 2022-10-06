@@ -17,8 +17,6 @@ $this->title = 'Le mie scansioni';
 ?>
 <div class="scontrino-index container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Inserisci nuovo scontrino', ['create'], ['class' => 'btn btn-success']) ?>
     </p>

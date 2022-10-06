@@ -155,7 +155,10 @@ $this->title = "Dashboard";
         
         <div class="row">
             <div class="col">
+                <hr />
                 <?= $this->render('_premi') ?>
+                <hr />
+                <?= $this->render('_attivita') ?>
             </div>
         </div>
     </div>

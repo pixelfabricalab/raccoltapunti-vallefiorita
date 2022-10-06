@@ -5,14 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Scontrino */
 
-$this->title = 'Inizia a raccogliere i punti';
+$this->title = 'Carica scontrino';
 ?>
-<div class="scontrino-create container" id="gioco">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="scontrino-create" id="gioco">
     <div v-if="stepgioco === 0">
         <div class="row">
             <div class="col">
-                <h3>Come si gioca?</h3>
+                <h4>Come si gioca?</h4>
                 <p>La raccolta punti è semplicissima. Ti basta inquadrare e scattare una foto ad uno scontrino di un punto vendita per scoprire subito se hai vinto.</p>
                 <p>L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno i prodotti inclusi nella raccolta punti, riceverai tanti punti quanti sono i prodotti che hai acquistato.</p>
                 <button class="btn btn-primary" @click="stepgioco = 1">Inizia subito</button>

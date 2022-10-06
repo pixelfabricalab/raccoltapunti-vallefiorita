@@ -11,6 +11,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\widgets\Menu;
 use yii\web\View;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 $this->registerJs("$('main input:not([type=\"checkbox\"]), main select, main textarea').addClass('form-control-sm');", View::POS_READY, 'input-small');
@@ -85,7 +86,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow-sm">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -300,8 +301,8 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
 
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <a href="<?= Url::toRoute('//dashboard/scontrino/create') ?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Carica scontrino</a>
                     </div>
 
                     <?= Alert::widget([
@@ -310,7 +311,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                         ]
                     ]) ?>
 
-                    <main>
+                    <main class="mb-4">
                     <?= $content ?>
                     </main>
 

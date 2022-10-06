@@ -35,7 +35,7 @@ $module_id = \Yii::$app->controller->module->id;
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-file"></i>
+            <i class="fas fa-fw fa-user"></i>
             <span>Account</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -47,11 +47,6 @@ $module_id = \Yii::$app->controller->module->id;
                     'label' => 'Profilo', 
                     'url' => ['/dashboard/profilo/index'], 
                     'active' => ($module_id === 'dashboard' && $this->context->id == 'campagna')],
-                [
-                    'label' => 'Storico attività', 
-                    'url' => ['/dashboard/report/index'], 
-                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
-
             ];
             echo Menu::widget([
                 'options' => [
@@ -75,28 +70,28 @@ $module_id = \Yii::$app->controller->module->id;
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMagazzino"
-            aria-expanded="true" aria-controls="collapseMagazzino">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttivita"
+            aria-expanded="true" aria-controls="collapseAttivita">
             <i class="fas fa-fw fa-file"></i>
-            <span>Magazzino</span>
+            <span>Attivita</span>
         </a>
-        <div id="collapseMagazzino" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseAttivita" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
             <?php
             $menu_items = [
                 [
-                    'label' => 'Anagrafica Articoli', 
-                    'url' => ['/magazzino/articolo/index'], 
-                    'active' => (\Yii::$app->controller->module->id == 'magazzino' && $this->context->id == 'articolo')],
+                    'label' => 'Scontrini', 
+                    'url' => ['/dashboard/scontrino/index'], 
+                    'active' => ($module_id == 'magazzino' && $this->context->id == 'articolo')],
+                [
+                    'label' => 'Storico', 
+                    'url' => ['/dashboard/report/index'], 
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
                 [
                     'label' => 'Documenti di magazzino', 
                     'url' => ['/magazzino/ddt/create'], 
                     'active' => (\Yii::$app->controller->module->id == 'magazzino' && $this->context->id == 'ddt')],
-                [
-                    'label' => 'Stampe', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'bilancio')],
             ];
             echo Menu::widget([
                 'options' => [

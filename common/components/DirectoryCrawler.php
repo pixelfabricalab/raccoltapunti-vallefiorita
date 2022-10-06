@@ -7,6 +7,7 @@
         // funzione per contare il numero di file in una cartella.
 
         public function countFiles($directory) {
+          return 0;
           // funzione per scansionare il numero di file nella cartella - agg.to - esclude . e .. dalla lista.
           $files = array_diff(scandir($directory), array('..', '.'));
           
