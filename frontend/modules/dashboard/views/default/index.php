@@ -2,10 +2,10 @@
 $this->title = "Dashboard";
 ?>
 <div class="dashboard-default-index">
-    <div class="container emp-profile">
+    <div class="emp-profile">
         <form method="post">
             <div class="row">
-                <div class="col">
+                <div class="col-12 col-md-8">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -154,7 +154,7 @@ $this->title = "Dashboard";
         </form>
         
         <div class="row">
-            <div class="col">
+            <div class="col-12 col-md-8">
                 <hr />
                 <?= $this->render('_premi') ?>
                 <hr />
