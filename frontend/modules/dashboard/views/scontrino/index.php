@@ -25,12 +25,12 @@ $this->title = 'Scontrini';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'ragione_sociale',
             'nomefile',
             //'proprietario_id',
             //'datacattura',
             //'rfscontrino',
             //'piva',
-            'ragionesociale',
             //'dataemissione',
             //'numerodocumento',
             [
