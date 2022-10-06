@@ -17,10 +17,10 @@ $this->title = "Dashboard";
                                 <div class="col-md-7">
                                     <div class="profile-head">
                                         <h5 class="text-info">
-                                            Mario Rossi
+                                            <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
                                         </h5>
                                         <h6>
-                                            Web Developer and Designer
+                                            <?= \Yii::$app->user->identity->profilo->professione ?>
                                         </h6>
                                         <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                                             <li class="nav-item">

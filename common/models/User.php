@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\models\Profilo;
 
 /**
  * User model
@@ -209,5 +210,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getProfilo()
+    {
+        return $this->hasOne(Profilo::class, ['id' => 'profilo_id']);
     }
 }
