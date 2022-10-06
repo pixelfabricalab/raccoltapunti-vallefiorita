@@ -39,13 +39,7 @@ class ProfiloController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProfiloSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->redirect(['update', 'id' => \Yii::$app->user->identity->profilo->id]);
     }
 
     /**
@@ -56,9 +50,7 @@ class ProfiloController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->redirect(['update', 'id' => \Yii::$app->user->identity->profilo->id]);
     }
 
     /**
