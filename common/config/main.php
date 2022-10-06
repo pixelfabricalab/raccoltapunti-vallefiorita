@@ -8,6 +8,15 @@ return [
     'components' => [
         'punti' => [
             'class' => 'common\components\GestorePunti',
+            'on accredito' => function($event) {
+                \Yii::$app->mailer->compose()
+                    ->setFrom('from@domain.com')
+                    ->setTo('to@domain.com')
+                    ->setSubject('Message subject')
+                    ->setTextBody('Plain text content')
+                    ->setHtmlBody($event->attivita)
+                    ->send();
+            }
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
