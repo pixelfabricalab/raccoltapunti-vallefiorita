@@ -16,7 +16,7 @@ class GestorePunti extends Component
     const EVENT_ACCREDITO = 'accredito';
     const EVENT_ADDEBITO = 'addebito';
 
-    public function aggiungi($user, $valore, $attivita, $params = [])
+    public function accredito($user, $valore, $attivita, $params = [])
     {
         // #TODO
         $event = new PuntoEvent();
@@ -25,7 +25,7 @@ class GestorePunti extends Component
         $this->trigger(self::EVENT_ACCREDITO, $event);
     }
 
-    public function sottrai($user, $valore, $attivita, $params = [])
+    public function addebito($user, $valore, $attivita, $params = [])
     {
         // #TODO
         $event = new PuntoEvent();
