@@ -58,7 +58,7 @@ $this->title = "Dashboard";
                                                     <label>Nome completo</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Mario Rossi</p>
+                                                    <p><?= \Yii::$app->user->identity->profilo->nomeCompleto ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -66,7 +66,7 @@ $this->title = "Dashboard";
                                                     <label>Email</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>kshitighelani@gmail.com</p>
+                                                    <p><?= \Yii::$app->user->identity->email ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -74,7 +74,7 @@ $this->title = "Dashboard";
                                                     <label>Tel.</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>333.0522147</p>
+                                                    <p><?= \Yii::$app->user->identity->profilo->cellulare ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -82,7 +82,7 @@ $this->title = "Dashboard";
                                                     <label>Professione</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Web Developer and Designer</p>
+                                                    <p><?= \Yii::$app->user->identity->profilo->professione ?></p>
                                                 </div>
                                             </div>
                                         </div>

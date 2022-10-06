@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use common\widgets\GridView;
 use common\models\Scontrino;
 use common\models\ScontrinoData;
 use common\models\ProdottiScontrinoData;
@@ -13,13 +13,9 @@ use common\models\ProdottiScontrinoData;
 /* @var $searchModel common\models\ScontrinoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Le mie scansioni';
+$this->title = 'Scontrini';
 ?>
-<div class="scontrino-index container">
-
-    <p>
-        <?= Html::a('Inserisci nuovo scontrino', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="scontrino-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

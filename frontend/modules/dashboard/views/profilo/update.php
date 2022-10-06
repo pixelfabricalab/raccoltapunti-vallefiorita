@@ -11,9 +11,11 @@ $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' 
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="profilo-update">
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-8">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 </div>
