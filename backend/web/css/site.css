@@ -1,9 +1,27 @@
+body, .btn, .ui-widget {
+    font-size: 14px;
+}
+.navbar-yellow {
+    background-color: #ffc81a !important;
+}
 main > .container {
     padding: 70px 15px 20px;
 }
-
+.has-error .help-block {
+    font-size: 12px;
+    color: red;
+}
+.shadow {
+    box-shadow: 0 0 1rem rgb(0 0 0 / 15%) !important;
+}
+.control-label {
+    text-transform: uppercase;
+    color: #2d919b;
+    font-size: 11px;
+    font-weight: bold;
+}
 .footer {
-    background-color: #f5f5f5;
+    border-top: 1px solid #efefef;
     font-size: .9em;
     height: 60px;
 }
@@ -40,20 +58,15 @@ a.desc:after {
     border-bottom-width: 0;
 }
 
-.grid-view th,
-.grid-view td:last-child {
+.grid-view th {
     white-space: nowrap;
-}
-
-.grid-view .filters input,
-.grid-view .filters select {
-    min-width: 50px;
 }
 
 .hint-block {
     display: block;
-    margin-top: 5px;
+    margin-top: 0px;
     color: #999;
+    font-size: 12px;
 }
 
 .error-summary {
@@ -67,7 +80,7 @@ a.desc:after {
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
 }
 
 @media(max-width:767px) {
@@ -87,4 +100,100 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.sidenav {
+    background-color: rgb(249, 251, 250);
+    border-right: 1px solid rgb(231, 238, 236);
+    min-height: 100vh;
+}
+.sidenav a:link,
+.sidenav a:active,
+.sidenav a:visited {
+    color: #343434;
+}
+a,
+.sidenav .active a {
+    color: #1c8ed1;
+}
+
+#main-content {
+    min-height: 80vh;
+}
+
+.pixelfabrica-link {
+    color: #d6803c;
+}
+.bg-none {
+    background: none;
+}
+
+.modal-open .ui-timepicker-container.ui-timepicker-standard {
+    z-index: 1051 !important;
+}
+
+/** Turnazione **/
+#turnazione {
+    position: relative;
+}
+small.fascia, small.servizio {
+    display: inline-block;
+    width: 85px;
+    padding: 0 0.3rem;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+small.servizio {
+    width: 119px;
+}
+small.servizio.badge {
+    width: 100%;
+}
+.pointer {
+    cursor: pointer;
+}
+/*
+#turnazione td:hover {
+    background-color: azure;;
+}
+*/
+#turnazione .table .thead-dark th {
+    border: 0;
+}
+.table-bordered td.br-1-black {
+    border-right: 1px solid #333;
+}
+#turnazione td {
+    border-bottom-width: 0;
+}
+.table-xs th, .table-xs td {
+    padding: 0.1rem;
+}
+
+/* JUST COMMON TABLE STYLES... */
+#turnazione table { border-collapse: collapse; width: 100%; }
+
+.tableFixHead {
+  overflow: auto;
+  height: 100px;
+}
+
+.tableFixHead thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#turnazione .azioni {
+    visibility: hidden;
+}
+#turnazione td:hover .azioni {
+    visibility: visible;
+}
+
+#root {
+    display: none;
+}
+.navbar-yellow a.nav-link {
+    color: #fff !important;
 }
