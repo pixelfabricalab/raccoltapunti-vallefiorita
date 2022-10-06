@@ -55,10 +55,10 @@ class Profilo extends \yii\db\ActiveRecord
             'data_nascita' => 'Data Nascita',
             'professione' => 'Professione',
             'eta' => 'Eta',
-            'residenza_indirizzo' => 'Residenza Indirizzo',
-            'residenza_citta' => 'Residenza Citta',
-            'residenza_cap' => 'Residenza Cap',
-            'residenza_provincia' => 'Residenza Provincia',
+            'residenza_indirizzo' => 'Indirizzo',
+            'residenza_citta' => 'Citta',
+            'residenza_cap' => 'Cap',
+            'residenza_provincia' => 'Provincia',
             'cellulare' => 'Cellulare',
         ];
     }
