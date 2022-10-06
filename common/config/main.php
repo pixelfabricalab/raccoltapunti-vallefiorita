@@ -6,6 +6,9 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'punti' => [
+            'class' => 'common\components\GestorePunti',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
