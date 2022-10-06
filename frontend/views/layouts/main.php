@@ -49,6 +49,12 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
 
     <?php $this->head() ?>
 
+    <style>
+        body {
+            font-size: 0.85rem;
+        }
+    </style>
+
     <script type="importmap">
     {
         "imports": {
