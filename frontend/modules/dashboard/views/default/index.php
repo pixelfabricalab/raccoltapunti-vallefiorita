@@ -11,7 +11,7 @@ $this->title = "Dashboard";
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="profile-img">
-                                        <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                                        <img class="img-fluid" src="<?= \Yii::getAlias('@web/images/ryan.jpg') ?>" alt=""/>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
