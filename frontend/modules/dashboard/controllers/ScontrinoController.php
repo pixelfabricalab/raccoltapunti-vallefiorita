@@ -115,7 +115,7 @@ class ScontrinoController extends Controller
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
                     Yii::$app->getSession()->addFlash('success', 'File caricato con successo.');
-                    $this->redirect(['index']);
+                    $this->redirect(['ok']);
                 }
             }
         } else {
@@ -128,6 +128,11 @@ class ScontrinoController extends Controller
             'model' => $model,
             'numero_scontrini' => $numero_scontrini
         ]);
+    }
+
+    public function actionOk()
+    {
+        return $this->render('ok');
     }
 
     /**
