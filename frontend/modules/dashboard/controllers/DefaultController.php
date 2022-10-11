@@ -17,4 +17,10 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionCheckin()
+    {
+        \Yii::$app->session->setFlash('success', 'Check-in completato! Ti sono stati accreditati +10 punti.');
+        return $this->redirect(['index']);
+    }
 }
