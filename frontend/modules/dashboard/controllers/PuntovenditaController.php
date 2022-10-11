@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\modules\dashboard\controllers;
 
 use common\models\Puntovendita;
 use common\models\PuntovenditaSearch;
