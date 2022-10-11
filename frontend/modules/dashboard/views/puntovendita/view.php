@@ -7,13 +7,11 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Puntovendita */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Puntovenditas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Punti vendita', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="puntovendita-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

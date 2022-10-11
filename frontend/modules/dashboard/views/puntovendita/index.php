@@ -9,15 +9,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\PuntovenditaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Puntovenditas';
+$this->title = 'Punti vendita';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="puntovendita-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Puntovendita', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuovo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
