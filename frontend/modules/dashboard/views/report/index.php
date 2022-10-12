@@ -16,7 +16,13 @@ $storico = [
     ['titolo' => 'Punto vendita inserito', 'descrizione' => 'Data: ' . date('d/m/Y')],
     ['titolo' => 'Punto vendita inserito', 'descrizione' => 'Data: ' . date('d/m/Y')],
     ['titolo' => 'Scontrino caricato', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Compleanno', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Checkpoint c/o Mongolfiera Lecce', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Bonus', 'descrizione' => 'Data: ' . date('d/m/Y')],
     ['titolo' => 'Scontrino caricato', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Professione inserita', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Biografia registrata', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Premio riscosso', 'descrizione' => 'Data: ' . date('d/m/Y'), 'negative' => true,]
 ];
 
 $storico = array_reverse($storico);
