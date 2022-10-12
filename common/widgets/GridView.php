@@ -8,6 +8,6 @@ class GridView extends Base
     public $layout = "{items}\n{pager}";
 
     public $tableOptions = [
-        'class' => 'table table-hover table-xs table-striped'
+        'class' => 'table table-hover table-sm table-striped bg-white'
     ];
 }
