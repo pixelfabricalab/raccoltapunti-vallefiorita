@@ -8,9 +8,8 @@ $module_id = \Yii::$app->controller->module->id;
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=\Yii::getAlias('@web') ?>">
-        <div class="sidebar-brand-icon">
-            <!--<?= Html::img('@web/images/logo_small.png', ['alt' => 'Fidelpol']) ?>-->
-            Profility
+        <div class="sidebar-brand-icon bg-white p-1">
+            <?= Html::img('@web/images/logo.png', ['alt' => \Yii::$app->name, 'class' => 'img-fluid']) ?>
         </div>
     </a>
 
@@ -86,13 +85,13 @@ $module_id = \Yii::$app->controller->module->id;
                     'url' => ['/dashboard/scontrino/index'], 
                     'active' => ($module_id == 'magazzino' && $this->context->id == 'articolo')],
                 [
-                    'label' => 'Storico', 
-                    'url' => ['/dashboard/report/index'], 
-                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
-                [
                     'label' => 'Punti vendita', 
                     'url' => ['/dashboard/puntovendita/index'], 
                     'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
+                [
+                    'label' => 'Storico', 
+                    'url' => ['/dashboard/report/index'], 
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
             ];
             echo Menu::widget([
                 'options' => [
@@ -104,84 +103,6 @@ $module_id = \Yii::$app->controller->module->id;
                 'items' => $menu_items,
             ]);
             ?>
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContabilita"
-            aria-expanded="true" aria-controls="collapseContabilita">
-            <i class="fas fa-fw fa-file"></i>
-            <span>Contabilita</span>
-        </a>
-        <div id="collapseContabilita" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Prima Nota', 
-                    'url' => ['/contabilita/primanota/index'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'primanota')],
-                [
-                    'label' => 'Brogliaccio Prima Nota', 
-                    'url' => ['/site/disabled']],
-                [
-                    'label' => 'Mastrini', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'mastrino')],
-                [
-                    'label' => 'Bilancio', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'bilancio')],
-                [
-                    'label' => 'Situazione Contabile', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'situazionecontabile')],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-                <h6 class="collapse-header">Gestione IVA</h6>
-
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Registri IVA', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'registroiva')],
-                [
-                    'label' => 'Liquidazione IVA', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'liquidazione')],
-                [
-                    'label' => 'Progressivi IVA', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'progressivoiva')],
-                [
-                    'label' => 'Liquid. periodiche IVA', 
-                    'url' => ['/site/disabled'], 
-                    'active' => (\Yii::$app->controller->module->id == 'contabilita' && $this->context->id == 'liquidazione')],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-
             </div>
         </div>
     </li>
