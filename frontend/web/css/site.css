@@ -3,7 +3,7 @@
   }
 
   footer {
-      background-color: #aeaeae;
+      background-color: #0886b4;
   }
   
   /*
@@ -16,14 +16,25 @@
     backdrop-filter: saturate(180%) blur(20px);
   }
   .site-header a {
-    color: #8e8e8e;
+    color: #1e2246;
     transition: color .15s ease-in-out;
   }
   .site-header a:hover {
-    color: #fff;
+    color: #25294d;
     text-decoration: none;
   }
   
+  .bg-profility-dark {
+    background-color: #1e2246;
+  }
+  .bg-profility-light{
+
+  }
+
+  .profility-color {
+    color: #1e2246;    
+  }
+
   /*
    * Dummy devices (replace them with your own or something else entirely!)
    */
@@ -162,8 +173,13 @@ h1.hero-title {
 }
 
 .btn-profility {
+  margin-top: 10px;
+  color: #1e2246;
+}
+
+.btn-profility {
   background-color: #dbdc2c !important;
-  color:black !important;
+  color:#1e2246 !important;
   padding: 0.28rem 0.5rem;
   font-size: 0.8rem;
   border-radius: 7px;
