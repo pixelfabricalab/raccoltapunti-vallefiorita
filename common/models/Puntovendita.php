@@ -37,6 +37,7 @@ class Puntovendita extends \yii\db\ActiveRecord
     {
         return [
             [['descrizione'], 'string'],
+            [['ragione_sociale'], 'required'],
             [['creato_il', 'modificato_il'], 'safe'],
             [['codice', 'ragione_sociale', 'partita_iva', 'codice_fiscale', 'indirizzo', 'cap', 'citta', 'insegna'], 'string', 'max' => 255],
         ];
