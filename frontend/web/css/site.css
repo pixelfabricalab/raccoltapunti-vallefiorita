@@ -143,14 +143,17 @@ ul li.nav-item {
 }
 
 .hero-back {
-  background: url('../assets/images/hero.jpg') center center no-repeat;
+  background: url('../assets/images/hero.png') center center no-repeat;
 }
 
 .mobile-menu-toggler {
   font-size: 38px;
 }
 
-.btn-vallefiorita-palette {
-  background-color: #14302a !important;
-  color:white !important;
+.btn-profility {
+  background-color: #dbdc2c !important;
+  color:black !important;
+  padding: 0.28rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 7px;
 }
