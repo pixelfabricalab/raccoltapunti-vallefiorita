@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use common\widgets\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PuntovenditaSearch */
@@ -27,17 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'codice',
+            // 'id',
+            // 'codice',
             'ragione_sociale',
             'descrizione:ntext',
             'partita_iva',
             //'codice_fiscale',
-            //'indirizzo',
+            'indirizzo',
             //'cap',
-            //'citta',
-            //'insegna',
-            //'creato_il',
+            'citta',
+            'insegna',
+            'creato_il',
             //'modificato_il',
             [
                 'class' => ActionColumn::className(),

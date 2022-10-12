@@ -90,9 +90,9 @@ $module_id = \Yii::$app->controller->module->id;
                     'url' => ['/dashboard/report/index'], 
                     'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
                 [
-                    'label' => 'Documenti di magazzino', 
-                    'url' => ['/magazzino/ddt/create'], 
-                    'active' => (\Yii::$app->controller->module->id == 'magazzino' && $this->context->id == 'ddt')],
+                    'label' => 'Punti vendita', 
+                    'url' => ['/dashboard/puntovendita/index'], 
+                    'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
             ];
             echo Menu::widget([
                 'options' => [
