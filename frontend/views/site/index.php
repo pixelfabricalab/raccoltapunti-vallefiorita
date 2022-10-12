@@ -6,8 +6,8 @@ $this->title = 'Raccolta punti - Demo App';
 ?>
 <div class="site-index">
 
-<div class="position-relative overflow-hidden p-3 m-md-3 hero-back">
-    <div class="col-md-6 p-lg-5 my-5 offset-md-1 mb-1">
+<div class="position-relative overflow-hidden hero-back">
+    <div class="col-md-6 my-5 offset-md-1 mb-1">
         <div class="herotext">
             <h1 class="display-4 hero-title">Raccolta punti</h1>
             <p class="lead fw-normal hero-desc">Una raccolta punti non è mai stata così semplice.<br />Inquadra lo scontrino, scatta una foto e inviala con l'applicazione!</p>

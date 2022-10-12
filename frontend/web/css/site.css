@@ -144,6 +144,17 @@ ul li.nav-item {
 
 .hero-back {
   background: url('../assets/images/hero-new.png') center center no-repeat;
+  height: 500px;
+}
+
+.herotext {
+  padding-top: 10rem;
+  padding-left: 6rem;
+  color:white;
+}
+
+h1.hero-title {
+  font-weight: bold;
 }
 
 .mobile-menu-toggler {

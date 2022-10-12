@@ -26,7 +26,7 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header class="site-header sticky-top py-5 mb-5">
+<header class="site-header sticky-top py-5">
     <?php
     NavBar::begin([
         'brandLabel' => '<img src="./assets/logo/profility.png" />',
@@ -68,7 +68,7 @@ AppAsset::register($this);
     ?>
 </header>
 
-<main role="main" class="flex-shrink-0 mb-5">
+<main role="main" class="flex-shrink-0">
     <div class="container-fluid">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
