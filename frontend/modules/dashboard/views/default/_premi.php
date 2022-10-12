@@ -14,19 +14,19 @@
                         <div class="col">
                             <div class="text-center">
                                 <img class="d-block w-100" src="https://tesla-cdn.thron.com/delivery/public/image/tesla/195458a0-ff67-488c-b972-14d23d2c42fb/bvlatuR/std/1200x630/ms-homepage-social" alt="First slide" />
-                                <span class="text-success">5000 punti</span>
+                                <span class="text-success">10.000 punti</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="text-center">
-                                <img class="d-block w-100" src="https://via.placeholder.com/274x143.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="First slide">
-                                <span class="text-success">5000 punti</span>
+                                <img class="d-block w-100" src="<?= \Yii::getAlias('@web/images/premi/02.png') ?>" alt="First slide">
+                                <span class="text-success">2.000 punti</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="text-center">
-                                <img class="d-block w-100" src="https://via.placeholder.com/274x143.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="First slide">
-                                <span class="text-success">5000 punti</span>
+                                <img class="d-block w-100" src="<?= \Yii::getAlias('@web/images/premi/03.png') ?>" alt="First slide">
+                                <span class="text-success">3.000 punti</span>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="text-center">
-                                <img class="d-block w-100" src="https://via.placeholder.com/274x143.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="First slide">
+                                <img class="d-block w-100" src="<?= \Yii::getAlias('@web/images/premi/04.png') ?>" alt="First slide">
                                 <span class="text-success">5000 punti</span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col">
                             <div class="text-center">
-                                <img class="d-block w-100" src="https://via.placeholder.com/274x143.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="First slide">
+                                <img class="d-block w-100" src="<?= \Yii::getAlias('@web/images/premi/05.png') ?>" alt="First slide">
                                 <span class="text-success">5000 punti</span>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="text-center">
-                                <img class="d-block w-100" src="https://via.placeholder.com/274x143.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="First slide">
+                                <img class="d-block w-100" src="<?= \Yii::getAlias('@web/images/premi/06.png') ?>" alt="First slide">
                                 <span class="text-success">5000 punti</span>
                             </div>
                         </div>
