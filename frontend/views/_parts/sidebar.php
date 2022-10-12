@@ -46,7 +46,11 @@ $module_id = \Yii::$app->controller->module->id;
                 [
                     'label' => 'Profilo', 
                     'url' => ['/dashboard/profilo/index'], 
-                    'active' => ($module_id === 'dashboard' && $this->context->id == 'campagna')],
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'profilo')],
+                [
+                    'label' => 'Storico', 
+                    'url' => ['/dashboard/report/index'], 
+                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
             ];
             echo Menu::widget([
                 'options' => [
@@ -88,10 +92,6 @@ $module_id = \Yii::$app->controller->module->id;
                     'label' => 'Punti vendita', 
                     'url' => ['/dashboard/puntovendita/index'], 
                     'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
-                [
-                    'label' => 'Storico', 
-                    'url' => ['/dashboard/report/index'], 
-                    'active' => ($module_id === 'dashboard' && $this->context->id == 'report')],
             ];
             echo Menu::widget([
                 'options' => [
