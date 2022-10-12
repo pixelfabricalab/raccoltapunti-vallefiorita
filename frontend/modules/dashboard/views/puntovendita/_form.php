@@ -1,18 +1,20 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Puntovendita */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="puntovendita-form">
+<div class="puntovendita-form row">
+    <div class="col-12 col-lg-6">
+    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
-
+    <!--
     <?= $form->field($model, 'codice')->textInput(['maxlength' => true]) ?>
+    -->
 
     <?= $form->field($model, 'ragione_sociale')->textInput(['maxlength' => true]) ?>
 
@@ -39,5 +41,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    </div>
 </div>
