@@ -175,8 +175,8 @@ h1.hero-title {
 .btn-profility {
   margin-top: 10px;
   color: #1e2246;
-  -webkit-box-shadow: 11px 5px 16px 0px rgba(0,0,0,0.28); 
-  box-shadow: 11px 5px 16px 0px rgba(0,0,0,0.28);
+  -webkit-box-shadow: 5px 6px 10px 0px rgba(0,0,0,0.59); 
+  box-shadow: 5px 6px 10px 0px rgba(0,0,0,0.59);
 }
 
 .btn-profility {
