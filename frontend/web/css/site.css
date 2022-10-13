@@ -3,7 +3,7 @@
   }
 
   footer {
-      background-color: #0886b4;
+      background-color: #efeded;
   }
   
   /*
@@ -175,7 +175,8 @@ h1.hero-title {
 .btn-profility {
   margin-top: 10px;
   color: #1e2246;
-  box-shadow:  0.125rem 0.25rem rgb(0 0 0 / 20%) !important
+  -webkit-box-shadow: 11px 5px 16px 0px rgba(0,0,0,0.28); 
+  box-shadow: 11px 5px 16px 0px rgba(0,0,0,0.28);
 }
 
 .btn-profility {
