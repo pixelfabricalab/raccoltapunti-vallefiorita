@@ -6,6 +6,10 @@
       background-color: #d6d6d6;
   }
   
+  .bg-login .nav-link {
+    background-color: #dbdc2c;
+  }
+
   /*
    * Custom translucent site header
    */
