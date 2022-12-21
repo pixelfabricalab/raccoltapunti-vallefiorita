@@ -6,4 +6,5 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
+    'endpoint_server_ocr' => 'http://192.168.10.4:8090/analizza',
 ];
