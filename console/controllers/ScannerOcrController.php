@@ -39,7 +39,7 @@
             if ($response && $response->content) {
                 $model_scansione = new ScansioneTest;
                 $datedb = date("Y-m-d H:i:s");
-                $model_scansione->id_scontrino = $model_scontrino->id;
+                $model_scansione->id_scontrino = 152;
                 $model_scansione->nome_scontrino = $file;
                 $model_scansione->dataora_scansione = $datedb;
                 $model_scansione->modo_scansione = $params['segment'];
