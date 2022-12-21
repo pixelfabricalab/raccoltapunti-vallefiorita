@@ -47,13 +47,13 @@
             $testmail = true;
           } else {
             // array per dimensioni
-            $dimensioni_scansione = [1600,2200,2800,3200];
+            $dimensioni_scansione = [2800];
             // array per modalità di segmentazione pagina
-            $modes_psm = [1,3];
+            $modes_psm = [3];
             // array per engine segmentazione pagina
-            $engines_lstm = [1,2,3,6,11,12];
+            $engines_lstm = [3];
             // array per dpi scansione 
-            $dpis_scansione = [300,400,600];
+            $dpis_scansione = [300];
             // array con valori boolean: 0 e 1 per attivare e disattivare funzione di raddrizzamento automatico - non utilizzata su suggerimento di Ale. Non funziona bene.
             $desks_foto = [0];
             // numero di scansioni totali per file: 144
@@ -86,8 +86,8 @@
           $attempts = 1;
 
           // verifica che il server sia raggiungibile prima di qualsiasi azione
-          $host = '89.148.181.23'; 
-          $port = 9090; 
+          $host = '192.168.10.4'; 
+          $port = 8090; 
           $waitTimeoutInSeconds = 1; 
           // verifica che il server risponda aprendo un socket con i parametri assegnati
           try {
