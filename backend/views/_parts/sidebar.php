@@ -73,6 +73,7 @@ use yii\widgets\Menu;
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <?php if (false) : ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMagazzino"
             aria-expanded="true" aria-controls="collapseMagazzino">
@@ -330,7 +331,7 @@ use yii\widgets\Menu;
         </div>
     </li>
     -->
-
+    <?php endif; ?>
     <!-- Divider -->
     <hr class="sidebar-divider">
 
