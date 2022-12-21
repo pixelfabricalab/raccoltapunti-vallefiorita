@@ -14,6 +14,13 @@
 
     class ScannerOcrController extends Controller {
         
+        public function actionDemo()
+        {
+            $scanner = new ScontrinoHelper;
+            $response = $scanner->scanOCR('/home/pixel/tmp/scontrino1.png', 2800, 3, 3, 300);
+            print_r($response);
+        }
+
         public function actionIndex($search = 'test')
         {
           echo $search;
