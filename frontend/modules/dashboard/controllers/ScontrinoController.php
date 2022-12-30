@@ -114,8 +114,8 @@ class ScontrinoController extends Controller
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
-                    Yii::$app->getSession()->addFlash('success', 'File caricato con successo.');
-                    $this->redirect(['ok']);
+                    Yii::$app->getSession()->addFlash('success', 'Scontrino caricato con successo. Riceverai una notifica quando il sistema elaborerà le informazioni.');
+                    $this->redirect(['create']);
                 }
             }
         } else {
@@ -128,11 +128,6 @@ class ScontrinoController extends Controller
             'model' => $model,
             'numero_scontrini' => $numero_scontrini
         ]);
-    }
-
-    public function actionOk()
-    {
-        return $this->render('ok');
     }
 
     /**
