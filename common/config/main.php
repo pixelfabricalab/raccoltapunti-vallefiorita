@@ -6,6 +6,9 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'scanner' => [
+            'class' => 'common\components\ScontrinoHelper',
+        ],
         'punti' => [
             'class' => 'common\components\GestorePunti',
             'on accredito' => function($event) {
