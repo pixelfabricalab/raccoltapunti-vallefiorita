@@ -43,6 +43,10 @@ use yii\widgets\Menu;
             <?php
             $menu_items = [
                 [
+                    'label' => 'Scansioni', 
+                    'url' => ['/scansione/index'], 
+                    'active' => ($this->context->id == 'scansione')],
+                [
                     'label' => 'Campagne', 
                     'url' => ['/campagna/index'], 
                     'active' => ($this->context->id == 'campagna')],
