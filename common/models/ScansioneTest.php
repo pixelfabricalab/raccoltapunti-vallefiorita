@@ -75,4 +75,10 @@ class ScansioneTest extends \yii\db\ActiveRecord
             'testo_rw' => 'Testo Rw',
         ];
     }
+
+    public function getScontrino()
+    {
+        return $this->hasOne(\common\models\Scontrion::class, ['id' => 'id_scontrino']);
+    }
+
 }
