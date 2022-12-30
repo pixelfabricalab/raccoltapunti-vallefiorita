@@ -10,14 +10,21 @@ $this->title = "Dashboard";
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <div class="profile-img">
-                                        <img class="img-fluid" src="<?= \Yii::getAlias('@web/images/ryan.jpg') ?>" alt=""/>
+                                    <div class="row">
+                                        <div class="col-5 col-md-12">
+                                            <div class="profile-img">
+                                                <img class="img-fluid" src="<?= \Yii::getAlias('@web/images/ryan.jpg') ?>" alt=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-md-12">
+                                            <h5 class="text-info mt-2 mb-0">
+                                                <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
+                                            </h5>
+                                            <small><?= \Yii::$app->user->identity->profilo->professione ?></small>
+                                            <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
+
+                                        </div>
                                     </div>
-                                    <h5 class="text-info mt-2">
-                                        <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
-                                    </h5>
-                                    <h6>
-                                        <?= \Yii::$app->user->identity->profilo->professione ?>
 
                                     <hr />
                                     <h6 class="h6 font-weight-bold">Bio</h6>
