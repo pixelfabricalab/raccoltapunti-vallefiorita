@@ -159,7 +159,6 @@ class ScontrinoController extends Controller
         $file_scontrino = '/home/pixel/tmp/photo_2022-12-21_10-33-14.jpg';
         $params = \Yii::$app->params;
         // per ogni elemento scansiona
-        $scanner = new ScontrinoHelper;
         $response = \Yii::$app->scanner->scanOCR($file_scontrino, $params['dimensione'], $params['engine'], $params['segment'], $params['densita']);
 
         // salva risultato
