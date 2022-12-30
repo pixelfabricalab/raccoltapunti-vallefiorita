@@ -13,15 +13,18 @@ $this->title = "Dashboard";
                                     <div class="profile-img">
                                         <img class="img-fluid" src="<?= \Yii::getAlias('@web/images/ryan.jpg') ?>" alt=""/>
                                     </div>
+                                    <h5 class="text-info mt-2">
+                                        <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
+                                    </h5>
+                                    <h6>
+                                        <?= \Yii::$app->user->identity->profilo->professione ?>
+
+                                    <hr />
+                                    <h6 class="h6 font-weight-bold">Bio</h6>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris venenatis arcu luctus gravida fringilla at metus. Duis semper placerat leo, at commodo justo convallis a. </p>
                                 </div>
                                 <div class="col-md-7">
-                                    <div class="profile-head">
-                                        <h5 class="text-info">
-                                            <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
-                                        </h5>
-                                        <h6>
-                                            <?= \Yii::$app->user->identity->profilo->professione ?>
-                                        </h6>
+                                    <div class="profile-head mb-4">
                                         <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="profilo-tab" data-toggle="tab" href="#profilo" role="tab" aria-controls="profilo" aria-selected="true">Profilo</a>
@@ -31,18 +34,7 @@ $this->title = "Dashboard";
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="text-center">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <hr />
-                                    <h6 class="h6 font-weight-bold">Bio</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris venenatis arcu luctus gravida fringilla at metus. Duis semper placerat leo, at commodo justo convallis a. </p>
-                                </div>
-                                <div class="col-md-9">
+
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="profilo" role="tabpanel" aria-labelledby="profilo-tab">
                                             <div class="row">
@@ -145,6 +137,10 @@ $this->title = "Dashboard";
                                             </div>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="text-center">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
                                 </div>
                             </div>
                         </div>

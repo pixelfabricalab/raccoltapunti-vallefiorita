@@ -15,7 +15,7 @@ use common\models\ProdottiScontrinoData;
 
 $this->title = 'Scontrini';
 ?>
-<div class="scontrino-index">
+<div class="scontrino-index table-responsive">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
