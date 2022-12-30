@@ -145,4 +145,52 @@ class ScontrinoController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionElabora()
+    {
+        // Recupera coda di elaborazione
+
+        /*
+            --form 'engine="3"' \
+            --form 'densita="300"' \
+            --form 'segment="3"' \
+            --form 'dimensione="2800"'
+        */
+        $file_scontrino = '/home/pixel/tmp/photo_2022-12-21_10-33-14.jpg';
+        $params = \Yii::$app->params;
+        // per ogni elemento scansiona
+        $scanner = new ScontrinoHelper;
+        $response = \Yii::$app->scanner->scanOCR($file_scontrino, $params['dimensione'], $params['engine'], $params['segment'], $params['densita']);
+
+        // salva risultato
+        if ($response && $response->content) {
+            $model_scansione = new ScansioneTest;
+            $datedb = date("Y-m-d H:i:s");
+            $model_scansione->id_scontrino = 152;
+            $model_scansione->nome_scontrino = $file_scontrino;
+            $model_scansione->dataora_scansione = $datedb;
+            $model_scansione->modo_scansione = $params['segment'];
+            $model_scansione->engine_scansione = $params['engine'];
+            $model_scansione->dpi_scansione = $params['densita'];
+            $model_scansione->risoluzione = $params['dimensione'];
+            $model_scansione->task = 1;
+            $model_scansione->desk = 0;
+            $model_scansione->has_valid_content = 1;
+            $model_scansione->is_mail_sent = 0;
+            $model_scansione->is_test = 0;
+
+            $scontrino_data = json_decode($response->content);
+            $model_scansione->piva = $scontrino_data->piva;
+            $model_scansione->datascontrino = $scontrino_data->data;
+            $model_scansione->ndoc = $scontrino_data->nDoc;
+            $model_scansione->lista_articoli = json_encode($scontrino_data->listarticoli);
+            $model_scansione->testo_rw = $scontrino_data->testoRW;
+            $model_scansione->save();
+            die("Elaborazione ok");
+        } else {
+            die("Elaborazione KO");
+        }
+
+    }
+
 }
