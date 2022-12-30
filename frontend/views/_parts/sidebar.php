@@ -7,7 +7,7 @@ $module_id = \Yii::$app->controller->module->id;
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=\Yii::getAlias('@web') ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=\Yii::getAlias('@web/dashboard') ?>">
         <div class="sidebar-brand-icon bg-white p-1">
             <?= Html::img('@web/images/logo.png', ['alt' => \Yii::$app->name, 'class' => 'img-fluid']) ?>
         </div>
@@ -30,6 +30,41 @@ $module_id = \Yii::$app->controller->module->id;
     <div class="sidebar-heading">
         Gestione
     </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttivita"
+            aria-expanded="true" aria-controls="collapseAttivita">
+            <i class="fas fa-fw fa-file"></i>
+            <span>Raccolta punti</span>
+        </a>
+        <div id="collapseAttivita" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+
+            <?php
+            $menu_items = [
+                [
+                    'label' => 'Scontrini', 
+                    'url' => ['/dashboard/scontrino/index'], 
+                    'active' => ($module_id == 'magazzino' && $this->context->id == 'articolo')],
+                [
+                    'label' => 'Punti vendita', 
+                    'url' => ['/dashboard/puntovendita/index'], 
+                    'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
+            ];
+            echo Menu::widget([
+                'options' => [
+                    'class' => 'list-unstyled',
+                ],
+                'itemOptions' => [
+                    'class' => 'collapse-item',
+                ],
+                'items' => $menu_items,
+            ]);
+            ?>
+            </div>
+        </div>
+    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -68,41 +103,6 @@ $module_id = \Yii::$app->controller->module->id;
                 <a class="collapse-item" href="buttons.html">Buttons</a>
                 <a class="collapse-item" href="cards.html">Cards</a>
                 -->
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttivita"
-            aria-expanded="true" aria-controls="collapseAttivita">
-            <i class="fas fa-fw fa-file"></i>
-            <span>Attivita</span>
-        </a>
-        <div id="collapseAttivita" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Scontrini', 
-                    'url' => ['/dashboard/scontrino/index'], 
-                    'active' => ($module_id == 'magazzino' && $this->context->id == 'articolo')],
-                [
-                    'label' => 'Punti vendita', 
-                    'url' => ['/dashboard/puntovendita/index'], 
-                    'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
             </div>
         </div>
     </li>

@@ -10,7 +10,6 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="scontrino-form">
-<div class="<?php if ($numero_scontrini > 2 && $numero_scontrini < 4) { ?>alert alert-warning<?php } else if ($numero_scontrini >= 4) {?> alert alert-danger <?php } else if ($numero_scontrini <= 2) {?> alert alert-success<?php } ?>"><p><strong>Attenzione!</strong><br />La piattaforma è in modalità di test. Le scansioni partono ogni 4 ore circa. Il numero consigliato di scontrini da caricare è 3-4.<br /><br />Numero scontrini in attesa di essere scansionati: <?= $numero_scontrini ?></p></div>
 <?php $form = ActiveForm::begin([
         'options'=>['enctype'=>'multipart/form-data']] // important
 ); ?>

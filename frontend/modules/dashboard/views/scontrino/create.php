@@ -7,22 +7,24 @@ use yii\helpers\Html;
 
 $this->title = 'Carica scontrino';
 ?>
-<div class="scontrino-create" id="gioco">
-    <div v-if="stepgioco === 0">
-        <div class="row">
-            <div class="col">
-                <h4>Come si gioca?</h4>
-                <p>La raccolta punti è semplicissima. Ti basta inquadrare e scattare una foto ad uno scontrino di un punto vendita per scoprire subito se hai vinto.</p>
-                <p>L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno i prodotti inclusi nella raccolta punti, riceverai tanti punti quanti sono i prodotti che hai acquistato.</p>
-                <button class="btn btn-primary" @click="stepgioco = 1">Inizia subito</button>
-            </div>
+<div class="col-12 col-md-8">
+    <div class="card shadow-sm">
+        <div class="scontrino-create card-body" id="gioco">
+            <?= $this->render('_form_create', [
+                'model' => $model,
+                'numero_scontrini' => $numero_scontrini,
+            ]) ?>
+
+            <hr />
+            <h5 class="h5 mt-2 mb-2">Come funziona?</h5>
+            <p>Raccogliere punti è semplice. Inquadra e scatta una foto dello scontrino di un punto vendita per scoprire subito se hai vinto.<br>
+            L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno i prodotti inclusi nella raccolta punti, riceverai tanti punti quanti sono i prodotti che hai acquistato.</p>
         </div>
     </div>
-    <div v-else-if="stepgioco === 1">
-        <?= $this->render('_form_create', [
-            'model' => $model,
-            'numero_scontrini' => $numero_scontrini,
-        ]) ?>
-    </div>
-
 </div>
+
+<style>
+    #newScontrino {
+        display: none;
+    }
+</style>
