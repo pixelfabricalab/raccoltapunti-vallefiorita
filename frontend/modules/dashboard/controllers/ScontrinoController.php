@@ -93,6 +93,7 @@ class ScontrinoController extends Controller
     {
         $model = new Scontrino();
 
+                    Yii::$app->getSession()->addFlash('success', 'Scontrino caricato con successo. Riceverai una notifica quando il sistema elaborerà le informazioni.');
         if ($this->request->isPost) {
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
@@ -106,7 +107,7 @@ class ScontrinoController extends Controller
                 $model->estensionefile = $fileparams['extension'];
                 $model->id_proprietario = Yii::$app->user->id;
                 $model->data_caricamento = date('Y-m-d H:i:s');
-                $model->nomefile = './uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
+                $model->nomefile = '/home/pixel/public_html/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 $model->dimensione = $fileparams['size'];
                 $model->tmpfilename = $fileparams['tempName'];
                 $model->mimetype = $fileparams['mimetype'];
