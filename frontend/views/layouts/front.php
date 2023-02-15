@@ -29,7 +29,7 @@ AppAsset::register($this);
 <header class="site-header sticky-top py-5">
     <?php
     NavBar::begin([
-        'brandLabel' => '<img src="./assets/logo/profility.png" />',
+        'brandLabel' => '<img src="./assets/logo/profility-new.png" />',
         'brandUrl' => Yii::$app->homeUrl,
         'togglerContent' => '<i class="fa-solid fa-bars mobile-menu-toggler"></i>',
         'collapseOptions' => ['class'=>'justify-content-end'],
