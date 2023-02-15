@@ -92,6 +92,7 @@ class ScansioneController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            \Yii::$app->getSession()->addFlash('success', 'Informazioni aggiornate.');
             return $this->redirect(['update', 'id' => $model->id]);
         }
 
