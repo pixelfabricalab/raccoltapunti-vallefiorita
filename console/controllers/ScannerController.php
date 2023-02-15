@@ -72,9 +72,13 @@ class ScannerController extends Controller
                 );
                 $model_scansione->testo_rw = $scontrino_data->testoRW;
                 $model_scansione->save();
-                echo "Scontrino {$row['nomefile']} elaborato con successo.";
+                
+                $scontrino = Scontrino::findOne($row['id']);
+                $scontrino->is_elapsed = 1;
+                $scontrino->save();
+                echo "Scontrino {$row['nomefile']} elaborato con successo.\n";
             } else {
-                echo "Scontrino {$row['nomefile']} KO";
+                echo "Scontrino {$row['nomefile']} KO\n";
             }
         }
 
