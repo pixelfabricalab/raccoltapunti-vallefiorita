@@ -341,7 +341,7 @@ use yii\widgets\Menu;
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Archivi
+        Statistiche
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -349,48 +349,32 @@ use yii\widgets\Menu;
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Anagrafiche</span>
+            <span>Ambiti</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <?php
                 $menu_items = [
                     [
-                        'label' => 'Aziende', 
+                        'label' => 'Statistiche Generali', 
                         'url' => ['/azienda/index'], 
                         'active' => ($this->context->id == 'azienda')],
                     [
-                        'label' => 'Contratti', 
+                        'label' => 'Partecipanti', 
+                        'url' => ['/azienda/index'], 
+                        'active' => ($this->context->id == 'azienda')],
+                    [
+                        'label' => 'Punti Vendita', 
                         'url' => ['/contratto/index'], 
                         'active' => ($this->context->id == 'contratto')],
                     [
-                        'label' => 'Documenti', 
+                        'label' => 'Regimi di spesa', 
                         'url' => ['/tipo-documento/index'], 
                         'active' => ($this->context->id == 'tipo-documento')],
                     [
-                        'label' => 'Servizi', 
+                        'label' => 'Statistiche prodotti', 
                         'url' => ['/servizio/index'], 
                         'active' => ($this->context->id == 'servizio')],
-                    [
-                        'label' => 'Rubrica', 
-                        'url' => ['/indirizzo/index'], 
-                        'active' => ($this->context->id == 'indirizzo')],
-                    [
-                        'label' => 'Banche', 
-                        'url' => ['/banca/index'], 
-                        'active' => ($this->context->id == 'banca')],
-                    [
-                        'label' => 'Autovetture', 
-                        'url' => ['/autovettura/index'], 
-                        'active' => ($this->context->id == 'autovettura')],
-                    [
-                        'label' => 'Apparecchi', 
-                        'url' => ['/apparecchiatura/index'], 
-                        'active' => ($this->context->id == 'apparecchiatura')],
-                    [
-                        'label' => 'Manutenzioni', 
-                        'url' => ['/tipo-manutenzione/index'], 
-                        'active' => ($this->context->id == 'tipo-manutenzione')],
                 ];
                 echo Menu::widget([
                     'options' => [
