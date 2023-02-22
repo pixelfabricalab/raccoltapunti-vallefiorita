@@ -357,24 +357,24 @@ use yii\widgets\Menu;
                 $menu_items = [
                     [
                         'label' => 'Statistiche Generali', 
-                        'url' => ['/azienda/index'], 
-                        'active' => ($this->context->id == 'azienda')],
+                        'url' => ['/statistiche/generali'], 
+                        'active' => ($this->context->id == 'generali')],
                     [
                         'label' => 'Partecipanti', 
-                        'url' => ['/azienda/index'], 
-                        'active' => ($this->context->id == 'azienda')],
+                        'url' => ['/statistiche/partecipanti'], 
+                        'active' => ($this->context->id == 'partecipanti')],
                     [
                         'label' => 'Punti Vendita', 
-                        'url' => ['/contratto/index'], 
-                        'active' => ($this->context->id == 'contratto')],
+                        'url' => ['/statistiche/punti-vendita'], 
+                        'active' => ($this->context->id == 'punti-vendita')],
                     [
                         'label' => 'Regimi di spesa', 
-                        'url' => ['/tipo-documento/index'], 
-                        'active' => ($this->context->id == 'tipo-documento')],
+                        'url' => ['/statistiche/regimi-spesa'], 
+                        'active' => ($this->context->id == 'regimi-spesa')],
                     [
                         'label' => 'Statistiche prodotti', 
-                        'url' => ['/servizio/index'], 
-                        'active' => ($this->context->id == 'servizio')],
+                        'url' => ['/statistiche/prodotti'], 
+                        'active' => ($this->context->id == 'prodotti')],
                 ];
                 echo Menu::widget([
                     'options' => [
