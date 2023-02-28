@@ -27,4 +27,8 @@
         public function actionGenerali() {
             return $this->render('index');
         }
+
+        public function actionPartecipanti() {
+            return $this->render('partecipanti');
+        }
     }
