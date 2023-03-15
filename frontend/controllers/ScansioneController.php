@@ -1,11 +1,12 @@
 <?php 
 namespace frontend\controllers; 
 
-use common\models\ScansioneTest;
 use Yii;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\helpers\Json;
+use common\models\Scontrino;
+use common\models\ScansioneTest;
 
 class ScansioneController extends Controller {
 
@@ -22,5 +23,21 @@ class ScansioneController extends Controller {
         $response->content = $json;
 
        return $response; 
+    }
+
+    public function actionNuova() {
+        
+        $model = new Scontrino();
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 }
