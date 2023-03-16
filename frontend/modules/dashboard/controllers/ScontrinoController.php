@@ -128,9 +128,10 @@ class ScontrinoController extends Controller
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
                     // lancia scansione ocr
-                    // scansione ocr asprise -- commenta la riga se vuoi utilizzare la scansione finta
-                    //$scansione_ocr = ScontrinoHelper::scanOCRAsprise($model->nomefile);
-                    $scansione_ocr = ScontrinoHelper::dummyOCR();
+                    // scansione ocr Asprise -- commenta la riga se vuoi utilizzare la scansione finta
+                    $scansione_ocr = ScontrinoHelper::scanOCRAsprise($model->nomefile);
+                    // scansione con dati ocr finti -- copiato lo stesso identico tracciato JSON di Asprise.
+                    // $scansione_ocr = ScontrinoHelper::dummyOCR();
                     $model_scontrino_data = new ScontrinoData;
                     $model_scontrino_data->id_scontrino = $model->id;
                     $model_scontrino_data->rfscontrino = null;
