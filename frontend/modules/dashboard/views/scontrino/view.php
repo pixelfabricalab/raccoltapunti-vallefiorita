@@ -14,7 +14,7 @@ $this->title = 'Scontrino id n°'. $model->id;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="alert alert-success">
-    <h1>Questo scontrino vale 10 punti!</h1>
+    <h1>Questo scontrino vale <?=rand(0,10)?> punti!</h1>
 </div>
 <hr />
 <h1>Dettaglio scontrino</h1>
