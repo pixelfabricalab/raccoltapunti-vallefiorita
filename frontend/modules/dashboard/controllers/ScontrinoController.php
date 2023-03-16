@@ -4,11 +4,15 @@ namespace frontend\modules\dashboard\controllers;
 
 use common\models\Scontrino;
 use common\models\ScontrinoSearch;
+use common\models\ScontrinoData;
+use common\models\ProdottiScontrinoData;
 use common\components\DirectoryCrawler;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use common\components\ScontrinoHelper;
 use Yii;
 
 /**
@@ -74,13 +78,21 @@ class ScontrinoController extends Controller
     public function actionView($id)
     {
         
-        //$datamodel = ScontrinoData::find()->where(['id_scontrino' => $id])->all();
-        //$dataprodottimodel = ProdottiScontrinoData::find()->where(['id_scontrino_data' => $datamodel[0]->getId()])->all();
-
+        $datamodel = ScontrinoData::find()->where(['id_scontrino' => $id])->one();
+        $dataprodottimodel = ProdottiScontrinoData::find()->where(['id_scontrino_data' => $datamodel->getId()])->all();
+        $provider_dataprodotti = new ArrayDataProvider([
+            'allModels' => $dataprodottimodel,
+            'sort' => [
+                'attributes' => ['nomeprodotto', 'prezzo_prodotto', 'numeropunti'],
+            ],
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            //'datamodel' => $datamodel,
-            //'dataprodottimodel' => $dataprodottimodel,
+            'datamodel' => $datamodel,
+            'provider_dataprodotti' => $provider_dataprodotti,
         ]);
     }
 
@@ -92,8 +104,6 @@ class ScontrinoController extends Controller
     public function actionCreate()
     {
         $model = new Scontrino();
-
-                    Yii::$app->getSession()->addFlash('success', 'Scontrino caricato con successo. Riceverai una notifica quando il sistema elaborerà le informazioni.');
         if ($this->request->isPost) {
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
@@ -107,7 +117,8 @@ class ScontrinoController extends Controller
                 $model->estensionefile = $fileparams['extension'];
                 $model->id_proprietario = Yii::$app->user->id;
                 $model->data_caricamento = date('Y-m-d H:i:s');
-                $model->nomefile = '/home/pixel/public_html/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
+                //$model->nomefile = '/home/pixel/public_html/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
+                $model->nomefile = '/mnt/archivio/localhost/demoapp-raccoltapunti/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 $model->dimensione = $fileparams['size'];
                 $model->tmpfilename = $fileparams['tempName'];
                 $model->mimetype = $fileparams['mimetype'];
@@ -115,8 +126,54 @@ class ScontrinoController extends Controller
                 //popola il campo numero prodotti a 0, servirà per ciclare i prodotti nello scontrino
                 // if modeldatanumeroprodotti = 0 -- cicla i prodotti e scrivili nella tabella.
                 if ($model->save()) {
+                    // lancia scansione ocr
+                    $scansione_ocr = ScontrinoHelper::scanOCRAsprise($model->nomefile);
+                    $model_scontrino_data = new ScontrinoData;
+                    $model_scontrino_data->id_scontrino = $model->id;
+                    $model_scontrino_data->rfscontrino = null;
+                    $model_scontrino_data->numerodocumento = $scansione_ocr['receipts'][0]['receipt_no'];
+                    $model_scontrino_data->dataemissione = $scansione_ocr['receipts'][0]['date'];
+                    $model_scontrino_data->ragionesociale = $scansione_ocr['receipts'][0]['merchant_name'];
+                    $model_scontrino_data->indirizzo = $scansione_ocr['receipts'][0]['merchant_address'];
+                    $model_scontrino_data->provincia = $scansione_ocr['receipts'][0]['country'];
+                    $model_scontrino_data->citta = null;
+                    $model_scontrino_data->cap = null;
+                    $model_scontrino_data->telefono = null;
+                    $model_scontrino_data->piva = $scansione_ocr['receipts'][0]['merchant_tax_reg_no'];
+                    $model_scontrino_data->pivaisvalid = 1;
+                    $model_scontrino_data->pivaisvies = 0;
+                    $model_scontrino_data->dati_validi = 1;
+                    $model_scontrino_data->save();
+                    foreach ($scansione_ocr['receipts'][0]['items'] as $prodotto) {
+                        $model_prodotto_data = new ProdottiScontrinoData;
+                        $model_prodotto_data->id_scontrino_data = $model_scontrino_data->id;
+                        $model_prodotto_data->nomeprodotto = $prodotto['description'];
+                        $model_prodotto_data->prezzo_prodotto = $prodotto['amount'];
+                        $model_prodotto_data->tipo_prodotto = "non specificato";
+                        $model_prodotto_data->iva_prodotto = null;
+                        if ($prodotto["qty"] > 1) {
+                            $model_prodotto_data->multiprodotto = 1;
+                            $model_prodotto_data->conteggio_stesso_prodotto_per_riga = $prodotto["qty"];
+                        } else {
+                            $model_prodotto_data->multiprodotto = 0;
+                            $model_prodotto_data->conteggio_stesso_prodotto_per_riga = $prodotto["qty"];
+                        }
+                        
+                        $model_prodotto_data->punti_per_prodotto = rand(0,10);
+
+                        if ($model_prodotto_data->multiprodotto = 1) {
+                            $model_prodotto_data->numeropunti = $model_prodotto_data->punti_per_prodotto * $model_prodotto_data->conteggio_stesso_prodotto_per_riga;
+                        } else {
+                            $model_prodotto_data->numeropunti = $model_prodotto_data->punti_per_prodotto;
+                        };
+                        
+                        if($model_prodotto_data->save(false)) {
+                            var_dump($model_prodotto_data->errors);
+                        } 
+                    }
                     Yii::$app->getSession()->addFlash('success', 'Scontrino caricato con successo. Riceverai una notifica quando il sistema elaborerà le informazioni.');
-                    $this->redirect(['create']);
+
+                    return $this->redirect(['view', 'id' => $model->id]);
                 }
             }
         } else {
@@ -191,6 +248,14 @@ class ScontrinoController extends Controller
             die("Elaborazione KO");
         }
 
+    }
+
+    public function actionTracciato() {
+        $dummyocr = ScontrinoHelper::dummyOCR();
+
+        return $this->render('/debug/tracciato', [
+            'dummyocr' => $dummyocr
+        ]);
     }
 
 }
