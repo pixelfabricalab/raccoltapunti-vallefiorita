@@ -31,4 +31,8 @@
         public function actionPartecipanti() {
             return $this->render('partecipanti');
         }
+        
+        public function actionMarketingResearch() {
+            return $this->render('mresearch');
+        }
     }
