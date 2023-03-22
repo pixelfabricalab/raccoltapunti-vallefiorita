@@ -364,9 +364,9 @@ use yii\widgets\Menu;
                         'url' => ['/statistiche/partecipanti'], 
                         'active' => ($this->context->id == 'partecipanti')],
                     [
-                        'label' => 'Punti Vendita', 
-                        'url' => ['/statistiche/punti-vendita'], 
-                        'active' => ($this->context->id == 'punti-vendita')],
+                        'label' => 'Marketing & Research', 
+                        'url' => ['/statistiche/marketing-research'], 
+                        'active' => ($this->context->id == 'marketing-research')],
                     [
                         'label' => 'Regimi di spesa', 
                         'url' => ['/statistiche/regimi-spesa'], 
