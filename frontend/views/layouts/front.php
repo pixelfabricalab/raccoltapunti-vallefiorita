@@ -47,8 +47,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
     } else {
         $menuItems[] = ['label' => 'Profilo', 'url' => ['/dashboard']];
-        $menuItems[] = ['label' => 'Lista Scansioni', 'url' => ['/site/listascontrini']];
-        $menuItems[] = ['label' => 'Carica Scontrino', 'url' => ['/site/caricascontrino']];
+        $menuItems[] = ['label' => 'Lista Scansioni', 'url' => ['/dashboard/scontrino/index']];
+        $menuItems[] = ['label' => 'Carica Scontrino', 'url' => ['/dashboard/scontrino/create']];
         $menuItems[] = '<li>'
             . Html::beginForm(
                 ['/site/logout'], 'post', ['class' => 'form-inline']
