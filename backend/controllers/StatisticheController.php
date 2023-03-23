@@ -35,4 +35,8 @@
         public function actionMarketingResearch() {
             return $this->render('mresearch');
         }
+        
+        public function actionCustomerSatisfaction() {
+            return $this->render('customersatisfaction');
+        }
     }
