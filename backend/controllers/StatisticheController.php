@@ -39,4 +39,8 @@
         public function actionCustomerSatisfaction() {
             return $this->render('customersatisfaction');
         }
+        
+        public function actionProdotti() {
+            return $this->render('prodotti');
+        }
     }
