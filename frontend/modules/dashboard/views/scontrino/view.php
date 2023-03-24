@@ -45,11 +45,6 @@ $this->title = 'Scontrino id n°'. $model->id;
                 'dataemissione',
                 'ragionesociale',
                 'indirizzo',
-                'provincia',
-                'citta',
-                'cap',
-                'telefono',
-                'partitaiva',
             ],
         ]) ?>
         <?= GridView::widget([
