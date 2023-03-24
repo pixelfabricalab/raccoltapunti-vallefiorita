@@ -108,7 +108,7 @@ $module_id = \Yii::$app->controller->module->id;
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <!--<li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendite"
             aria-expanded="true" aria-controls="collapseVendite">
             <i class="fas fa-fw fa-file-alt"></i>
@@ -118,7 +118,7 @@ $module_id = \Yii::$app->controller->module->id;
             <div class="bg-white py-2 collapse-inner rounded">
 
             <?php
-            $menu_items = [
+/*             $menu_items = [
                 [
                     'label' => 'DDT', 
                     'url' => ['/magazzino/ddt/create'], 
@@ -136,11 +136,11 @@ $module_id = \Yii::$app->controller->module->id;
                     'class' => 'collapse-item',
                 ],
                 'items' => $menu_items,
-            ]);
+            ]); */
             ?>
             </div>
         </div>
-    </li>
+    </li>-->
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
