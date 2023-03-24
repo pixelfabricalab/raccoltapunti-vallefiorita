@@ -375,6 +375,14 @@ use yii\widgets\Menu;
                         'label' => 'Statistiche prodotti', 
                         'url' => ['/statistiche/prodotti'], 
                         'active' => ($this->context->id == 'prodotti')],
+                    [
+                        'label' => 'Regimi Spesa', 
+                        'url' => ['/statistiche/regimispesa'], 
+                        'active' => ($this->context->id == 'regimispesa')],
+                    [
+                        'label' => 'Interviste CAWI', 
+                        'url' => ['/statistiche/interviste'], 
+                        'active' => ($this->context->id == 'interviste')],
                 ];
                 echo Menu::widget([
                     'options' => [
