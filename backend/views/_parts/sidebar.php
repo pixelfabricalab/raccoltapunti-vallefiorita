@@ -377,7 +377,7 @@ use yii\widgets\Menu;
                         'active' => ($this->context->id == 'prodotti')],
                     [
                         'label' => 'Regimi Spesa', 
-                        'url' => ['/statistiche/regimispesa'], 
+                        'url' => ['/statistiche/regimi-spesa'], 
                         'active' => ($this->context->id == 'regimispesa')],
                     [
                         'label' => 'Interviste CAWI', 
