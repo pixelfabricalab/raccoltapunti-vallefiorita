@@ -43,4 +43,12 @@
         public function actionProdotti() {
             return $this->render('prodotti');
         }
+
+        public function actionRegimiSpesa() {
+            return $this->render('regimispesa');
+        }
+
+        public function actionInterviste() {
+            return $this->render('interviste');
+        }
     }
