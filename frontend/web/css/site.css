@@ -190,3 +190,11 @@ h1.hero-title {
   font-size: 0.8rem;
   border-radius: 7px;
 }
+
+ol.master li::marker {
+  font-size: 1.75rem;
+}
+
+#regolamento ol.master, #regolamento ol.master li {
+  color: #1f264c;
+}
