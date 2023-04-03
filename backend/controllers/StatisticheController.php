@@ -32,12 +32,12 @@
             return $this->render('partecipanti');
         }
         
-        public function actionMarketingResearch() {
-            return $this->render('mresearch');
-        }
-        
         public function actionCustomerSatisfaction() {
             return $this->render('customersatisfaction');
+        }
+        
+        public function actionQuadrantAnalysis() {
+            return $this->render('quadrantanalysis');
         }
         
         public function actionProdotti() {
@@ -48,7 +48,7 @@
             return $this->render('regimispesa');
         }
 
-        public function actionInterviste() {
-            return $this->render('interviste');
+        public function actionPositioningAnalysis() {
+            return $this->render('positioninganalysis');
         }
     }
