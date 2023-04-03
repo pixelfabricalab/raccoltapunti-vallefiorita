@@ -39,8 +39,8 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index'], 'class' =>'mx-2'],
-        //['label' => 'Chi Siamo', 'url' => ['/site/chisiamo']],
         ['label' => 'Come funziona', 'url' => ['/site/regolamento']],
+        ['label' => 'Servizi', 'url' => ['/site/servizi']],
         ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
