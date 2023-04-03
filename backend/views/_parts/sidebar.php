@@ -349,7 +349,7 @@ use yii\widgets\Menu;
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Ambiti</span>
+            <span>Profility Stats</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -364,25 +364,51 @@ use yii\widgets\Menu;
                         'url' => ['/statistiche/partecipanti'], 
                         'active' => ($this->context->id == 'partecipanti')],
                     [
-                        'label' => 'Marketing & Research', 
-                        'url' => ['/statistiche/marketing-research'], 
-                        'active' => ($this->context->id == 'marketing-research')],
+                        'label' => 'Regimi Spesa', 
+                        'url' => ['/statistiche/regimi-spesa'], 
+                        'active' => ($this->context->id == 'regimispesa')],
+                    [
+                        'label' => 'Statistiche prodotti', 
+                        'url' => ['/statistiche/prodotti'], 
+                        'active' => ($this->context->id == 'prodotti')],
+                ];
+                echo Menu::widget([
+                    'options' => [
+                        'class' => 'list-unstyled',
+                    ],
+                    'itemOptions' => [
+                        'class' => 'collapse-item',
+                    ],
+                    'items' => $menu_items,
+                ]);
+                ?>
+            </div>
+        </div>
+    </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Marketing Research</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <?php
+                $menu_items = [
                     [
                         'label' => 'Customer Satisfaction', 
                         'url' => ['/statistiche/customer-satisfaction'], 
                         'active' => ($this->context->id == 'customer-satisfaction')],
                     [
-                        'label' => 'Statistiche prodotti', 
-                        'url' => ['/statistiche/prodotti'], 
-                        'active' => ($this->context->id == 'prodotti')],
+                        'label' => 'Quadrant Analysis', 
+                        'url' => ['/statistiche/quadrant-analysis'], 
+                        'active' => ($this->context->id == 'quadrant-analysis')],
                     [
-                        'label' => 'Regimi Spesa', 
-                        'url' => ['/statistiche/regimi-spesa'], 
-                        'active' => ($this->context->id == 'regimispesa')],
-                    [
-                        'label' => 'Interviste CAWI', 
-                        'url' => ['/statistiche/interviste'], 
-                        'active' => ($this->context->id == 'interviste')],
+                        'label' => 'Positioning analysis', 
+                        'url' => ['/statistiche/positioning-analysis'], 
+                        'active' => ($this->context->id == 'positioning-analysis')],
                 ];
                 echo Menu::widget([
                     'options' => [
