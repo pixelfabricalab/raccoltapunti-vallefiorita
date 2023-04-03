@@ -170,6 +170,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Mostra la pagina Regolamento.
+     *
+     * @return mixed
+    */
+    public function actionServizi()
+    {
+        return $this->render('servizi');
+    }
+
+    /**
      * Mostra la pagina Premi.
      *
      * @return mixed
