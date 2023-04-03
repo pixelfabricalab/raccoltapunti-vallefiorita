@@ -8,5 +8,5 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="statistiche-index">
-<iframe title="Partecipanti" width="100%" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiNGY4YTBhMjEtZDMyNS00OWFkLWE2OWQtNWE4MmMxZGZkZWYzIiwidCI6IjY1NGViNGY3LTc1YjAtNGQzNi04Y2E2LTU5NGVjOTAwZWJkMSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
+<iframe title="Partecipanti" width="100%" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiMDUyNmU1YTctNGI2YS00NTM1LWE1M2MtMzIwZDUzYzJkMGMzIiwidCI6IjY1NGViNGY3LTc1YjAtNGQzNi04Y2E2LTU5NGVjOTAwZWJkMSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
 </div>
