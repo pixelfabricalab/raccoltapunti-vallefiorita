@@ -118,6 +118,8 @@ class ScontrinoController extends Controller
                 $model->id_proprietario = Yii::$app->user->id;
                 $model->data_caricamento = date('Y-m-d H:i:s');
                 $model->nomefile = '/home/pixel/public_html/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
+                var_dump($model->nomefile);
+                die;
                 //$model->nomefile = \Yii::getAlias('@webroot') .'/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 // $model->nomefile = '/mnt/archivio/localhost/demoapp-raccoltapunti/frontend/web/uploads/scontrini/' . $fileparams['hashfilename']. '.'. $fileparams['extension'];
                 $model->dimensione = $fileparams['size'];
