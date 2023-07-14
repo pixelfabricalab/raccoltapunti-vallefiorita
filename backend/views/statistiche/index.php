@@ -9,4 +9,5 @@
 ?>
 <div class="statistiche-index">
 <iframe title="statistiche-generali" width="100%" height="1060" src="https://app.powerbi.com/reportEmbed?reportId=f9b618d7-69b8-4232-aa0b-5f1e3611026e&autoAuth=true&ctid=654eb4f7-75b0-4d36-8ca6-594ec900ebd1" frameborder="0" allowFullScreen="true"></iframe>
+<!--<iframe title="Statistiche Generali" width="100%" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiNjNlMzVhNmItMWFlYS00MTZiLWE2NTgtZmJhNGY0ODU0ZGFkIiwidCI6IjY1NGViNGY3LTc1YjAtNGQzNi04Y2E2LTU5NGVjOTAwZWJkMSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>-->
 </div>
