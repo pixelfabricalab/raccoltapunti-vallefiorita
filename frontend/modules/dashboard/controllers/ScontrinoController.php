@@ -134,7 +134,10 @@ class ScontrinoController extends Controller
                     $scansione_ocr = ScontrinoHelper::dummyOCR();
                     $model_scontrino_data = new ScontrinoData;
                     $model_scontrino_data->id_scontrino = $model->id;
-                    $model_scontrino_data->rfscontrino = null;
+
+                    //se si utilizza dummy OCR
+                    $model_scontrino_data->rfscontrino = $scansione_ocr['receipts'][0]['rfscontrino'];
+                    //$model_scontrino_data->rfscontrino = null;
                     $model_scontrino_data->numerodocumento = $scansione_ocr['receipts'][0]['receipt_no'];
                     $model_scontrino_data->dataemissione = $scansione_ocr['receipts'][0]['date'];
                     $model_scontrino_data->ragionesociale = $scansione_ocr['receipts'][0]['merchant_name'];

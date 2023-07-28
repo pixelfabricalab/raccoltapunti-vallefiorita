@@ -48,6 +48,7 @@
                 "recognition_completed_on" : 1613550461387,
                 "receipts" : [ {
                   "merchant_name" : "Supermercato Conad",
+                  "rfscontrino": "88I24006542",
                   "merchant_address" : "Via Pappacoda ang. Via Salvemini - 73100 Lecce",
                   "merchant_phone" : "0832307743",
                   "merchant_website" : null,
