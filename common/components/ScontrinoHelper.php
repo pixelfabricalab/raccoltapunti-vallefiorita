@@ -62,14 +62,14 @@
                   "time" : "15:59",
                   "items" : [ {
                     "amount" : 0,85,
-                    "description" : "FARINA \"0\" CASILLO K",
+                    "description" : "FARINA 0 CASILLO K",
                     "flags" : "",
                     "qty" : 1,
                     "remarks" : null,
                     "unitPrice" : null
                   }, {
                     "amount" : 0.85,
-                    "description" : "FARINA \"00\" 100% IT",
+                    "description" : "FARINA 00 100% IT",
                     "flags" : "",
                     "qty" : 1,
                     "remarks" : null,
