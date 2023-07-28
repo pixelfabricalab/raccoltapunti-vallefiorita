@@ -31,14 +31,15 @@
             curl_close($ch);
             $response = Json::decode($response);
             return $response;
+
         }
 
         // dummy scanner 
         public static function dummyOCR() {
             $dummyjson = '{
                 "request_id" : "P_218.186.139.27_kl96a7ie_o9k",
-                "ref_no" : "AspDemo_1613550458205_154",
-                "file_name" : "SG-01s.jpg",
+                "ref_no" : "democasillo",
+                "file_name" : "casillo.jpg",
                 "request_received_on" : 1613550460551,
                 "success" : true,
                 "image_width" : 1200,
@@ -46,38 +47,59 @@
                 "image_rotation" : -0.006,
                 "recognition_completed_on" : 1613550461387,
                 "receipts" : [ {
-                  "merchant_name" : "McDonald\'s",
-                  "merchant_address" : "600 @ Toa Payoh #01-02, Singapore 319515",
-                  "merchant_phone" : "62596362",
+                  "merchant_name" : "Supermercato Conad",
+                  "merchant_address" : "Via Pappacoda ang. Via Salvemini - 73100 Lecce",
+                  "merchant_phone" : "0832307743",
                   "merchant_website" : null,
-                  "merchant_tax_reg_no" : "M2-0023981-4",
+                  "merchant_tax_reg_no" : "0267929075",
                   "merchant_company_reg_no" : null,
                   "merchant_logo" : "/ocr/api/img/demo/logos/mcd.jpg",
                   "region" : null,
                   "mall" : "600 @ Toa Payoh",
-                  "country" : "SG",
-                  "receipt_no" : "002201330026",
-                  "date" : "2016-01-13",
-                  "time" : "15:49",
+                  "country" : "IT",
+                  "receipt_no" : "1495-0096",
+                  "date" : "2023-07-27",
+                  "time" : "15:59",
                   "items" : [ {
-                    "amount" : 2.95,
-                    "description" : "Med Ice Lemon Tea",
+                    "amount" : 0,85,
+                    "description" : "FARINA \"0\" CASILLO K",
                     "flags" : "",
                     "qty" : 1,
                     "remarks" : null,
                     "unitPrice" : null
                   }, {
-                    "amount" : 2.40,
-                    "description" : "Coffee with Milk",
+                    "amount" : 0.85,
+                    "description" : "FARINA \"00\" 100% IT",
+                    "flags" : "",
+                    "qty" : 1,
+                    "remarks" : null,
+                    "unitPrice" : null
+                  }, {
+                    "amount" : 0.12,
+                    "description" : "SHOPPER CONAD BIODEG",
+                    "flags" : "",
+                    "qty" : 1,
+                    "remarks" : null,
+                    "unitPrice" : null
+                  },{
+                    "amount" : 1.97,
+                    "description" : "COCA COLA ZERO 1.5",
+                    "flags" : "",
+                    "qty" : 1,
+                    "remarks" : null,
+                    "unitPrice" : null
+                  }, {
+                    "amount" : 3.49,
+                    "description" : "TONNO CONAD OLIO OLI",
                     "flags" : "",
                     "qty" : 1,
                     "remarks" : null,
                     "unitPrice" : null
                   } ],
-                  "currency" : "SGD",
-                  "total" : 5.35,
+                  "currency" : "EUR",
+                  "total" : 7.28,
                   "subtotal" : null,
-                  "tax" : 0.35,
+                  "tax" : 0.77,
                   "service_charge" : null,
                   "tip" : null,
                   "payment_method" : "cash",
