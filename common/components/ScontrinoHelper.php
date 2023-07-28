@@ -61,7 +61,7 @@
                   "date" : "2023-07-27",
                   "time" : "15:59",
                   "items" : [ {
-                    "amount" : 0,85,
+                    "amount" : 0.85,
                     "description" : "FARINA 0 CASILLO K",
                     "flags" : "",
                     "qty" : 1,
