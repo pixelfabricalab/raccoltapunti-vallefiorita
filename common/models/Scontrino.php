@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\web\UploadedFile;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "scontrino".
@@ -19,9 +20,6 @@ use yii\web\UploadedFile;
 class Scontrino extends \yii\db\ActiveRecord
 {
     public $imageFile;
-
-    public $ragione_sociale = '';
-    public $partita_iva = '';
 
     /**
      * {@inheritdoc}
@@ -84,15 +82,29 @@ class Scontrino extends \yii\db\ActiveRecord
         return $image_data_base64;
     }
 
+    public function getItems()
+    {
+        if (!$this->articoli) {
+            return [];
+        } else {
+            return Json::decode($this->articoli);
+        }
+        return [];
+    }
+
     public function analyze()
     {
         if ($this->content) {
-            $content = \yii\helpers\Json::decode($this->content);
+            $content = Json::decode($this->content);
             if (is_array($content) && isset($content['receipts']) && is_array($content['receipts']) && !empty($content['receipts'])) {
                 $scontrino = $content['receipts'][0];
 
                 $this->ragione_sociale = $scontrino['merchant_name'];
                 $this->partita_iva = $scontrino['merchant_tax_reg_no'];
+                
+                if (isset($scontrino['items']) && is_array($scontrino['items']) && !empty($scontrino['items'])) {
+                    $this->articoli = Json::encode($scontrino['items']);
+                }
             }
         }
     }

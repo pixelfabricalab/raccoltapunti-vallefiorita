@@ -11,16 +11,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [
-        'gridview' =>  [
-            'class' => '\kartik\grid\Module',
-            // your other grid module settings
-        ],
-        'gridviewKrajee' =>  [
-            'class' => '\kartik\grid\Module',
-            // your other grid module settings
-        ],
-    ],
     'container' => [
         'definitions' => [
             \yii\widgets\LinkPager::class => \yii\bootstrap5\LinkPager::class,

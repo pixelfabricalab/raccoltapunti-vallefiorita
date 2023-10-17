@@ -198,3 +198,9 @@ ol.master li::marker {
 #regolamento ol.master, #regolamento ol.master li {
   color: #1f264c;
 }
+
+.bg-gradient-light {
+    background-color: #f9f9f9;
+    background-image: linear-gradient(90deg, #f9f9f9 10%, #efefef 100%);
+    background-size: cover;
+}

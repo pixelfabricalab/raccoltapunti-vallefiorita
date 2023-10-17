@@ -4,11 +4,11 @@ use yii\widgets\Menu;
 
 $module_id = \Yii::$app->controller->module->id;
 ?>
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-light sidebar accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=\Yii::getAlias('@web/dashboard') ?>">
-        <div class="sidebar-brand-icon bg-white p-1">
+    <a class="sidebar-brand <?php if (false) : ?>d-flex align-items-center justify-content-center <?php endif; ?>" href="<?=\Yii::getAlias('@web/dashboard') ?>">
+        <div class="sidebar-brand-icon  p-1">
             <?= Html::img('@web/images/logo.png', ['alt' => \Yii::$app->name, 'class' => 'img-fluid']) ?>
         </div>
     </a>

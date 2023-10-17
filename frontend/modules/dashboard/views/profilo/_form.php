@@ -8,7 +8,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="profilo-form card">
+<div class="profilo-form card shadow-sm">
     <div class="card-body">
         <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
 

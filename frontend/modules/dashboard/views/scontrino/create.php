@@ -13,7 +13,6 @@ $this->title = 'Carica scontrino';
             <div class="scontrino-create card-body" id="gioco">
                 <?= $this->render('_form_create', [
                     'model' => $model,
-                    'numero_scontrini' => $numero_scontrini,
                 ]) ?>
 
                 <hr />
