@@ -111,123 +111,6 @@ $ctx = $this->context;
         </div>
     </li>
 
-    <!--
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAcquisti"
-            aria-expanded="true" aria-controls="collapseVendite">
-            <i class="fas fa-fw fa-arrow-right"></i>
-            <span>Vendite</span>
-        </a>
-        <div id="collapseVendite" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Documenti Emessi', 
-                    'url' => ['/titolo/index'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['index', 'update']))],
-                [
-                    'label' => 'Lista documenti', 
-                    'url' => ['/titolo/create'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['create']))],
-                ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            </div>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVendite"
-            aria-expanded="true" aria-controls="collapseVendite">
-            <i class="fas fa-fw fa-arrow-right"></i>
-            <span>Vendite</span>
-        </a>
-        <div id="collapseVendite" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-            <?php
-            $menu_items = [
-                /*
-                [
-                    'label' => 'Lista documenti', 
-                    'url' => ['/titolo/create'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['create']))],
-                */
-                ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            </div>
-        </div>
-    </li>
-    -->
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagamenti"
-            aria-expanded="true" aria-controls="collapsePagamenti">
-            <i class="fas fa-fw fa-euro-sign"></i>
-            <span>Scadenze e Pagamenti</span>
-        </a>
-        <div id="collapsePagamenti" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Lista pagamenti', 
-                    'url' => ['/titolo/index'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['index', 'update']))],
-                [
-                    'label' => 'Incassi Fatture', 
-                    'url' => ['/titolo/create'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['create']))],
-                [
-                    'label' => 'Pagamenti multipli', 
-                    'url' => ['/titolo/multi'], 
-                    'active' => ($ctx->id == 'titolo' && in_array($ctx->action->id, ['multi']))],
-                [
-                    'label' => 'Scadenzario', 
-                    'url' => ['/fatturazione/scadenza/index'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'scadenza' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-                    /*
-                [
-                    'label' => 'Partitario', 
-                    'url' => ['/fatturazione/partita/index'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'partita' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-                    */
-                [
-                    'label' => 'RIBA da emettere', 
-                    'url' => ['/site/riba'], 
-                    'active' => ($ctx->module->id == 'site' && $ctx->id == 'riba')],
-                ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            </div>
-        </div>
-    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -260,6 +143,14 @@ $ctx = $this->context;
                     'label' => 'Clienti', 
                     'url' => ['/cliente/index'], 
                     'active' => ($ctx->id == 'cliente' && in_array($ctx->action->id, ['index', 'create', 'update']))],
+                [
+                    'label' => 'Campagne', 
+                    'url' => ['/campagna/index'], 
+                    'active' => ($this->context->id == 'campagna')],
+                [
+                    'label' => 'Premi', 
+                    'url' => ['/premio/index'], 
+                    'active' => ($this->context->id == 'premio')],
                 [
                     'label' => 'Fornitori', 
                     'url' => ['/fornitore/index'], 
@@ -307,8 +198,8 @@ $ctx = $this->context;
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMagazzino"
             aria-expanded="true" aria-controls="collapseMagazzino">
-            <i class="fas fa-fw fa-store"></i>
-            <span>Magazzino</span>
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Profility Stats</span>
         </a>
         <div id="collapseMagazzino" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -316,17 +207,21 @@ $ctx = $this->context;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Nuovo verbale', 
-                    'url' => ['/magazzino/verbale/create'], 
-                    'active' => ($ctx->module->id == 'magazzino' && $ctx->id == 'verbale')],
+                    'label' => 'Statistiche Generali', 
+                    'url' => ['/statistiche/generali'], 
+                    'active' => ($this->context->id == 'generali')],
                 [
-                    'label' => 'Documenti di magazzino', 
-                    'url' => ['/magazzino/ddt/create'], 
-                    'active' => ($ctx->module->id == 'magazzino' && $ctx->id == 'ddt')],
+                    'label' => 'Partecipanti', 
+                    'url' => ['/statistiche/partecipanti'], 
+                    'active' => ($this->context->id == 'partecipanti')],
                 [
-                    'label' => 'Stampe', 
-                    'url' => ['/site/disabled'], 
-                    'active' => ($ctx->module->id == 'contabilita' && $ctx->id == 'bilancio')],
+                    'label' => 'Regimi Spesa', 
+                    'url' => ['/statistiche/regimi-spesa'], 
+                    'active' => ($this->context->id == 'regimispesa')],
+                [
+                    'label' => 'Statistiche prodotti', 
+                    'url' => ['/statistiche/prodotti'], 
+                    'active' => ($this->context->id == 'prodotti')],
             ];
             echo Menu::widget([
                 'options' => [
