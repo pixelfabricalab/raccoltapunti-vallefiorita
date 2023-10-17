@@ -6,8 +6,14 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'opts' => [
+            'class' => \common\helpers\OptionsListRetriever::class,
+        ],
+        'ocr' => [
+            'class' => \common\components\Asprise::class,
+        ],
         'scanner' => [
-            'class' => 'common\components\ScontrinoHelper',
+            'class' => \common\components\ScontrinoHelper::class,
         ],
         'punti' => [
             'class' => 'common\components\GestorePunti',
@@ -22,13 +28,13 @@ return [
             }
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => \yii\caching\FileCache::class,
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => \yii\rbac\DbManager::class,
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
+            'class' => \yii\swiftmailer\Mailer::class,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mailtrap.io',

@@ -3,6 +3,13 @@
 
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    let toggled = getCookie("sidebarToggled");
+
+    if (toggled === '0') {
+      setCookie('sidebarToggled', '1');
+    } else {
+      setCookie('sidebarToggled', '0');
+    }
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");
     if ($(".sidebar").hasClass("toggled")) {

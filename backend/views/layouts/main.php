@@ -5,20 +5,25 @@
 
 use backend\assets\AppAsset;
 use common\widgets\Alert;
-use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
+use yii\bootstrap5\Breadcrumbs;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\Nav;
+use yii\bootstrap5\NavBar;
 use yii\widgets\Menu;
 use yii\web\View;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 $this->registerJs("$('main input:not([type=\"checkbox\"]), main select, main textarea').addClass('form-control-sm');", View::POS_READY, 'input-small');
 $this->registerJs("$('main button').addClass('btn-sm');", View::POS_READY, 'btn-small');
-$this->registerJs("$('[data-toggle=\"tooltip\"]').tooltip();", View::POS_READY, 'tooltips');
+$this->registerJs("const csrf_param = '" . Yii::$app->request->csrfParam . "';", View::POS_HEAD, 'csrf_param');
 $this->registerJs("const csrf_token = '" . Yii::$app->request->getCsrfToken() . "';", View::POS_HEAD, 'csrf');
 $this->registerJs("const baseUrl = '" . Yii::getAlias('@web/') . "';", View::POS_HEAD, 'base-url');
 $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::POS_HEAD, 'api-url');
+$this->registerJs("const sessione = {};", View::POS_HEAD, 'global-object');
+$this->registerJs('$( "[type=\'reset\']" ).on( "click", function( event ) { $(this).closest(\'form\').trigger(\'reset\'); } );', yii\web\View::POS_READY);
+
+$sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled'] : '0';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,39 +33,13 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $randver = rand(1,45); ?>
-    <link rel="apple-touch-icon" sizes="57x57" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-57x57.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="60x60" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-60x60.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-72x72.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-76x76.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-114x114.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="120x120" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-120x120.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="144x144" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-144x144.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="152x152" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-152x152.png?v=<?php echo $randver; ?>">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= \Yii::getAlias('@web') ?>/images/favicon/apple-icon-180x180.png?v=<?php echo $randver; ?>">
-    <link rel="icon" type="image/png" sizes="192x192"  href="<?= \Yii::getAlias('@web') ?>/images/favicon/android-icon-192x192.png?v=<?php echo $randver; ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= \Yii::getAlias('@web') ?>/images/favicon/favicon-32x32.png?v=<?php echo $randver; ?>">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?= \Yii::getAlias('@web') ?>/images/favicon/favicon-96x96.png?v=<?php echo $randver; ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= \Yii::getAlias('@web') ?>/images/favicon/favicon-16x16.png?v=<?php echo $randver; ?>">
-    <link rel="manifest" href="<?= \Yii::getAlias('@web') ?>/images/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="<?= \Yii::getAlias('@web') ?>/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
     <?php $this->head() ?>
 
-    <script type="importmap">
-    {
-        "imports": {
-        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-        }
-    }
-    </script>
     <script>
-        const formatter = new Intl.NumberFormat('it-IT', {style: 'currency', currency: 'EUR'})
+        const formatter = new Intl.NumberFormat('it-IT', {style: 'currency', currency: 'EUR'});
     </script>
 </head>
-<body class="d-flex flex-column h-100" id="page-top">
+<body class="d-flex flex-column h-100 <?= ($sidebarToggled == '1') ? 'sidebar-toggled' : '' ?>" id="page-top">
 <?php $this->beginBody() ?>
 
 <body id="page-top">
@@ -69,7 +48,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?= $this->render('//_parts/sidebar') ?>
+        <?= $this->render('//_parts/sidebar', ['sidebarToggled' => $sidebarToggled]) ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -79,7 +58,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow-sm">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -88,12 +67,11 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
 
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" autocomplete="off" action="<?= Url::toRoute(['//cerca/result']) ?>">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cerca&hellip;"
-                                aria-label="Cerca" aria-describedby="basic-addon2">
+                            <?= Html::textInput('q', \Yii::$app->request->get('q'), ['class' => 'form-control bg-light small', 'placeholder' => "Cerca in fatture, clienti/fornitori, contratti", 'aria-label' => 'Cerca', 'id' => 'ricerca_globale']) ?>
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-muted" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -106,7 +84,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
@@ -127,20 +105,61 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                             </div>
                         </li>
 
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1 bg-success">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="newDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                NUOVO <i class="fas fa-plus fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="newDropdown">
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//contratto/create']) ?>">
+                                    <i class="fas fa-file fa-sm fa-fw mr-2 text-primary"></i>Contratto
+                                </a>
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//cliente/create']) ?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-primary"></i>Anagrafica
+                                </a>
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//fatturazione/fattura/create']) ?>">
+                                    <i class="fas fa-file-alt fa-sm fa-fw mr-2 text-primary"></i>Fattura
+                                </a>
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//pagamento/create']) ?>">
+                                    <i class="fas fa-euro-sign fa-sm fa-fw mr-2 text-primary"></i>Pagamento
+                                </a>
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//fatturazione/articolo/create']) ?>">
+                                    <i class="fas fa-store fa-sm fa-fw mr-2 text-primary"></i>Prodotto
+                                </a>
+                                <!--
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                -->
+                            </div>
+                        </li>
                         <!-- Nav Item - Alerts -->
+                        <?php
+                        $notifiche_non_lette = [];
+                        $num_notifiche = count($notifiche_non_lette); 
+                        ?>
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter"><?= $num_notifiche ?></span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Avvisi
+                                    CENTRO DI CONTROLLO
                                 </h6>
+                                <?php foreach ($notifiche_non_lette as $not) : ?>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
@@ -148,10 +167,12 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500"><?= \Yii::$app->formatter->asDate($not->created_at) ?></div>
+                                        <span class="font-weight-bold"><?= $not->subject ?></span>
                                     </div>
                                 </a>
+                                <?php endforeach; ?>
+                                <!-- 
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
@@ -174,73 +195,8 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Centro Messaggi
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= \Yii::getAlias('@web/images/undraw_profile_1.svg') ?>"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= \Yii::getAlias('@web/images/undraw_profile_2.svg') ?>"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= \Yii::getAlias('@web/images/undraw_profile_3.svg') ?>"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                -->
+                                <a class="dropdown-item text-center small text-gray-500" href="<?= Url::toRoute(['//notifica/index']) ?>">Tutte le notifiche</a>
                             </div>
                         </li>
 
@@ -249,7 +205,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= \Yii::$app->user->identity->username ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="<?= \Yii::getAlias('@web/images/undraw_profile.svg') ?>">
@@ -259,14 +215,18 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profilo
+                                    Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Impostazioni
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Esci
                                 </a>
@@ -290,13 +250,14 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                     ]) ?>
                     -->
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
-
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
+                    <div class="row justify-content-between mb-2">
+                        <div class="col-5">
+                        <h1 class="h5 text-gray-800"><?= Html::encode($this->title) ?></h1>
+                        </div>
+                        <div class="col-6">
+                        <?= $this->render('//_parts/toolbar') ?>
+                        </div>
+                    </div>                    
 
                     <?= Alert::widget([
                         'options' => [
@@ -304,9 +265,11 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                         ]
                     ]) ?>
 
-                    <main>
+                    <main class="pb-4">
                     <?= $content ?>
                     </main>
+
+                    <button id="selectBtn" style="display:none;">SELEZIONA</button>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -315,11 +278,9 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <?= $this->render('//_parts/regione') ?>
-                    </div>
+            <footer class="sticky-footer bg-white p-2">
+                <div class="copyright text-center my-auto">
+                    Profility
                 </div>
             </footer>
             <!-- End of Footer -->

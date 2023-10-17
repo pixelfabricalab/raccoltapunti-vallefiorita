@@ -1,5 +1,6 @@
 body, .btn, .ui-widget {
     font-size: 14px;
+    font-family: "Open Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 .navbar-yellow {
     background-color: #ffc81a !important;
@@ -14,11 +15,13 @@ main > .container {
 .shadow {
     box-shadow: 0 0 1rem rgb(0 0 0 / 15%) !important;
 }
-.control-label {
+.control-label,
+.form-label {
     text-transform: uppercase;
-    color: #2d919b;
+    color: #111;
     font-size: 11px;
-    font-weight: bold;
+    font-weight: normal;
+    margin-bottom: 0;
 }
 .footer {
     border-top: 1px solid #efefef;
@@ -167,9 +170,11 @@ small.servizio.badge {
     border-bottom-width: 0;
 }
 .table-xs th, .table-xs td {
-    padding: 0.1rem;
+    padding: 0 0.15rem;
 }
-
+.table-bordered th, .table-bordered td {
+    border-color: #c9c9c9;
+}
 /* JUST COMMON TABLE STYLES... */
 #turnazione table { border-collapse: collapse; width: 100%; }
 
@@ -196,4 +201,70 @@ small.servizio.badge {
 }
 .navbar-yellow a.nav-link {
     color: #fff !important;
+}
+
+/** jui widgets **/
+.ui-menu .ui-menu-item-wrapper {
+    padding: 2px;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+    height: 200px;
+}
+tr.filters {
+    background-color: #e4ffee;
+}
+tr.filters td {
+    padding: 2px;
+}
+tr.filters .form-control {
+    border-color: #a3dfb9;
+    background-color: #fff5e9;
+}
+.table thead th {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+.sidebar-dark hr.sidebar-divider {
+    border-top: 1px solid rgb(255 255 255);
+}
+
+#accordionSidebar .collapse-inner a:link,
+#accordionSidebar .collapse-inner a:active,
+#accordionSidebar .collapse-inner a:visited {
+    color: #222;
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active, .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
+    background-color: #dddfeb;
+}
+
+/* Fix table head */
+.kv-grid-container    { overflow: auto; max-height: 700px; }
+.kv-grid-container th { position: sticky; top: 0; }
+
+/* Just common table stuff. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+
+
+.kv-table-footer {
+    position:sticky;
+    bottom: 0;
+}
+a[title='Elimina'] {
+    color: red;
+}
+
+.contratto-create h6,
+.contratto-update h6 {
+    color: rgb(251 43 43);
 }

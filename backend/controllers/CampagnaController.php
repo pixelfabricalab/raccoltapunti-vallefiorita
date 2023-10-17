@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Campagna;
 use common\models\CampagnaSearch;
-use yii\web\Controller;
+use backend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
