@@ -14,10 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="campagna-index">
 
-    <p>
-        <?= Html::a('Create Campagna', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

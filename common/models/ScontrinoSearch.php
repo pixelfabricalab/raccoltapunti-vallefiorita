@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Scontrino;
 
 /**
- * ScontrinoSearch represents the model behind the search form of `app\models\Scontrino`.
+ * ScontrinoSearch represents the model behind the search form of `common\models\Scontrino`.
  */
 class ScontrinoSearch extends Scontrino
 {
@@ -17,8 +17,8 @@ class ScontrinoSearch extends Scontrino
     public function rules()
     {
         return [
-            [['id', 'id_proprietario'], 'integer'],
-            [['nomefile', 'hashnomefile', 'estensionefile', 'data_caricamento', 'id_proprietario'], 'safe'],
+            [['id', 'profilo_id'], 'integer'],
+            [['content', 'creato_il', 'modificato_il'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ScontrinoSearch extends Scontrino
      */
     public function search($params)
     {
-        $query = Scontrino::find()->where(['id_proprietario' => \Yii::$app->user->id]);
+        $query = Scontrino::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,12 @@ class ScontrinoSearch extends Scontrino
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'data_caricamento' => $this->data_caricamento,
-            'id_proprietario' => $this->id_proprietario,
+            'profilo_id' => $this->profilo_id,
+            'creato_il' => $this->creato_il,
+            'modificato_il' => $this->modificato_il,
         ]);
 
-        $query->andFilterWhere(['like', 'nomefile', $this->nomefile])
-            ->andFilterWhere(['like', 'hashnomefile', $this->hashnomefile])
-            ->andFilterWhere(['like', 'estensionefile', $this->estensionefile])
-            ->andFilterWhere(['like', 'id_proprietario', $this->id_proprietario]);
+        $query->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;
     }

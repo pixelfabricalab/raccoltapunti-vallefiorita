@@ -5,15 +5,18 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use common\models\Profilo;
 
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
-    public $username;
     public $email;
     public $password;
+
+    public $nome;
+    public $cognome;
 
 
     /**
@@ -22,10 +25,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            [['nome', 'cognome'], 'required'],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -50,11 +50,17 @@ class SignupForm extends Model
         }
         
         $user = new User();
-        $user->username = $this->username;
+        $user->username = $this->email;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
+
+        $user->save();
+        $profilo = new Profilo();
+        
+        $profilo->user_id = $user->id;
+        $profilo->save(false);
 
         return $user->save() && $this->sendEmail($user);
     }

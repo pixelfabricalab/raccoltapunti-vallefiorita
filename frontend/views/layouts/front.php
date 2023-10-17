@@ -44,7 +44,7 @@ AppAsset::register($this);
         ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
+        $menuItems[] = ['label' => 'Accedi', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
     } else {
         $menuItems[] = ['label' => 'Profilo', 'url' => ['/dashboard']];
         $menuItems[] = ['label' => 'Lista Scansioni', 'url' => ['/dashboard/scontrino/index']];

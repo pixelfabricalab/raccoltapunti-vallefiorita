@@ -31,85 +31,8 @@ $ctx = $this->context;
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Contratti e Fatturazione
+        Gestionale
     </div>
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDocumenti"
-            aria-expanded="true" aria-controls="collapseDocumenti">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Documenti</span>
-        </a>
-        <div id="collapseDocumenti" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Contratti', 
-                    'url' => ['/contratto/create'], 
-                    'active' => ($ctx->id == 'contratto' && in_array($ctx->action->id, ['index', 'update', 'create', 'aggiorna-articolo', 'articolo']))],
-                [
-                    'label' => 'Fatturazione contratti', 
-                    'url' => ['/fatturazione/fattura/emissione'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'fattura' && in_array($ctx->action->id, ['emissione']))],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            <hr class="my-2" />
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Fatture di vendita', 
-                    'url' => ['/fatturazione/fattura/index'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'fattura' && in_array($ctx->action->id, ['index', 'update']))],
-                [
-                    'label' => 'Fatture provvisorie', 
-                    'url' => ['/fatturazione/fattura/report'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'fattura' && in_array($ctx->action->id, ['report']))],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>            
-            <?php if (false) : ?>
-            <hr class="my-2" />
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'Configurazione', 
-                    'url' => ['/fatturazione/configurazione'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'configurazione' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            <?php endif; ?>
-            </div>
-        </div>
-    </li>
 
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -117,7 +40,7 @@ $ctx = $this->context;
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseArchivi"
             aria-expanded="true" aria-controls="collapseArchivi">
             <i class="fas fa-fw fa-database"></i>
-            <span>Archivi di Base</span>
+            <span>Archivi</span>
         </a>
         <div id="collapseArchivi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -140,10 +63,6 @@ $ctx = $this->context;
                     'url' => ['/scontrino/index'], 
                     'active' => ($ctx->id == 'scontrino')],
                 [
-                    'label' => 'Clienti', 
-                    'url' => ['/cliente/index'], 
-                    'active' => ($ctx->id == 'cliente' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-                [
                     'label' => 'Campagne', 
                     'url' => ['/campagna/index'], 
                     'active' => ($this->context->id == 'campagna')],
@@ -151,15 +70,7 @@ $ctx = $this->context;
                     'label' => 'Premi', 
                     'url' => ['/premio/index'], 
                     'active' => ($this->context->id == 'premio')],
-                [
-                    'label' => 'Fornitori', 
-                    'url' => ['/fornitore/index'], 
-                    'active' => ($ctx->id == 'fornitore' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-                [
-                    'label' => 'Beni e servizi', 
-                    'url' => ['/fatturazione/articolo/index'], 
-                    'active' => ($ctx->module->id == 'fatturazione' && $ctx->id == 'articolo' && in_array($ctx->action->id, ['index', 'create', 'update']))],
-                ];
+            ];
             echo Menu::widget([
                 'options' => [
                     'class' => 'list-unstyled',

@@ -4,23 +4,25 @@ namespace common\models;
 
 use Yii;
 use yii\web\UploadedFile;
-use common\components\LoggerHelper;
 
 /**
  * This is the model class for table "scontrino".
  *
  * @property int $id
- * @property string|null $nomefile
- * @property string|null $hashnomefile
- * @property string|null $estensionefile
- * @property string|null $data_caricamento
- * @property string|null $mimetype
- * @property string|null $tmpfilename
- * @property int|null $id_proprietario
- * @property int|null $dimensione
+ * @property int|null $profilo_id
+ * @property string|null $content
+ * @property string|null $creato_il
+ * @property string|null $modificato_il
+ *
+ * @property Profilo $profilo
  */
 class Scontrino extends \yii\db\ActiveRecord
 {
+    public $imageFile;
+
+    public $ragione_sociale = '';
+    public $partita_iva = '';
+
     /**
      * {@inheritdoc}
      */
@@ -30,47 +32,92 @@ class Scontrino extends \yii\db\ActiveRecord
     }
 
     /**
-     * @var UploadedFile
-    */
-        public $imageFile;
-
-    /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['data_caricamento'], 'safe'],
-            [['id_proprietario', 'dimensione', 'is_elapsed'], 'integer'],
-            [['nomefile', 'hashnomefile', 'estensionefile', 'mimetype', 'tmpfilename', 'ragione_sociale'], 'string', 'max' => 255],
+            [['profilo_id'], 'integer'],
+            [['content', 'filename'], 'string'],
+            [['creato_il', 'modificato_il'], 'safe'],
+            [['profilo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profilo::class, 'targetAttribute' => ['profilo_id' => 'id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public function getResized($w = 100, $h = 100, $crop=FALSE) {
+        if (!$this->filename) {
+            return null;
+        }
+        list($width, $height) = getimagesize($this->filename);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width-($width*abs($r-$w/$h)));
+            } else {
+                $height = ceil($height-($height*abs($r-$w/$h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w/$h > $r) {
+                $newwidth = $h*$r;
+                $newheight = $h;
+            } else {
+                $newheight = $w/$r;
+                $newwidth = $w;
+            }
+        }
+        $src = imagecreatefromjpeg($this->filename);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+    
+        ob_start (); 
+
+        imagejpeg ($dst);
+        $image_data = ob_get_contents (); 
+
+        ob_end_clean (); 
+
+        $image_data_base64 = base64_encode($image_data);
+
+        return $image_data_base64;
+    }
+
+    public function analyze()
     {
-        return [
-            'id' => 'ID',
-            'nomefile' => 'File',
-            'hashnomefile' => 'Hashnomefile',
-            'estensionefile' => 'Estensionefile',
-            'dimensione' => 'Dimensione',
-            'data_caricamento' => 'Data Caricamento',
-            'id_proprietario' => 'Id Proprietario',
-            'mimetype' => 'Tipo File',
-            'tmpfilename' => 'Nome temporaneo file',
-            'ragione_sociale' => 'Ragione sociale',
-            'is_elapsed' => 'Elaborato',
-        ];
+        if ($this->content) {
+            $content = \yii\helpers\Json::decode($this->content);
+            if (is_array($content) && isset($content['receipts']) && is_array($content['receipts']) && !empty($content['receipts'])) {
+                $scontrino = $content['receipts'][0];
+
+                $this->ragione_sociale = $scontrino['merchant_name'];
+                $this->partita_iva = $scontrino['merchant_tax_reg_no'];
+            }
+        }
     }
 
-    /* funzione che esegue l'upload del file */
-    public function upload() {
-        $logger = new LoggerHelper;
-        $base = Yii::getAlias('@webroot') . '/uploads/scontrini/';
+    public function getFileEncode()
+    {
+        $fileEncode = base64_encode(file_get_contents($this->filename));
+        return $fileEncode;
+    }
+
+    public function getFileData()
+    {
+        $fileData = exif_read_data($this->filename);
+        return $fileData;
+    }
+
+    public function getMimeType()
+    {
+        return $this->fileData['MimeType'];
+    }
+
+    public function upload()
+    {
         if ($this->validate()) {
+            /* Vecchia implementazione
             $fileparams = [];
             $filename = $this->imageFile->baseName;
             $mimetype = $this->imageFile->type;
@@ -84,10 +131,36 @@ class Scontrino extends \yii\db\ActiveRecord
             $logcontent = "Upload \n ============== \n\n nomefile: ". $filename. "\n nometemporaneo: ". $tmpfilename ."\n tipo file: ". $mimetype . "\n dimensione: " . $size . "\n estensione: " . $extension . "\n hashnomefile: ". $hashfilename . "\n data upload: ". $upload_date ."\n\n =================\n";
             $logger->logUpload($logcontent);
             return $fileparams;
+            */
+            $this->filename = Yii::getAlias('@runtime') . '/uploads/' . Yii::$app->getSecurity()->generateRandomString(16) . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($this->filename);
+            return true;
         } else {
-            $logcontent = 'Upload fallito\n\n';
-            $logger->logUpload($logcontent);
             return false;
         }
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'profilo_id' => 'Profilo ID',
+            'content' => 'Content',
+            'creato_il' => 'Creato Il',
+            'modificato_il' => 'Modificato Il',
+        ];
+    }
+
+    /**
+     * Gets query for [[Profilo]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfilo()
+    {
+        return $this->hasOne(Profilo::class, ['id' => 'profilo_id']);
     }
 }
