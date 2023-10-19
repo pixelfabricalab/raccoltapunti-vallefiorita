@@ -123,6 +123,11 @@ class Controller extends Base
         $downloader->download(\Yii::getAlias($file));
     }
 
+    public function getProfilo()
+    {
+        return (\Yii::$app->user->identity->profilo) ? \Yii::$app->user->identity->profilo : null;
+    }
+
     public function stampaMultipla($ids = [])
     {
         $this->layout = 'print';

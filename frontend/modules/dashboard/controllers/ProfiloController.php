@@ -6,8 +6,7 @@ use common\models\Profilo;
 use common\models\ProfiloSearch;
 use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use common\models\User;
+use yii\web\UploadedFile;
 
 /**
  * ProfiloController implements the CRUD actions for Profilo model.
@@ -76,6 +75,26 @@ class ProfiloController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionPhoto()
+    {
+        $model = new Scontrino();
+        if ($this->request->isPost) {
+            $model->load($this->request->post());
+            $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
+            if ($model->upload() && $model->save(false)) {
+                $this->addOk('Scontrino caricato con successo.');
+                return $this->redirect(['exec', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+        
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**

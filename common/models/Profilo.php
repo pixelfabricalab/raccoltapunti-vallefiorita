@@ -80,6 +80,11 @@ class Profilo extends \yii\db\ActiveRecord
         return $this->hasMany(Scontrino::class, ['profilo_id' => 'id']);
     }
 
+    public function getNumScontrini()
+    {
+        return $this->getScontrini()->count();
+    }
+
     /**
      * Gets query for [[Users]].
      *
