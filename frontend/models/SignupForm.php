@@ -12,6 +12,8 @@ use common\models\Profilo;
  */
 class SignupForm extends Model
 {
+    public $username;
+    
     public $email;
     public $password;
 

@@ -17,11 +17,13 @@ $this->title = "Dashboard";
                                             </div>
                                         </div>
                                         <div class="col-7 col-md-12">
+                                            <?php if (\Yii::$app->user->identity->profilo) : ?>
                                             <h5 class="text-info mt-2 mb-0">
                                                 <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
                                             </h5>
                                             <small><?= \Yii::$app->user->identity->profilo->professione ?></small>
                                             <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
+                                            <?php endif; ?>
 
                                         </div>
                                     </div>
@@ -44,6 +46,7 @@ $this->title = "Dashboard";
 
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="profilo" role="tabpanel" aria-labelledby="profilo-tab">
+                                            <?php if (\Yii::$app->user->identity->profilo) : ?>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Nome utente</label>
@@ -84,6 +87,7 @@ $this->title = "Dashboard";
                                                     <p><?= \Yii::$app->user->identity->profilo->professione ?></p>
                                                 </div>
                                             </div>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="tab-pane fade" id="attivita" role="tabpanel" aria-labelledby="attivita-tab">
                                             <div class="row">

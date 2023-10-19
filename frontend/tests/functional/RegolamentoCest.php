@@ -4,11 +4,11 @@ namespace frontend\tests\functional;
 
 use frontend\tests\FunctionalTester;
 
-class AboutCest
+class RegolamentoCest
 {
     public function checkAbout(FunctionalTester $I)
     {
-        $I->amOnRoute('site/about');
-        $I->see('About', 'h1');
+        $I->amOnRoute('site/regolamento');
+        $I->see('Regolamento', 'h1');
     }
 }

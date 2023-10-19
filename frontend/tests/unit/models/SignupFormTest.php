@@ -26,7 +26,8 @@ class SignupFormTest extends \Codeception\Test\Unit
     public function testCorrectSignup()
     {
         $model = new SignupForm([
-            'username' => 'some_username',
+            'nome' => 'nome',
+            'cognome' => 'cognome',
             'email' => 'some_email@example.com',
             'password' => 'some_password',
         ]);
@@ -36,10 +37,11 @@ class SignupFormTest extends \Codeception\Test\Unit
 
         /** @var \common\models\User $user */
         $user = $this->tester->grabRecord('common\models\User', [
-            'username' => 'some_username',
-            'email' => 'some_email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
+            'username' => 'some_email@example.com',
+            'email' => 'some_email@example.com'
         ]);
+
+        expect($user)->isInstanceOf(\common\models\User::class);
 
         $this->tester->seeEmailIsSent();
 
@@ -61,11 +63,11 @@ class SignupFormTest extends \Codeception\Test\Unit
         ]);
 
         expect_not($model->signup());
-        expect_that($model->getErrors('username'));
+        expect_that($model->getErrors('nome'));
         expect_that($model->getErrors('email'));
 
-        expect($model->getFirstError('username'))
-            ->equals('This username has already been taken.');
+        expect($model->getFirstError('nome'))
+            ->equals('Nome cannot be blank.');
         expect($model->getFirstError('email'))
             ->equals('This email address has already been taken.');
     }

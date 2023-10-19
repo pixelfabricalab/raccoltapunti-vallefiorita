@@ -16,10 +16,10 @@ class SignupCest
 
     public function signupWithEmptyFields(FunctionalTester $I)
     {
-        $I->see('Signup', 'h1');
-        $I->see('Please fill out the following fields to signup:');
+        $I->see('Registrati', 'h2');
+        $I->see('Compila i seguenti campi per registrarti');
         $I->submitForm($this->formId, []);
-        $I->seeValidationError('Username cannot be blank.');
+        $I->seeValidationError('Nome cannot be blank.');
         $I->seeValidationError('Email cannot be blank.');
         $I->seeValidationError('Password cannot be blank.');
 
@@ -42,15 +42,15 @@ class SignupCest
     public function signupSuccessfully(FunctionalTester $I)
     {
         $I->submitForm($this->formId, [
-            'SignupForm[username]' => 'tester',
+            'SignupForm[nome]' => 'tester',
+            'SignupForm[cognome]' => 'tester',
             'SignupForm[email]' => 'tester.email@example.com',
             'SignupForm[password]' => 'tester_password',
         ]);
 
         $I->seeRecord('common\models\User', [
-            'username' => 'tester',
+            'username' => 'tester.email@example.com',
             'email' => 'tester.email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
         ]);
 
         $I->seeEmailIsSent();
