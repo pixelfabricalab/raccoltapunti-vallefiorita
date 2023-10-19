@@ -4,7 +4,7 @@ use common\models\Coupon;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use common\widgets\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var common\models\CouponSearch $searchModel */
@@ -24,13 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'codice',
             'data_utilizzo',
             'status',
             'sconto_importo',
-            //'sconto_percentuale',
-            //'creato_il',
+            'sconto_percentuale',
+            'creato_il',
             //'modificato_il',
             //'profile_id',
             //'puntovendita_id',

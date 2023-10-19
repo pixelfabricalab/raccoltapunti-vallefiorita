@@ -48,7 +48,7 @@ class Coupon extends \yii\db\ActiveRecord
     {
         return [
             [['codice'], 'required'],
-            [['data_utilizzo', 'creato_il', 'modificato_il'], 'safe'],
+            [['data_utilizzo', 'creato_il', 'modificato_il', 'data_scadenza'], 'safe'],
             [['status', 'sconto_percentuale', 'profile_id', 'puntovendita_id'], 'integer'],
             [['sconto_importo'], 'number'],
             [['profile_id'], 'required'],

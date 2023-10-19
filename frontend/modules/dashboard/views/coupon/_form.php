@@ -14,7 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'codice')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'data_utilizzo')->textInput() ?>
+    <?= $form->field($model, 'data_scadenza')->textInput(['type' => 'date']) ?>
+
+    <?= $form->field($model, 'data_utilizzo')->textInput(['type' => 'date']) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 

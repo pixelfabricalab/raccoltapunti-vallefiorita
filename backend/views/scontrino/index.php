@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'profilo_id',
-            'content:ntext',
             'creato_il',
             'modificato_il',
             [

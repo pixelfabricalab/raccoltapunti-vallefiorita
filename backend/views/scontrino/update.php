@@ -13,18 +13,23 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="scontrino-update">
 
     <div class="row">
-        <div class="col">
-            <?= $this->render('_form', [
-                'model' => $model,
-            ]) ?>
-        </div>
-        
         <?php if ($model->filename) : ?>
-            <div class="col-4">
-                <img src="data:<?= $model->mimeType ?>;base64,<?= $model->fileEncode ?>" class="img-fluid" />
+            <div class="col-12 col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <img src="data:<?= $model->mimeType ?>;base64,<?= $model->fileEncode ?>" class="img-fluid" />
+                    </div>
+                </div>
             </div>
-
-            <img src="data:image/jpeg;base64,<?= $model->resized; ?>" class="img-fluid" />
         <?php endif; ?>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                    ]) ?>
+                </div>
+            </div>
         </div>
+    </div>
 </div>

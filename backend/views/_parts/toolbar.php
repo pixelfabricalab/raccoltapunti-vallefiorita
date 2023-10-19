@@ -15,7 +15,7 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
         <?php if ($ctx->id == 'fattura') : ?>
         <?= Html::a('<i class="fas fa-fw fa-cogs"></i> Fatture provvisorie', ['report'], ['class' => 'btn btn-sm btn-outline-primary', 'id' => $createId]) ?>
         <?php endif; ?>
-        <?php if (in_array($ctx->action->id, ['create'])) : ?>
+        <?php if (false && in_array($ctx->action->id, ['create'])) : ?>
         <?= Html::a('<i class="fas fa-fw fa-paperclip"></i> Allegati', ['create'], ['class' => 'btn btn-sm btn-outline-info', 'id' => 'attachDisabled']) ?>
         <?php endif; ?>
         <?php if (!in_array($ctx->action->id, ['create', 'index'])) : ?>
@@ -37,7 +37,9 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
             $btnAttachmentParams['data-bs-title'] .= ' al contratto n. ' . $numero_contratto;
         }
         ?>
+        <?php if (false) : ?>
         <?= Html::a('<i class="fas fa-fw fa-paperclip text-info"></i> Allegati', ['index'], $btnAttachmentParams) ?>
+        <?php endif; ?>
         <div class="btn-group">
             <div class="dropdown">
             <a class="btn btn-outline-secondary dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

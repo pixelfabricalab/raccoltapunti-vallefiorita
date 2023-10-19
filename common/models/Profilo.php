@@ -75,16 +75,6 @@ class Profilo extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUsers()
-    {
-        return $this->hasMany(User::class, ['profilo_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Users]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getScontrini()
     {
         return $this->hasMany(Scontrino::class, ['profilo_id' => 'id']);
@@ -99,4 +89,10 @@ class Profilo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Coupon::class, ['profile_id' => 'id']);
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(\common\models\User::class, ['id' => 'user_id']);
+    }
+
 }

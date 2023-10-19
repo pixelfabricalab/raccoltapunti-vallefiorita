@@ -44,7 +44,7 @@ $module_id = \Yii::$app->controller->module->id;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Coupon', 
+                    'label' => 'I miei Coupon', 
                     'url' => ['/dashboard/coupon/index'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon')],
                 [
