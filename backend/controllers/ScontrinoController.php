@@ -15,24 +15,6 @@ use yii\web\UploadedFile;
 class ScontrinoController extends Controller
 {
     /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
-
-    /**
      * Lists all Scontrino models.
      *
      * @return string
@@ -104,7 +86,8 @@ class ScontrinoController extends Controller
             if ($model->content == '') {
                 $model->content = null;
             }
-            if ($model->upload() && $model->save(false)) {
+            if ($model->save(false)) {
+                $this->addOk();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }

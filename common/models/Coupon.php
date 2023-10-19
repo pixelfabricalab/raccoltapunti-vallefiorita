@@ -37,7 +37,11 @@ class Coupon extends \yii\db\ActiveRecord
     public function loadDefaultValues($skipIfSet = true)
     {
         $this->codice = $key = \Yii::$app->getSecurity()->generateRandomString();
+        $this->status = 1;
         $this->creato_il = date('Y-m-d H:i:s');
+        $this->modificato_il = date('Y-m-d H:i:s');
+        $this->sconto_percentuale = 20;
+        $this->profile_id = \Yii::$app->user->identity->profilo->id;
         return parent::loadDefaultValues($skipIfSet);
     }
 

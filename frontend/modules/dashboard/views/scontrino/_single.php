@@ -1,4 +1,7 @@
-<div class="col col-md-6">
+<?php
+use yii\bootstrap5\Html;
+?>
+<div class="col-12 col-md-6">
     <div class="card shadow-sm mb-4">
         <div class="card-body p-3">
             <div class="row">
@@ -17,6 +20,13 @@
                         <li><?= $item['description'] ?></li>
                         <?php endforeach; ?>
                         </ul>
+                        <div class="text-end">
+                            <?php if (!$model->coupon) : ?>
+                            <?= Html::a('Richiedi Coupon', ['coupon/create', 'sid' => $model->sid], ['class' => 'btn btn-primary btn-sm']) ?>
+                            <?php else: ?>
+                            Coupon già richiesto
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>

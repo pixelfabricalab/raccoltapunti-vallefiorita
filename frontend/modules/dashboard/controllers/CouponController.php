@@ -2,6 +2,7 @@
 
 namespace frontend\modules\dashboard\controllers;
 
+use common\models\Scontrino;
 use common\models\Coupon;
 use common\models\CouponSearch;
 use frontend\controllers\Controller;
@@ -54,21 +55,20 @@ class CouponController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($sid)
     {
         $model = new Coupon();
+        $model->loadDefaultValues();
+        $scontrino = Scontrino::findOne(['sid' => $sid]);
+        $model->scontrino_id = $scontrino->id;
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if ($scontrino->coupon) {
+            $this->addWarning('Coupon GIA\' richiesto per questo scontrino.');
+        } else if ($model->save(false)) {
+            $this->addOk('Coupon creato con successo');
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->redirect(['scontrino/index']);
     }
 
     /**

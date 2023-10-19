@@ -39,7 +39,7 @@ class Scontrino extends \yii\db\ActiveRecord
             [['content', 'filename'], 'string'],
             [['creato_il', 'modificato_il'], 'safe'],
             [['profilo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profilo::class, 'targetAttribute' => ['profilo_id' => 'id']],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -104,9 +104,11 @@ class Scontrino extends \yii\db\ActiveRecord
                 
                 if (isset($scontrino['items']) && is_array($scontrino['items']) && !empty($scontrino['items'])) {
                     $this->articoli = Json::encode($scontrino['items']);
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     public function getFileEncode()
@@ -128,7 +130,7 @@ class Scontrino extends \yii\db\ActiveRecord
 
     public function upload()
     {
-        if ($this->validate()) {
+        if ($this->validate() && !is_null($this->imageFile)) {
             /* Vecchia implementazione
             $fileparams = [];
             $filename = $this->imageFile->baseName;
@@ -146,6 +148,8 @@ class Scontrino extends \yii\db\ActiveRecord
             */
             $this->filename = Yii::getAlias('@runtime') . '/uploads/' . Yii::$app->getSecurity()->generateRandomString(16) . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($this->filename);
+            return true;
+        } else if (is_null($this->imageFile) && $this->id) {
             return true;
         } else {
             return false;
@@ -176,6 +180,16 @@ class Scontrino extends \yii\db\ActiveRecord
         return $this->hasOne(Profilo::class, ['id' => 'profilo_id']);
     }
 
+    /**
+     * Gets query for [[Coupon]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCoupon()
+    {
+        return $this->hasOne(Coupon::class, ['scontrino_id' => 'id']);
+    }
+
     public function execOcrAnalyze()
     {
         if (!$this->filename) {
@@ -184,8 +198,16 @@ class Scontrino extends \yii\db\ActiveRecord
         $this->content = \Yii::$app->ocr->getContent($this->filename);
         $this->save(false);
         $result_analyze = $this->analyze();
+        $this->valido = $this->content && $result_analyze;
         $this->save(false);
 
-        return $this->content && $result_analyze;
+        return $this->valido;
     }
+
+    public function beforeSave($insert){
+        if (!$this->sid) {
+            $this->sid = \Yii::$app->security->generateRandomString();
+        }
+        return parent::beforeSave($insert);
+    }    
 }
