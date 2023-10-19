@@ -7,7 +7,7 @@ use common\models\ScontrinoSearch;
 use common\models\ScontrinoData;
 use common\models\ProdottiScontrinoData;
 use yii\data\ArrayDataProvider;
-use yii\web\Controller;
+use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -19,35 +19,6 @@ use Yii;
  */
 class ScontrinoController extends Controller
 {
-
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
-    public function beforeAction($action)
-    {
-        if (!parent::beforeAction($action)) {
-            return false;
-        }
-    
-        return true; // or false to not run the action
-    }
-
-
-
     /**
      * Lists all Scontrino models.
      *

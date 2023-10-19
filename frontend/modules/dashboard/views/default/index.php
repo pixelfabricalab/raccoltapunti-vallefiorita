@@ -1,5 +1,6 @@
 <?php 
 $this->title = "Dashboard";
+$profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->identity->profilo ? \Yii::$app->user->identity->profilo : null;
 ?>
 <div class="dashboard-default-index">
     <div class="emp-profile">
@@ -17,20 +18,17 @@ $this->title = "Dashboard";
                                             </div>
                                         </div>
                                         <div class="col-7 col-md-12">
-                                            <?php if (\Yii::$app->user->identity->profilo) : ?>
+                                            <?php if ($profilo) : ?>
                                             <h5 class="text-info mt-2 mb-0">
-                                                <?= \Yii::$app->user->identity->profilo->nomeCompleto ?>
+                                                <?= $profilo->nomeCompleto ?>
                                             </h5>
-                                            <small><?= \Yii::$app->user->identity->profilo->professione ?></small>
+                                            <small><?= $profilo->professione ?></small>
                                             <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
                                             <?php endif; ?>
 
                                         </div>
                                     </div>
-
-                                    <hr />
-                                    <h6 class="h6 font-weight-bold">Bio</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris venenatis arcu luctus gravida fringilla at metus. Duis semper placerat leo, at commodo justo convallis a. </p>
+                                    <p><?= (isset($profilo->bio) && $profilo->bio) ? $profilo->bio : '' ?></p>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="profile-head mb-4">
@@ -46,7 +44,7 @@ $this->title = "Dashboard";
 
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="profilo" role="tabpanel" aria-labelledby="profilo-tab">
-                                            <?php if (\Yii::$app->user->identity->profilo) : ?>
+                                            <?php if ($profilo) : ?>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Nome utente</label>
@@ -60,7 +58,7 @@ $this->title = "Dashboard";
                                                     <label>Nome completo</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= \Yii::$app->user->identity->profilo->nomeCompleto ?></p>
+                                                    <p><?= $profilo->nomeCompleto ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -76,7 +74,7 @@ $this->title = "Dashboard";
                                                     <label>Tel.</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= \Yii::$app->user->identity->profilo->cellulare ?></p>
+                                                    <p><?= $profilo->cellulare ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -84,7 +82,7 @@ $this->title = "Dashboard";
                                                     <label>Professione</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= \Yii::$app->user->identity->profilo->professione ?></p>
+                                                    <p><?= $profilo->professione ?></p>
                                                 </div>
                                             </div>
                                             <?php endif; ?>

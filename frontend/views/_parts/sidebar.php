@@ -44,13 +44,17 @@ $module_id = \Yii::$app->controller->module->id;
             <?php
             $menu_items = [
                 [
+                    'label' => 'Coupon', 
+                    'url' => ['/dashboard/coupon/index'], 
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon')],
+                [
                     'label' => 'Scontrini', 
                     'url' => ['/dashboard/scontrino/index'], 
-                    'active' => ($module_id == 'magazzino' && $this->context->id == 'articolo')],
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'articolo')],
                 [
                     'label' => 'Punti vendita', 
                     'url' => ['/dashboard/puntovendita/index'], 
-                    'active' => (\Yii::$app->controller->module->id == 'dashboard' && $this->context->id == 'puntovendita')],
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'puntovendita')],
             ];
             echo Menu::widget([
                 'options' => [

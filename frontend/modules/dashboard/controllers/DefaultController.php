@@ -2,7 +2,7 @@
 
 namespace frontend\modules\dashboard\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\Controller;
 
 /**
  * Default controller for the `dashboard` module

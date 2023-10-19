@@ -2,48 +2,72 @@
 
 namespace frontend\modules\dashboard\controllers;
 
-use common\models\Profilo;
-use common\models\ProfiloSearch;
+use common\models\Coupon;
+use common\models\CouponSearch;
 use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\User;
 
 /**
- * ProfiloController implements the CRUD actions for Profilo model.
+ * CouponController implements the CRUD actions for Coupon model.
  */
-class ProfiloController extends Controller
+class CouponController extends Controller
 {
+    /**
+     * @inheritDoc
+     */
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
+                    ],
+                ],
+            ]
+        );
+    }
 
     /**
-     * Lists all Profilo models.
+     * Lists all Coupon models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        return $this->redirect(['update', 'id' => \Yii::$app->user->identity->profilo->id]);
+        $searchModel = new CouponSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
-     * Displays a single Profilo model.
+     * Displays a single Coupon model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        return $this->redirect(['update', 'id' => \Yii::$app->user->identity->profilo->id]);
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**
-     * Creates a new Profilo model.
+     * Creates a new Coupon model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Profilo();
+        $model = new Coupon();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -59,7 +83,7 @@ class ProfiloController extends Controller
     }
 
     /**
-     * Updates an existing Profilo model.
+     * Updates an existing Coupon model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -79,7 +103,7 @@ class ProfiloController extends Controller
     }
 
     /**
-     * Deletes an existing Profilo model.
+     * Deletes an existing Coupon model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -93,15 +117,15 @@ class ProfiloController extends Controller
     }
 
     /**
-     * Finds the Profilo model based on its primary key value.
+     * Finds the Coupon model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Profilo the loaded model
+     * @return Coupon the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Profilo::findOne(['id' => $id])) !== null) {
+        if (($model = Coupon::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

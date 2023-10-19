@@ -29,6 +29,7 @@ AppAsset::register($this);
 <header class="site-header sticky-top py-5">
     <?php
     NavBar::begin([
+        'innerContainerOptions' => ['class' => 'container-fluid'],
         'brandLabel' => '<img src="'. Yii::$app->homeUrl . 'assets/logo/profility-new.png" />',
         'brandUrl' => Yii::$app->homeUrl,
         'togglerContent' => '<i class="fa-solid fa-bars mobile-menu-toggler"></i>',
@@ -41,7 +42,7 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index'], 'class' =>'mx-2'],
         ['label' => 'Come funziona', 'url' => ['/site/regolamento']],
         ['label' => 'Servizi', 'url' => ['/site/servizi']],
-        ['label' => 'Premi', 'url' => ['/site/premi']],
+        // ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Accedi', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
@@ -79,7 +80,7 @@ AppAsset::register($this);
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
-    <div class="container">
+    <div class="container-fluid">
         <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>

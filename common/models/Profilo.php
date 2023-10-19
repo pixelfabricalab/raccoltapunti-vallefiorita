@@ -37,7 +37,7 @@ class Profilo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_nascita', 'user_id'], 'safe'],
+            [['data_nascita', 'user_id', 'bio'], 'safe'],
             [['eta'], 'integer'],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
         ];

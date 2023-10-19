@@ -22,7 +22,7 @@ use yii\bootstrap4\ActiveForm;
 
         <?= $form->field($model, 'professione')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'eta')->textInput() ?>
+        <?= $form->field($model, 'bio')->textarea() ?>
 
         <hr />
 

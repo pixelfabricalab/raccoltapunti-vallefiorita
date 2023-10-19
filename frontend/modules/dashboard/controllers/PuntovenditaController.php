@@ -4,7 +4,7 @@ namespace frontend\modules\dashboard\controllers;
 
 use common\models\Puntovendita;
 use common\models\PuntovenditaSearch;
-use yii\web\Controller;
+use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -13,23 +13,6 @@ use yii\filters\VerbFilter;
  */
 class PuntovenditaController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
 
     /**
      * Lists all Puntovendita models.
