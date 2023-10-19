@@ -43,7 +43,7 @@ class Scontrino extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getResized($w = 100, $h = 100, $crop=FALSE) {
+    public function getResized($w = 480, $h = 480, $crop=FALSE) {
         if (!$this->filename) {
             return null;
         }
@@ -174,5 +174,18 @@ class Scontrino extends \yii\db\ActiveRecord
     public function getProfilo()
     {
         return $this->hasOne(Profilo::class, ['id' => 'profilo_id']);
+    }
+
+    public function execOcrAnalyze()
+    {
+        if (!$this->filename) {
+            return false;
+        }
+        $this->content = \Yii::$app->ocr->getContent($this->filename);
+        $this->save(false);
+        $result_analyze = $this->analyze();
+        $this->save(false);
+
+        return $this->content && $result_analyze;
     }
 }

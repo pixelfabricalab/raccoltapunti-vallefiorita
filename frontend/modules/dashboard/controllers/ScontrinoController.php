@@ -4,8 +4,6 @@ namespace frontend\modules\dashboard\controllers;
 
 use common\models\Scontrino;
 use common\models\ScontrinoSearch;
-use common\models\ScontrinoData;
-use common\models\ProdottiScontrinoData;
 use yii\data\ArrayDataProvider;
 use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
@@ -68,6 +66,20 @@ class ScontrinoController extends Controller
         return $this->redirect(['view', 'id' => $id]);
     }
 
+    public function actionExec($id)
+    {
+        $model = $this->findModel($id);
+        $result = $model->execOcrAnalyze();
+
+        if ($result) {
+            $this->addOk('Analisi completata');
+        } else {
+            $this->addWarning('Analisi non riuscita.');
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
     /**
      * Creates a new Scontrino model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -80,8 +92,8 @@ class ScontrinoController extends Controller
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
             if ($model->upload() && $model->save(false)) {
-                Yii::$app->getSession()->addFlash('success', 'Scontrino caricato con successo. Riceverai una notifica quando il sistema elaborerà le informazioni.');
-                return $this->redirect(['view', 'id' => $model->id]);
+                $this->addOk('Scontrino caricato con successo.');
+                return $this->redirect(['exec', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();

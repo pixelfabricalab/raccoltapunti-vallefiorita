@@ -7,6 +7,9 @@ use yii\helpers\Html;
 
 $this->title = 'Carica scontrino';
 ?>
+<p>Raccogliere punti è semplice. Inquadra e scatta una foto dello scontrino di un punto vendita aderente all'iniziativa.<br>
+L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno determinati prodotti, riceverai un coupon da utilizzare presso il nostro circuito.</p>
+
 <div class="row">
     <div class="col-12 col-md-8">
         <div class="card shadow-sm">
@@ -14,11 +17,6 @@ $this->title = 'Carica scontrino';
                 <?= $this->render('_form_create', [
                     'model' => $model,
                 ]) ?>
-
-                <hr />
-                <h5 class="h5 mt-2 mb-2">Come funziona?</h5>
-                <p>Raccogliere punti è semplice. Inquadra e scatta una foto dello scontrino di un punto vendita per scoprire subito se hai vinto.<br>
-                L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno i prodotti inclusi nella raccolta punti, riceverai tanti punti quanti sono i prodotti che hai acquistato.</p>
             </div>
         </div>
     </div>
