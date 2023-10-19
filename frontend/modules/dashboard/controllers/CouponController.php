@@ -7,29 +7,13 @@ use common\models\CouponSearch;
 use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ArrayDataProvider;
 
 /**
  * CouponController implements the CRUD actions for Coupon model.
  */
 class CouponController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
 
     /**
      * Lists all Coupon models.
@@ -38,12 +22,17 @@ class CouponController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CouponSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
+        $provider = new ArrayDataProvider([
+            'allModels' => \Yii::$app->user->identity->profilo->coupon,
+            'sort' => [
+                'attributes' => ['id', 'username', 'email'],
+            ],
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $provider,
         ]);
     }
 

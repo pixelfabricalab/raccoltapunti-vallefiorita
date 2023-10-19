@@ -9,6 +9,9 @@ return [
         'opts' => [
             'class' => \common\helpers\OptionsListRetriever::class,
         ],
+        'qr' => [
+            'class' => \common\components\QRCode::class,
+        ],
         'ocr' => [
             'class' => \common\components\Asprise::class,
         ],

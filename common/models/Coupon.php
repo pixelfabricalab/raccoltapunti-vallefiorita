@@ -96,4 +96,10 @@ class Coupon extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Puntovendita::class, ['id' => 'puntovendita_id']);
     }
+
+    public function getQRCode()
+    {
+        $qrcode = \Yii::$app->qr->render($this->codice);
+        return $qrcode;
+    }
 }

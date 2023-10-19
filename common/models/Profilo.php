@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use common\models\Scontrino;
+use common\models\Coupon;
 
 /**
  * This is the model class for table "profilo".
@@ -75,6 +77,26 @@ class Profilo extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['profilo_id' => 'id']);
+        return $this->hasMany(User::class, ['profilo_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Users]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getScontrini()
+    {
+        return $this->hasMany(Scontrino::class, ['profilo_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Users]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCoupon()
+    {
+        return $this->hasMany(Coupon::class, ['profile_id' => 'id']);
     }
 }
