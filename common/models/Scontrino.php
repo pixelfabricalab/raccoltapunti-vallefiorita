@@ -36,7 +36,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             [['profilo_id'], 'integer'],
-            [['content', 'filename'], 'string'],
+            [['content', 'filename', 'totale'], 'string'],
             [['creato_il', 'modificato_il'], 'safe'],
             [['profilo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profilo::class, 'targetAttribute' => ['profilo_id' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
@@ -104,8 +104,13 @@ class Scontrino extends \yii\db\ActiveRecord
                 
                 if (isset($scontrino['items']) && is_array($scontrino['items']) && !empty($scontrino['items'])) {
                     $this->articoli = Json::encode($scontrino['items']);
-                    return true;
                 }
+
+                if (isset($scontrino['total'])) {
+                    $this->totale = $scontrino['total'];
+                }
+
+                return true;
             }
         }
         return false;
