@@ -60,6 +60,8 @@ class SignupForm extends Model
 
         $user->save();
         $profilo = new Profilo();
+        $profilo->nome = $this->nome;
+        $profilo->cognome = $this->cognome;
         
         $profilo->user_id = $user->id;
         $profilo->save(false);

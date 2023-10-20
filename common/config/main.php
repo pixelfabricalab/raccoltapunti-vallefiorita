@@ -40,9 +40,9 @@ return [
             'class' => \yii\swiftmailer\Mailer::class,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.mailtrap.io',
-                'username' => 'b333154ad0b695',
-                'password' => 'f5207996b0745f',
+                'host' => 'sandbox.smtp.mailtrap.io',
+                'username' => '14a56d9e181ab6',
+                'password' => '1994c4c82241e0',
                 'port' => '2525',
                 'encryption' => 'tls',
             ],
