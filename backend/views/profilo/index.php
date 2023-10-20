@@ -26,9 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'nome',
             'cognome',
-            'user.username',
+            'user.username:email',
             'data_nascita',
-            'email:email',
             //'cellulare',
             'creato_il',
             //'modificato_il',

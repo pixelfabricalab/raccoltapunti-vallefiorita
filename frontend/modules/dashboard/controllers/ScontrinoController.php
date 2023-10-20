@@ -24,12 +24,14 @@ class ScontrinoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ScontrinoSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
+        $provider = new ArrayDataProvider([
+            'allModels' => $this->getProfilo()->scontrini,
+            'pagination' => [
+                'pageSize' => 50,
+            ],
+        ]);
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $provider,
         ]);
     }
 
@@ -53,7 +55,7 @@ class ScontrinoController extends Controller
         $model->save(false);
 
         // $this->addOk();
-        return $this->redirect(['view', 'id' => $id]);
+        return $this->redirect(['index', 'id' => $id]);
     }
 
     public function actionAnalyze($id)
@@ -63,7 +65,7 @@ class ScontrinoController extends Controller
         $model->save(false);
 
         // $this->addOk();
-        return $this->redirect(['view', 'id' => $id]);
+        return $this->redirect(['index', 'id' => $id]);
     }
 
     public function actionExec($id)
@@ -77,7 +79,7 @@ class ScontrinoController extends Controller
             $this->addWarning('Analisi non riuscita.');
         }
 
-        return $this->redirect(['view', 'id' => $id]);
+        return $this->redirect(['index', 'id' => $id]);
     }
 
     /**
@@ -91,6 +93,7 @@ class ScontrinoController extends Controller
         if ($this->request->isPost) {
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
+            $model->profilo_id = $this->getProfilo()->id;
             if ($model->upload() && $model->save(false)) {
                 $this->addOk('Scontrino caricato con successo.');
                 return $this->redirect(['exec', 'id' => $model->id]);

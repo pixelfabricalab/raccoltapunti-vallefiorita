@@ -68,7 +68,7 @@ class CouponController extends Controller
             $this->addOk('Coupon creato con successo');
         }
 
-        return $this->redirect(['scontrino/index']);
+        return $this->redirect(['coupon/index']);
     }
 
     /**

@@ -12,19 +12,20 @@ use yii\bootstrap5\Html;
                     <div class="py-3">
                         <h5 class="esercente title">Informazioni rilevate</h5>
                         <h6><?= $model->ragione_sociale ?></h6>
-                        P.IVA: <strong><?= $model->partita_iva ?></strong>
+                        P.IVA: <strong><?= $model->partita_iva ?></strong><br />
+                        TOTALE DOC.: <strong>€ <?= number_format($model->totale, 2, ',', '.') ?></strong>
                         <hr />
                         <h6>Articoli</h6>
                         <ul>
                         <?php foreach ($model->getItems() as $item) : ?>
-                        <li><?= $item['description'] ?></li>
+                        <li><?= $item['description'] ?> - € <?= number_format($item['amount'], 2, ',', '.') ?></li>
                         <?php endforeach; ?>
                         </ul>
                         <div class="text-end">
                             <?php if (!$model->coupon) : ?>
                             <?= Html::a('Richiedi Coupon', ['coupon/create', 'sid' => $model->sid], ['class' => 'btn btn-primary btn-sm']) ?>
                             <?php else: ?>
-                            Coupon già richiesto
+                            &#x2705; Coupon già richiesto 
                             <?php endif; ?>
                         </div>
                     </div>

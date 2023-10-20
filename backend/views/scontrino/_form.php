@@ -26,6 +26,8 @@ $opts = \Yii::$app->opts;
     <?= $form->field($model, 'ragione_sociale')->textInput() ?>
     <?= $form->field($model, 'partita_iva')->textInput() ?>
 
+    <?= $form->field($model, 'totale')->textInput() ?>
+    
     <?= $form->field($model, 'creato_il')->textInput() ?>
 
     <?= $form->field($model, 'modificato_il')->textInput() ?>
