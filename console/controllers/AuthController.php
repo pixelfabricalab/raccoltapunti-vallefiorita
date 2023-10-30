@@ -15,10 +15,42 @@
                 $admin_role = $auth->createRole('admin_user');
                 $auth->assign($admin_role, $id);
                 echo "Fatto! Adesso l'utente {$username} è abilitato per l'accesso al backend.";
+                return ExitCode::OK;
             } else {
                 echo "Errore: Username non esistente o errato!";
                 ExitCode::DATAERR;
             }
-
         }
+
+        public function actionInit()
+        {
+            $auth = Yii::$app->authManager;
+            $auth->removeAll();
+
+            // add "validateQrCode" permission
+            $validateQrCode = $auth->createPermission('validateQrCode');
+            $validateQrCode->description = 'Validate a QR Code';
+            $auth->add($validateQrCode);
+
+            // add "accessBusinessTools" permission
+            $accessBusinessTools = $auth->createPermission('accessBusinessTools');
+            $accessBusinessTools->description = 'Access Business Tools';
+            $auth->add($accessBusinessTools);
+
+            // add "business" role
+            $business = $auth->createRole('business');
+            $auth->add($business);
+            $auth->addChild($business, $validateQrCode);
+            $auth->addChild($business, $accessBusinessTools);
+
+            // add "admin_user" role
+            $admin = $auth->createRole('admin');
+            $auth->add($admin);
+            $auth->addChild($admin, $business);
+
+            // assign base roles to users
+            $auth->assign($admin, 1);
+        }
+
+
     }
