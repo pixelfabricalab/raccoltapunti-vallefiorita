@@ -18,14 +18,17 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                             </div>
                                         </div>
                                         <div class="col-7 col-md-12">
-                                            <?php if ($profilo) : ?>
-                                            <h5 class="text-info mt-2 mb-0">
-                                                <?= $profilo->nomeCompleto ?>
-                                            </h5>
-                                            <small><?= $profilo->professione ?></small>
-                                            <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
-                                            <?php endif; ?>
-
+                                            <div class="text-center">
+                                                <?php if ($profilo) : ?>
+                                                <h5 class="text-info mt-2 mb-0">
+                                                    <?= $profilo->nomeCompleto ?>
+                                                </h5>
+                                                <?php if ($profilo->professione) : ?>
+                                                <small><?= $profilo->professione ?></small>
+                                                <?php endif; ?>
+                                                <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <p><?= (isset($profilo->bio) && $profilo->bio) ? $profilo->bio : '' ?></p>
@@ -45,14 +48,6 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="profilo" role="tabpanel" aria-labelledby="profilo-tab">
                                             <?php if ($profilo) : ?>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Nome utente</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>mario.rossi</p>
-                                                </div>
-                                            </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Nome completo</label>
