@@ -32,6 +32,43 @@ $module_id = \Yii::$app->controller->module->id;
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <?php if (Yii::$app->user->can('accessBusinessTools')) : ?>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBusiness"
+            aria-expanded="true" aria-controls="collapseBusiness">
+            <i class="fas fa-fw fa-tools"></i>
+            <span>Strumenti aziendali</span>
+        </a>
+        <div id="collapseBusiness" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+
+            <?php
+            $menu_items = [
+                [
+                    'label' => 'Riepilogo coupon', 
+                    'url' => ['/dashboard/coupon/report'], 
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'report')],
+                [
+                    'label' => 'Valida coupon', 
+                    'url' => ['/dashboard/coupon/validate', 'mode' => 'manual'], 
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'validate')],
+            ];
+            echo Menu::widget([
+                'options' => [
+                    'class' => 'list-unstyled',
+                ],
+                'itemOptions' => [
+                    'class' => 'collapse-item',
+                ],
+                'items' => $menu_items,
+            ]);
+            ?>
+            </div>
+        </div>
+    </li>
+    <?php endif; ?>
+
+    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttivita"
             aria-expanded="true" aria-controls="collapseAttivita">
