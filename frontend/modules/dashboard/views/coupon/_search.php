@@ -11,19 +11,17 @@ use yii\widgets\ActiveForm;
 <div class="coupon-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['validate'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'codice') ?>
 
-    <?= $form->field($model, 'data_utilizzo') ?>
+    <?php // echo $form->field($model, 'data_utilizzo') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?php // echo $form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'sconto_importo') ?>
+    <?php // echo $form->field($model, 'sconto_importo') ?>
 
     <?php // echo $form->field($model, 'sconto_percentuale') ?>
 
@@ -36,8 +34,7 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'puntovendita_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Cerca', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

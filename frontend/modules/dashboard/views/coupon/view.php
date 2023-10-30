@@ -1,32 +1,17 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var common\models\Coupon $model */
 
-$this->title = $model->id;
+$this->title = "Dettaglio coupon";
 $this->params['breadcrumbs'][] = ['label' => 'Coupon', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="coupon-view">
+<div class="coupon-view row">
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'codice',
-            'data_utilizzo',
-            'status',
-            'sconto_importo',
-            'sconto_percentuale',
-            'creato_il',
-            'modificato_il',
-            'profile_id',
-            'puntovendita_id',
-        ],
-    ]) ?>
+    <?= $this->render('_single', ['model' => $model]) ?>
 
 </div>

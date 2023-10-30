@@ -70,8 +70,6 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
 <body class="d-flex flex-column h-100" id="page-top">
 <?php $this->beginBody() ?>
 
-<body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 

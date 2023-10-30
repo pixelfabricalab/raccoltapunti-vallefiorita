@@ -103,7 +103,15 @@ class Coupon extends \yii\db\ActiveRecord
 
     public function getQRCode()
     {
-        $qrcode = \Yii::$app->qr->render($this->codice);
+        $content = \Yii::getAlias('@webroot/dashboard/coupon/validate?codice=' . $this->codice);
+        $qrcode = \Yii::$app->qr->render($content);
         return $qrcode;
+    }
+
+    public function utilizza()
+    {
+        $this->status = 0;
+        $this->data_utilizzo = date('Y-m-d H:i:s');
+        $this->modificato_il = date('Y-m-d H:i:s');
     }
 }

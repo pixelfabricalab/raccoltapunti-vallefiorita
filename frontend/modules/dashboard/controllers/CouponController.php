@@ -5,6 +5,7 @@ namespace frontend\modules\dashboard\controllers;
 use common\models\Scontrino;
 use common\models\Coupon;
 use common\models\CouponSearch;
+use yii\filters\AccessControl;
 use frontend\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,12 +17,73 @@ use yii\data\ArrayDataProvider;
 class CouponController extends Controller
 {
 
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['access']['rules'][] = [
+            'allow' => true,
+            'actions' => ['validate'],
+            'roles' => ['validateQrCode'],
+        ];
+
+        return $behaviors;
+    }
+
     /**
      * Lists all Coupon models.
      *
      * @return string
      */
     public function actionIndex()
+    {
+        $provider = new ArrayDataProvider([
+            'allModels' => \Yii::$app->user->identity->profilo->coupon,
+            'sort' => [
+                'attributes' => ['id', 'username', 'email'],
+            ],
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+        return $this->render('index', [
+            'dataProvider' => $provider,
+        ]);
+    }
+
+    /**
+     * Lists all Coupon models.
+     *
+     * @return string
+     */
+    public function actionValidate($mode = 'qr', $codice = null, $confirm = 0)
+    {
+        $model = new Coupon();
+
+        $searchModel = new CouponSearch();
+        $searchModel->load($this->request->queryParams);
+        if ($searchModel->codice) {
+            return $this->redirect(['validate', 'codice' => $searchModel->codice]);
+        }
+        if ($mode == 'qr') {
+            $model = $this->findModel($codice);
+        }
+        if ((int)$confirm) {
+            $model->utilizza();
+            $this->addOk('Coupon validato con successo');
+        }
+
+        return $this->render('validate', [
+            'model' => $model,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
+    /**
+     * Lists all validated coupons
+     *
+     * @return string
+     */
+    public function actionReport()
     {
         $provider = new ArrayDataProvider([
             'allModels' => \Yii::$app->user->identity->profilo->coupon,
@@ -114,10 +176,10 @@ class CouponController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Coupon::findOne(['id' => $id])) !== null) {
+        if (($model = Coupon::findOne(['id' => $id])) !== null || ($model = Coupon::findOne(['codice' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Coupon non trovato.');
     }
 }

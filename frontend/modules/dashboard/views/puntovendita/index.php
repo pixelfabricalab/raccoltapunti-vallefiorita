@@ -23,10 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="puntovendita-index">
 
-    <p>
-        <?= Html::a('Nuovo', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <div class="mb-2">
         <div id="map"></div>
     </div>
@@ -42,12 +38,14 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.marker([40.3513835, 18.1766978]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .bindPopup('Punto vendita Demo')
     .openPopup();
 
-L.marker([40.3913835, 18.1966978]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.');
+L.marker([40.361767, 18.154228]).addTo(map)
+    .bindPopup('Pixelfabrica SRL');
 </script>    
+
+<?php if (false) : ?>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -80,5 +78,5 @@ L.marker([40.3913835, 18.1966978]).addTo(map)
     ]); ?>
 
     <?php Pjax::end(); ?>
-
+<?php endif; ?>
 </div>
