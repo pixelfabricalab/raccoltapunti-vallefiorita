@@ -6,7 +6,7 @@
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;
+use yii\bootstrap5\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\widgets\Menu;
@@ -196,9 +196,13 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= Url::to(['/dashboard/profilo/update', 'id' => \Yii::$app->user->identity->id]) ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profilo
+                                </a>
+                                <a class="dropdown-item" href="<?= Url::to(['/dashboard/report']) ?>">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Storico
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -234,7 +238,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                         <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
 
                         <a href="<?= Url::toRoute('//dashboard/scontrino/create') ?>" class="btn btn-sm btn-success shadow-sm" id="newScontrino"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Carica scontrino</a>
+                                class="fas fa-arrow-up fa-sm text-white-50"></i> Carica</a>
                     </div>
 
                     <?= Alert::widget([

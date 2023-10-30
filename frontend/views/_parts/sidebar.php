@@ -108,6 +108,7 @@ $module_id = \Yii::$app->controller->module->id;
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <?php if (false) : ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -147,6 +148,7 @@ $module_id = \Yii::$app->controller->module->id;
             </div>
         </div>
     </li>
+    <?php endif; ?>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <!--<li class="nav-item">

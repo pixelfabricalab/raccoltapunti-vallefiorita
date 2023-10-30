@@ -35,9 +35,11 @@ class OptionsListRetriever
      */
     public function getPuntivendita()
     {
+        /*
         $users = \Yii::$app->cache->getOrSet('punti_vendita', function () {
             return ArrayHelper::map(Puntovendita::find()->all(), 'id', 'ragione_sociale');
         });
-        return $users;
+        */
+        return ArrayHelper::map(Puntovendita::find()->all(), 'id', 'ragione_sociale');
     }
 }

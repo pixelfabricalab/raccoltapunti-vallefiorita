@@ -26,5 +26,5 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
     <?php if ($model->status) : ?>
-    <?= Html::a("Utilizza", ['validate', 'codice' => $model->codice, 'confirm' => 1], ['class' => 'btn btn-lg btn-success']) ?>
+    <?= Html::a("Utilizza", ['validate', 'codice' => $model->codice, 'confirm' => 1], ['class' => 'btn btn-lg btn-success btn-block']) ?>
     <?php endif; ?>

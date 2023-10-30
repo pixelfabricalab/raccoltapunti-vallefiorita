@@ -5,7 +5,7 @@ use yii\bootstrap5\Html;
     <div class="card shadow-sm mb-4">
         <div class="card-body p-3">
             <div class="row">
-                <div class="col-6 col-md-3">
+                <div class="col-12 col-md-3">
                     <img src="data:<?= $model->mimeType ?>;base64,<?= $model->resized ?>" class="img-fluid shadow p-1" />
                 </div>
                 <div class="col">

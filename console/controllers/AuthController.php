@@ -43,6 +43,14 @@
             $auth->addChild($business, $validateQrCode);
             $auth->addChild($business, $accessBusinessTools);
 
+            // add "direzione" role
+            $direzione = $auth->createRole('direzione');
+            $auth->add($direzione);
+
+            // add "simpleuser" role
+            $simpleuser = $auth->createRole('simpleuser');
+            $auth->add($simpleuser);
+
             // add "admin_user" role
             $admin = $auth->createRole('admin');
             $auth->add($admin);
