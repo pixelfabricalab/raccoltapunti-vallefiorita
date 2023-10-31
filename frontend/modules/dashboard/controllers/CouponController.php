@@ -69,6 +69,7 @@ class CouponController extends Controller
         }
         if ((int)$confirm) {
             $model->utilizza();
+            $model->esercente_id = \Yii::$app->user->identity->id;
             $model->save(false);
             $this->addOk('Coupon ' . $codice . ' ritirato con successo.');
         }
@@ -87,7 +88,7 @@ class CouponController extends Controller
     public function actionReport()
     {
         $provider = new ArrayDataProvider([
-            'allModels' => \Yii::$app->user->identity->profilo->coupon,
+            'allModels' => \Yii::$app->user->identity->coupon,
             'sort' => [
                 'attributes' => ['id', 'username', 'email'],
             ],
@@ -95,7 +96,7 @@ class CouponController extends Controller
                 'pageSize' => 10,
             ],
         ]);
-        return $this->render('index', [
+        return $this->render('report', [
             'dataProvider' => $provider,
         ]);
     }

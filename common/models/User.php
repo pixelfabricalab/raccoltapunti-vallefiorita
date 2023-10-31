@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use common\models\Profilo;
+use common\models\Coupon;
 
 /**
  * User model
@@ -220,5 +221,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function getProfilo()
     {
         return $this->hasOne(Profilo::class, ['user_id' => 'id']);
+    }
+
+    public function getCoupon()
+    {
+        return $this->hasMany(Coupon::class, ['esercente_id' => 'id']);
     }
 }

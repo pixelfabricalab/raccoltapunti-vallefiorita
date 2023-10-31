@@ -10,7 +10,7 @@
                     <h3>Valore: <span class="text-success"><?= $model->etichettaValore ?></span></h3>
                     <code><span class="text-muted">CODICE:</span> <?= $model->codice ?></code>
                     <ul class="list-unstyled mb-0">
-                        <li>Stato: <?= ($model->status) ? '<span class="text-success">ATTIVO</span>' : '<span class="text-danger font-weight-bold">UTILIZZATO</span>' ?></li>
+                        <li>Stato: <?= ($model->status) ? '<span class="text-success">ATTIVO</span>' : '<span class="text-danger font-weight-bold">RITIRATO</span>' ?></li>
                         <?php if (!$model->status) : ?>
                         <li>Data Utilizzo: <?= date('d/m/Y H:i:s', strtotime($model->data_utilizzo)) ?></li>
                         <?php endif; ?>

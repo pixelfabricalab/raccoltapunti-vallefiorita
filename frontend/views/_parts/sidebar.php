@@ -45,7 +45,7 @@ $module_id = \Yii::$app->controller->module->id;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Riepilogo coupon', 
+                    'label' => 'Lista coupon ritirati', 
                     'url' => ['/dashboard/coupon/report'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'report')],
                 [
@@ -88,10 +88,12 @@ $module_id = \Yii::$app->controller->module->id;
                     'label' => 'Scontrini', 
                     'url' => ['/dashboard/scontrino/index'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'articolo')],
+                /*
                 [
                     'label' => 'Punti vendita', 
                     'url' => ['/dashboard/puntovendita/index'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'puntovendita')],
+                */
             ];
             echo Menu::widget([
                 'options' => [
