@@ -45,7 +45,7 @@ class Profilo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia'], 'safe'],
+            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare'], 'safe'],
             [['eta', 'b2b',], 'integer'],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
         ];
@@ -89,6 +89,27 @@ class Profilo extends \yii\db\ActiveRecord
     public function getNumScontrini()
     {
         return $this->getScontrini()->count();
+    }
+
+    public function getTotaleScontrini()
+    {
+        $somma = 0;
+        foreach ($this->scontrini as $s) {
+            $somma += (float)$s->totale;
+        }
+
+        return $somma;
+    }
+
+    public function getValoreMedioScontrini()
+    {
+        $numScontrini = $this->numScontrini;
+
+        if ($numScontrini == 0) {
+            return \Yii::$app->formatter->asCurrency(0);
+        }
+
+        return \Yii::$app->formatter->asCurrency(round($this->totaleScontrini / $numScontrini, 2));
     }
 
     /**
