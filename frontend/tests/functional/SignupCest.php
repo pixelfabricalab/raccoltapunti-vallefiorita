@@ -16,12 +16,10 @@ class SignupCest
 
     public function signupWithEmptyFields(FunctionalTester $I)
     {
-        $I->see('Registrati', 'h2');
-        $I->see('Compila i seguenti campi per registrarti');
+        $I->see('Registrati', 'h4');
+        $I->see('Registrati, iniziare invia gli scontrini e accumula punti');
         $I->submitForm($this->formId, []);
-        $I->seeValidationError('Nome cannot be blank.');
-        $I->seeValidationError('Email cannot be blank.');
-        $I->seeValidationError('Password cannot be blank.');
+        $I->seeValidationError('Campo obbligatorio');
 
     }
 

@@ -67,7 +67,7 @@ class SignupFormTest extends \Codeception\Test\Unit
         expect_that($model->getErrors('email'));
 
         expect($model->getFirstError('nome'))
-            ->equals('Nome cannot be blank.');
+            ->equals('Campo obbligatorio');
         expect($model->getFirstError('email'))
             ->equals('Email già registrata');
     }
