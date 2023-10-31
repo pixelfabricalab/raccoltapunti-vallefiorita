@@ -142,7 +142,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
         <div class="row">
             <div class="col-12 col-md-8">
                 <hr />
-                <?= $this->render('_premi') ?>
+                <?= $this->render('_coupon') ?>
                 <hr />
                 <?= $this->render('_attivita') ?>
             </div>

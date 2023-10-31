@@ -114,4 +114,15 @@ class Coupon extends \yii\db\ActiveRecord
         $this->data_utilizzo = date('Y-m-d H:i:s');
         $this->modificato_il = date('Y-m-d H:i:s');
     }
+
+    public function getEtichettaValore()
+    {
+        if ($this->sconto_importo) {
+            return \Yii::$app->formatter->asCurrency($this->sconto_importo);
+        }
+        if ($this->sconto_percentuale) {
+            return $this->sconto_percentuale . ' %';
+        }
+        return 0;
+    }
 }
