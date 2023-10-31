@@ -4,7 +4,7 @@ use common\models\Scontrino;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use common\widgets\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var common\models\ScontrinoSearch $searchModel */

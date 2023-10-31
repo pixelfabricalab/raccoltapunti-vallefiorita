@@ -24,10 +24,17 @@ $opts = \Yii::$app->opts;
     <?= $form->field($model, 'sid')->textInput() ?>
 
     <?= $form->field($model, 'ragione_sociale')->textInput() ?>
+    
     <?= $form->field($model, 'partita_iva')->textInput() ?>
-
+    
+    <?= $form->field($model, 'indirizzo')->textInput() ?>
+    
     <?= $form->field($model, 'totale')->textInput() ?>
     
+    <?= $form->field($model, 'data_doc')->textInput() ?>
+    
+    <?= $form->field($model, 'ora_doc')->textInput() ?>
+
     <?= $form->field($model, 'creato_il')->textInput() ?>
 
     <?= $form->field($model, 'modificato_il')->textInput() ?>

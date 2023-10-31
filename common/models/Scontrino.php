@@ -36,7 +36,7 @@ class Scontrino extends \yii\db\ActiveRecord
     {
         return [
             [['profilo_id'], 'integer'],
-            [['content', 'filename', 'totale'], 'string'],
+            [['content', 'filename', 'totale', 'ragione_sociale', 'partita_iva', 'indirizzo', 'data_doc', 'ora_doc'], 'string'],
             [['creato_il', 'modificato_il'], 'safe'],
             [['profilo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profilo::class, 'targetAttribute' => ['profilo_id' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
@@ -109,6 +109,10 @@ class Scontrino extends \yii\db\ActiveRecord
                 if (isset($scontrino['total'])) {
                     $this->totale = $scontrino['total'];
                 }
+
+                $this->indirizzo = (isset($scontrino['merchant_address'])) ? $scontrino['merchant_address'] : '';
+                $this->data_doc = (isset($scontrino['date'])) ? $scontrino['date'] : null;
+                $this->ora_doc = (isset($scontrino['time'])) ? $scontrino['time'] : null;
 
                 return true;
             }
