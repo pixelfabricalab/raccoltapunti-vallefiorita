@@ -10,35 +10,35 @@
       <div class="row">
          <div class="col">
             <div class="page-title mt-5">
-               <h1><?= Html::encode($this->title) ?></h1>
+               <h5><?= Html::encode($this->title) ?></h5>
             </div>
          </div>
       </div>
       <div class="row">
          <div class="col">
             <div id="regolamento" class="page-content mt-5">
-               <h2>REGOLAMENTO RACCOLTA PUNTI PROFILITY</h2>
+               <h5>REGOLAMENTO RACCOLTA PUNTI PROFILITY</h5>
                <ol class="master">
                   <li>
-                     <h3>Chi può partecipare</h3>
+                     <h5>Chi può partecipare</h5>
                   </li>
                </ol>
                <p>La raccolta punti è aperta a tutti i consumatori maggiorenni residenti in Italia. La partecipazione è gratuita e non è richiesto alcun costo per partecipare.</p>
                <ol class="master" start="2">
                   <li>
-                     <h3>AMBITO TERRITORIALE E TEMPORALE</h3>
+                     <h5>AMBITO TERRITORIALE E TEMPORALE</h5>
                   </li>
                </ol>
                <p>La raccolta punti è valida esclusivamente per gli acquisti effettuati in Italia presso i punti vendita in cui sono distribuiti e commercializzati i prodotti a marchio [NOME DEL BRAND]. Il programma ha inizio il [DATA DI INIZIO] e termina il [DATA DI FINE] salvo proroghe o modifiche comunicate dal [NOME DEL BRAND].</p>
                <ol class="master" start="3">
                   <li>
-                     <h3>PRODOTTI PARTECIPANTI</h3>
+                     <h5>PRODOTTI PARTECIPANTI</h5>
                   </li>
                </ol>
                <p>Partecipano alla raccolta punti tutti i prodotti del [NOME DEL BRAND] che esibiscono il logo dell’azienda.</p>
                <ol class="master" start="4">
                   <li>
-                     <h3>MODALITÀ DI PARTECIPAZIONE</h3>
+                     <h5>MODALITÀ DI PARTECIPAZIONE</h5>
                   </li>
                </ol>
                <p>Per partecipare alla raccolta punti, è necessario effettuare acquisti di almeno uno dei prodotti partecipanti presso un punto vendita autorizzato [NOME DEL BRAND].</p>
@@ -65,25 +65,25 @@
                <p>Per partecipare al programma Fidelity l'utente dovrà registrarsi sul sito www.nomedelbrand.profility.it accettando in ogni sua parte le condizioni del programma fornendo, inoltre, i propri dati anagrafici, il numero di telefono, l'indirizzo email e altre informazioni richieste per la partecipazione.</p>
                <ol class="master" start="5">
                   <li>
-                     <h3>PUNTEGGI E PREMI</h3>
+                     <h5>PUNTEGGI E PREMI</h5>
                   </li>
                </ol>
                <p>Ogni prodotto partecipante ha un valore in punti assegnato dal [NOME DEL BRAND]. Il valore in punti è presente all’interno del sito internet www.nomebrand.fidelity.it. Gli utenti potranno accumulare punti per ogni acquisto e successivamente convertirli in premi, che saranno comunicati sul sito [SITO WEB DEL PROGRAMMA DI FIDELIZZAZIONE] o tramite l'apposita app [NOME DELL'APP]. I premi potranno essere soggetti a limitazioni o restrizioni. I Punti accumulati non possono essere ceduti a terzi partecipanti alla medesima raccolta punti.</p>
                <ol class="master" start="6">
                   <li>
-                     <h3>SOGLIE PUNTI PER PREMI</h3>
+                     <h5>SOGLIE PUNTI PER PREMI</h5>
                   </li>
                </ol>
                <p> </p>
                <ol class="master" start="7">
                   <li>
-                     <h3>CONDIZIONI GENERALI</h3>
+                     <h5>CONDIZIONI GENERALI</h5>
                   </li>
                </ol>
                <p>Il [NOME DEL BRAND] si riserva il diritto di sospendere, modificare o annullare il programma di raccolta punti in qualsiasi momento, comunicando tempestivamente gli aggiornamenti sul sito web del programma di fidelizzazione e tramite la app [NOME DELL'APP]. Gli utenti sono tenuti a rispettare le condizioni del presente regolamento e a fornire informazioni veritiere e aggiornate al momento dell'iscrizione al programma. Il [NOME DEL BRAND] non sarà responsabile per eventuali danni o perdite derivanti da un utilizzo improprio o fraudolento del programma di raccolta punti.</p>
                <ol class="master" start="8">
                   <li>
-                     <h3>TUTELA DEI DATI PERSONALI</h3>
+                     <h5>TUTELA DEI DATI PERSONALI</h5>
                   </li>
                </ol>
                <p>Ai sensi del Regolamento (UE) 2016/679 del Parlamento europeo e del Consiglio del 27 aprile 2016 (GDPR) relativo alla protezione delle persone fisiche con riguardo al trattamento dei dati personali, il brand [Nome del brand] informa che i dati personali forniti dall'utente nell'ambito della raccolta punti saranno trattati nel rispetto della normativa sulla privacy e con le seguenti finalità:</p>
