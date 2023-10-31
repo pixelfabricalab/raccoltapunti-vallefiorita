@@ -74,9 +74,12 @@ class SignupForm extends Model
 
         $user->save();
         $profilo = new Profilo();
+        $profilo->creato_il = date('Y-m-d H:i:s');
+        $profilo->modificato_il = $profilo->creato_il;
         $profilo->nome = $this->nome;
         $profilo->cognome = $this->cognome;
         $profilo->b2b = (int)$this->b2b;
+        $profilo->email = $user->email;
 
         if ($profilo->b2b) {
             $profilo->ragione_sociale = $this->ragione_sociale;
