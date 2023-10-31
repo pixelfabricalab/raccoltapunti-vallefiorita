@@ -25,6 +25,11 @@ use common\models\Coupon;
  */
 class Profilo extends \yii\db\ActiveRecord
 {
+
+    const B2B_NO = 0;
+    const B2B_SI = 1;
+    const B2B_ATTIVO = 2;
+
     /**
      * {@inheritdoc}
      */

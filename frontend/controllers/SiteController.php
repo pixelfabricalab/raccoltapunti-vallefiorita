@@ -277,11 +277,11 @@ class SiteController extends Controller
             $auth = Yii::$app->authManager;
             $user_role = $auth->createRole('simpleuser');
             $auth->assign($user_role, $user->id);
-            Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-            return $this->goHome();
+            Yii::$app->session->setFlash('success', 'Congratulazioni! La tua email è stata validata con successo.');
+            return $this->redirect(['/dashboard']);
         }
 
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('error', 'Siamo spiacenti. Non siamo riusciti a validare il token.');
         return $this->goHome();
     }
 

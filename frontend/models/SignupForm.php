@@ -76,6 +76,16 @@ class SignupForm extends Model
         $profilo = new Profilo();
         $profilo->nome = $this->nome;
         $profilo->cognome = $this->cognome;
+        $profilo->b2b = (int)$this->b2b;
+
+        if ($profilo->b2b) {
+            $profilo->ragione_sociale = $this->ragione_sociale;
+            $profilo->partita_iva = $this->partita_iva;
+            $profilo->indirizzo = $this->indirizzo;
+            $profilo->cap = $this->cap;
+            $profilo->comune = $this->comune;
+            $profilo->provincia = $this->provincia;
+        }
         
         $profilo->user_id = $user->id;
         $profilo->save(false);
