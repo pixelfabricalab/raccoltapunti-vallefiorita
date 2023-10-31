@@ -204,3 +204,11 @@ ol.master li::marker {
     background-image: linear-gradient(90deg, #f9f9f9 10%, #efefef 100%);
     background-size: cover;
 }
+
+.text-light a {
+  color: #f3f3f3;
+}
+
+.radius {
+  border-radius: 10px;
+}

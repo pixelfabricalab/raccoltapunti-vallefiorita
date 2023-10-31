@@ -47,19 +47,19 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Accedi', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
     } else {
-        $menuItems[] = ['label' => 'Profilo', 'url' => ['/dashboard']];
-        $menuItems[] = ['label' => 'Lista Scansioni', 'url' => ['/dashboard/scontrino/index']];
-        $menuItems[] = ['label' => 'Carica Scontrino', 'url' => ['/dashboard/scontrino/create']];
+        $menuItems[] = ['label' => 'Profilo', 'url' => ['/dashboard'], 'options' => ['class' => 'radius bg-primary text-light']];
+        /*
         $menuItems[] = '<li>'
             . Html::beginForm(
                 ['/site/logout'], 'post', ['class' => 'form-inline']
                 )
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
+                'Esci',
+                ['class' => 'btn btn-link text-danger logout']
             )
             . Html::endForm()
             . '</li>';
+        */
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
