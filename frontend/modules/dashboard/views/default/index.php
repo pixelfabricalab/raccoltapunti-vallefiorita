@@ -69,7 +69,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Tel.</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->cellulare ?></p>
+                                                    <p><?= ($profilo) ? $profilo->cellulare : '' ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -77,7 +77,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Professione</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->professione ?></p>
+                                                    <p><?= ($profilo) ? $profilo->professione : '' ?></p>
                                                 </div>
                                             </div>
                                             <?php endif; ?>
@@ -88,7 +88,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Livello attuale</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->livello ?></p>
+                                                    <p><?= ($profilo) ? $profilo->livello : 0 ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -104,7 +104,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Valore medio scontrino</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->valoreMedioScontrini ?></p>
+                                                    <p><?= ($profilo) ? $profilo->valoreMedioScontrini : '' ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -112,7 +112,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Coupon Richiesti</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->numCoupon ?></p>
+                                                    <p><?= ($profilo) ? $profilo->numCoupon : '' ?></p>
                                                 </div>
                                             </div>
                                             <!--
