@@ -27,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'cognome',
             'user.username:email',
-            'data_nascita',
+            'b2b',
             //'cellulare',
             'creato_il',
-            //'modificato_il',
+            'modificato_il',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {

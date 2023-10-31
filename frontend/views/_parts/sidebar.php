@@ -20,7 +20,7 @@ $module_id = \Yii::$app->controller->module->id;
     <li class="nav-item active">
         <a class="nav-link" href="<?=\Yii::getAlias('@web/dashboard') ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Home</span></a>
     </li>
 
     <!-- Divider -->
