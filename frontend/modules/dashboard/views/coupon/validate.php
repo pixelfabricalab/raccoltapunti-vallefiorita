@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Coupon $model */
 
-$this->title = "Valida coupon";
+$this->title = "Ritira coupon";
 $this->params['breadcrumbs'][] = ['label' => 'Coupon', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -26,5 +26,5 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
     <?php if ($model->status) : ?>
-    <?= Html::a("Utilizza", ['validate', 'codice' => $model->codice, 'confirm' => 1], ['class' => 'btn btn-lg btn-success btn-block']) ?>
+    <?= Html::a("Ritira", ['validate', 'codice' => $model->codice, 'confirm' => 1], ['class' => 'btn btn-lg btn-success btn-block']) ?>
     <?php endif; ?>

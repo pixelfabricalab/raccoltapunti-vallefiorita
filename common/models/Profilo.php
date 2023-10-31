@@ -29,6 +29,7 @@ class Profilo extends \yii\db\ActiveRecord
     const B2B_NO = 0;
     const B2B_SI = 1;
     const B2B_ATTIVO = 2;
+    const B2B_RIFIUTATO = -1;
 
     /**
      * {@inheritdoc}
@@ -44,8 +45,8 @@ class Profilo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_nascita', 'user_id', 'bio'], 'safe'],
-            [['eta'], 'integer'],
+            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia'], 'safe'],
+            [['eta', 'b2b',], 'integer'],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
         ];
     }

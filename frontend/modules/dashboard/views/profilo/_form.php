@@ -28,13 +28,13 @@ use yii\bootstrap4\ActiveForm;
 
         <h6 class="text-info font-weight-bold">Residenza</h6>
 
-        <?= $form->field($model, 'residenza_indirizzo')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'residenza_indirizzo') ?>
 
-        <?= $form->field($model, 'residenza_citta')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'residenza_citta') ?>
 
-        <?= $form->field($model, 'residenza_cap')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'residenza_cap') ?>
 
-        <?= $form->field($model, 'residenza_provincia')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'residenza_provincia') ?>
 
         <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 

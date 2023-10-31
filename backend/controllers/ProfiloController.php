@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\User;
 use common\models\Profilo;
 use common\models\ProfiloSearch;
 use backend\controllers\Controller;
@@ -81,6 +82,21 @@ class ProfiloController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            
+            $auth = \Yii::$app->authManager;
+            $business = $auth->getRole(User::ROLE_BUSINESS);
+            $roles = $auth->getRolesByUser($model->user_id);
+
+            if ($model->b2b == Profilo::B2B_ATTIVO) {
+                if (!isset($roles[User::ROLE_BUSINESS])) {
+                    $auth->assign($business, $model->user_id);
+                }
+            } else {
+                if (isset($roles[User::ROLE_BUSINESS])) {
+                    $auth->revoke($business, $model->user_id);
+                }
+            }
+            $this->addOk();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

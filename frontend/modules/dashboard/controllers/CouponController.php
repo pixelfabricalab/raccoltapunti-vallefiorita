@@ -69,7 +69,7 @@ class CouponController extends Controller
         }
         if ((int)$confirm) {
             $model->utilizza();
-            $this->addOk('Coupon validato con successo');
+            $this->addOk('Coupon ' . $codice . ' ritirato con successo.');
         }
 
         return $this->render('validate', [

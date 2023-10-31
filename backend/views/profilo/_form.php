@@ -32,7 +32,11 @@ $opts = \Yii::$app->opts;
 
     <h6 class="h6 mb-4 text-center">Dati aziendali</h6>
 
-    <?= $form->field($model, 'b2b')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'b2b')->dropDownList([
+        1 => 'Da validare',
+        2 => 'Validato',
+        -1 => 'Rifiuta',
+    ])->label('Stato attività') ?>
 
     <?= $form->field($model, 'ragione_sociale') ?>
 
@@ -43,6 +47,7 @@ $opts = \Yii::$app->opts;
     <?= $form->field($model, 'comune') ?>
 
     <?= $form->field($model, 'cap')->label('CAP') ?>
+
 
     <?php endif; ?>
 

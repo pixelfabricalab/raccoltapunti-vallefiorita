@@ -49,7 +49,7 @@ $module_id = \Yii::$app->controller->module->id;
                     'url' => ['/dashboard/coupon/report'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'report')],
                 [
-                    'label' => 'Valida coupon', 
+                    'label' => 'Ritira coupon', 
                     'url' => ['/dashboard/coupon/validate', 'mode' => 'manual'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'validate')],
             ];
