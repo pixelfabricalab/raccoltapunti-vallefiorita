@@ -8,11 +8,22 @@
 
 INSTALLATION
 ------------
+
+Nella document root eseguire
+
 ```
+composer install
 yii init
 yii migrate --migrationPath=@yii/rbac/migrations/
 yii migrate
+yii auth/init
 ```
+
+Nella cartella /backend/web/vendor/ eseguire
+```
+npm install
+```
+
 
 Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
