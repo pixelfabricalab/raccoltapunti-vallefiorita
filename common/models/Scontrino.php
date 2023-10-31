@@ -99,18 +99,18 @@ class Scontrino extends \yii\db\ActiveRecord
             if (is_array($content) && isset($content['receipts']) && is_array($content['receipts']) && !empty($content['receipts'])) {
                 $scontrino = $content['receipts'][0];
 
-                $this->ragione_sociale = (isset($scontrino['merchant_name']) && $scontrino['merchant_name'] && !$this->ragione_sociale) ? $scontrino['merchant_name'] : '';
-                $this->partita_iva = (isset($scontrino['merchant_tax_reg_no']) && $scontrino['merchant_tax_reg_no'] && !$this->partita_iva) ? $scontrino['merchant_tax_reg_no'] : '';
+                $this->ragione_sociale = (isset($scontrino['merchant_name']) && $scontrino['merchant_name'] && !$this->ragione_sociale) ? $scontrino['merchant_name'] : $this->ragione_sociale;
+                $this->partita_iva = (isset($scontrino['merchant_tax_reg_no']) && $scontrino['merchant_tax_reg_no'] && !$this->partita_iva) ? $scontrino['merchant_tax_reg_no'] : $this->partita_iva;
                 
                 if (isset($scontrino['items']) && is_array($scontrino['items']) && !empty($scontrino['items'])) {
                     $this->articoli = Json::encode($scontrino['items']);
                 }
 
-                $this->totale = (isset($scontrino['total']) && !$this->totale) ? $scontrino['total'] : 0;
+                $this->totale = (isset($scontrino['total']) && !$this->totale) ? $scontrino['total'] : $this->totale;
 
-                $this->indirizzo = (isset($scontrino['merchant_address']) && !$this->indirizzo) ? $scontrino['merchant_address'] : '';
-                $this->data_doc = (isset($scontrino['date']) && !$this->data_doc) ? $scontrino['date'] : null;
-                $this->ora_doc = (isset($scontrino['time']) && !$this->ora_doc) ? $scontrino['time'] : null;
+                $this->indirizzo = (isset($scontrino['merchant_address']) && !$this->indirizzo) ? $scontrino['merchant_address'] : $this->indirizzo;
+                $this->data_doc = (isset($scontrino['date']) && !$this->data_doc) ? $scontrino['date'] : $this->data_doc;
+                $this->ora_doc = (isset($scontrino['time']) && !$this->ora_doc) ? $scontrino['time'] : $this->ora_doc;
 
                 return true;
             }
