@@ -3,7 +3,7 @@
   }
 
   footer {
-      background-color: #d6d6d6;
+      border-top: 1px solid #d6d6d6;
   }
   
   .bg-login .nav-link {

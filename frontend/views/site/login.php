@@ -10,7 +10,7 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Accedi / Registrati';
 ?>
 <div class="site-login container">
-    <h2 class="mt-2"><?= Html::encode($this->title) ?></h2>
+    <h4 class="mb-4 text-center"><?= Html::encode($this->title) ?></h4>
 
     <div class="row">
         <div class="col">
@@ -29,12 +29,12 @@ $this->title = 'Accedi / Registrati';
                         <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
 
                         <div class="form-group">
-                            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                            <?= Html::submitButton('Accedi', ['class' => 'btn btn-primary btn-sm', 'name' => 'login-button']) ?>
                         </div>
 
                         <hr />
 
-                        <div style="color:#999;margin:1em 0"><small>
+                        <div style="color:#999;" class="mt-2"><small>
                             Hai dimenticato la password? Puoi eseguire un <?= Html::a('reset', ['site/request-password-reset']) ?>.
                             <br>
                             Non hai ricevuto la mail di verifica? <?= Html::a('Reivia mail', ['site/resend-verification-email']) ?></small>
@@ -49,8 +49,12 @@ $this->title = 'Accedi / Registrati';
                     <h5>Registrati</h5>
                 </div>
                 <div class="card-body">
-                    <p>Per iniziare la raccolta punti devi registrarti. Potrai usufruire di numerosi vantaggi e premi.</p>
-                    <?= Html::a('Registrati', ['site/signup'], [ 'class' => 'btn btn-block btn-success']) ?>
+                    <p>Registrati, scansiona scontrini e ricevi coupon da spendere in numerose attività convenzionate.</p>
+                    <?= Html::a('Registrati', ['site/signup'], [ 'class' => 'btn btn-success btn-sm']) ?>
+                    <hr />
+                    <h6>Hai un'attività?</h6>
+                    <p>Se desideri registrarti come attività convenzionata nel circuito, per usufruire di bonus e vantaggi:</p>
+                    <?= Html::a('Registrati come attività', ['site/signup', 'b2b' => 1], [ 'class' => 'btn btn-success btn-sm']) ?>
                 </div>
             </div>
         </div>

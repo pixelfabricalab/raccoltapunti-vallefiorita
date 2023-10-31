@@ -79,10 +79,11 @@ AppAsset::register($this);
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 text-muted">
+<footer class="footer mt-auto py-3 text-muted mt-3">
     <div class="container-fluid">
-        <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <div class="row">
+            <p class="text-center"><small>&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?> Tutti i diritti riservati.</small></p>
+        </div>
     </div>
 </footer>
 
