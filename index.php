@@ -1,3 +1,3 @@
 <?php
-header('Location: http://virt.pixelfabrica/frontend/web/');
+header('Location: http://virt.pixelfabrica.it/frontend/web/');
 exit;
