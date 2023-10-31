@@ -18,7 +18,9 @@ use yii\bootstrap4\ActiveForm;
 
         <?= $form->field($model, 'cognome')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'data_nascita')->textInput() ?>
+        <?= $form->field($model, 'cellulare')->textInput() ?>
+
+        <?= $form->field($model, 'data_nascita')->textInput(['type' => 'date']) ?>
 
         <?= $form->field($model, 'professione')->textInput(['maxlength' => true]) ?>
 
@@ -35,8 +37,6 @@ use yii\bootstrap4\ActiveForm;
         <?= $form->field($model, 'residenza_cap') ?>
 
         <?= $form->field($model, 'residenza_provincia') ?>
-
-        <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 
         <div class="form-group">
             <?= Html::submitButton('Salva', ['class' => 'btn btn-success']) ?>
