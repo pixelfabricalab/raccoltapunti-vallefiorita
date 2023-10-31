@@ -91,6 +91,11 @@ class Profilo extends \yii\db\ActiveRecord
         return $this->getScontrini()->count();
     }
 
+    public function getNumCoupon()
+    {
+        return $this->getCoupon()->count();
+    }
+
     public function getTotaleScontrini()
     {
         $somma = 0;

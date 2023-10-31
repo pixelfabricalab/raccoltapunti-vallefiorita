@@ -107,6 +107,14 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <p><?= $profilo->valoreMedioScontrini ?></p>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>Coupon Richiesti</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><?= $profilo->numCoupon ?></p>
+                                                </div>
+                                            </div>
                                             <!--
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -116,7 +124,6 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <p>230,00 €</p>
                                                 </div>
                                             </div>
-                                            -->
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Premi riscossi</label>
@@ -125,6 +132,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <p>0</p>
                                                 </div>
                                             </div>
+                                            -->
                                         </div>
                                     </div>
 
