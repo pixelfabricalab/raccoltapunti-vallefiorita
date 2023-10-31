@@ -126,4 +126,28 @@ class ScontrinoController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionAnalyze($id)
+    {
+        $model = $this->findModel($id);
+        $model->analyze();
+        $model->save(false);
+
+        // $this->addOk();
+        return $this->redirect(['index', 'id' => $id]);
+    }
+
+    public function actionExec($id)
+    {
+        $model = $this->findModel($id);
+        $result = $model->execOcrAnalyze();
+
+        if ($result) {
+            $this->addOk('Analisi completata');
+        } else {
+            $this->addWarning('Analisi non riuscita.');
+        }
+
+        return $this->redirect(['update', 'id' => $id]);
+    }
 }
