@@ -104,7 +104,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                     <label>Scontrini caricati</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><?= $profilo->numScontrini ?></p>
+                                                    <p><?= ($profilo) ? $profilo->numScontrini : '' ?></p>
                                                 </div>
                                             </div>
                                             <div class="row">
