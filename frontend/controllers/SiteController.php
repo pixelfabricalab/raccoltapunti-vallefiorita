@@ -195,9 +195,10 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionSignup()
+    public function actionSignup($b2b = 0)
     {
         $model = new SignupForm();
+        $model->b2b = $b2b;
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Registrazione avvenuta con successo. Controlla la tua email per attivare l\'account.');
             return $this->goHome();

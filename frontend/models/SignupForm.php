@@ -20,6 +20,15 @@ class SignupForm extends Model
     public $nome;
     public $cognome;
 
+    // Business
+    public $b2b;
+    public $ragione_sociale;
+    public $partita_iva;
+    public $codice_fiscale;
+    public $indirizzo;
+    public $cap;
+    public $comune;
+    public $provincia;
 
     /**
      * {@inheritdoc}
@@ -27,13 +36,18 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['nome', 'cognome'], 'required'],
+            [['nome', 'cognome'], 'required', 'message' => 'Campo obbligatorio'],
+            [['ragione_sociale', 'partita_iva', 'indirizzo', 'comune', 'cap'], 'required', 'message' => 'Campo obbligatorio', 'when' => function ($model) {
+                return (int)$model->b2b == 1;
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#signupform-b2b').val() == '1';
+            }"],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Email già registrata'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
