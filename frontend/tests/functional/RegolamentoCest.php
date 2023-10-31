@@ -9,6 +9,6 @@ class RegolamentoCest
     public function checkAbout(FunctionalTester $I)
     {
         $I->amOnRoute('site/regolamento');
-        $I->see('Regolamento', 'h1');
+        $I->see('Regolamento', 'h5');
     }
 }

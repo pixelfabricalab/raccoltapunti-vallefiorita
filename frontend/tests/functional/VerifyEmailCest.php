@@ -3,6 +3,7 @@
 namespace frontend\tests\functional;
 
 use common\fixtures\UserFixture;
+use common\fixtures\UserProfileFixture;
 use frontend\tests\FunctionalTester;
 
 class VerifyEmailCest
@@ -18,8 +19,12 @@ class VerifyEmailCest
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php',
+            ],
+            'profile' => [
+                'class' => UserProfileFixture::class,
+                'dataFile' => codecept_data_dir() . 'profile_data.php',
             ],
         ];
     }
@@ -55,8 +60,8 @@ class VerifyEmailCest
     public function checkSuccessVerification(FunctionalTester $I)
     {
         $I->amOnRoute('site/verify-email', ['token' => '4ch0qbfhvWwkcuWqjN8SWRq72SOw1KYT_1548675330']);
-        $I->canSee('Your email has been confirmed!');
-        $I->see('Logout (test.test)', 'form button[type=submit]');
+        $I->canSee(' Raccolta punti');
+        $I->see('Esci', 'form button[type=submit]');
 
         $I->seeRecord('common\models\User', [
            'username' => 'test.test',
