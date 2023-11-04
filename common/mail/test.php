@@ -1,1 +1,1 @@
-<p>Ciao Ciao</p>
+<p>Email di prova inviato dal server locale di sviluppo.</p>
