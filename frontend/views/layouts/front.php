@@ -39,15 +39,15 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index'], 'class' =>'mx-2'],
-        ['label' => 'Come funziona', 'url' => ['/site/regolamento']],
-        ['label' => 'Servizi', 'url' => ['/site/servizi']],
+        ['label' => 'HOME', 'url' => ['/site/index'], 'class' =>'mx-2'],
+        ['label' => 'COME FUNZIONA', 'url' => ['/site/regolamento']],
+        ['label' => 'SERVIZI', 'url' => ['/site/servizi']],
         // ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Accedi', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
+        $menuItems[] = ['label' => 'ACCEDI', 'url' => ['/site/login'], 'options' =>['class' => 'bg-login']];
     } else {
-        $menuItems[] = ['label' => 'Profilo', 'url' => ['/dashboard'], 'options' => ['class' => 'radius bg-primary text-light']];
+        $menuItems[] = ['label' => 'IL TUO ACCOUNT', 'url' => ['/dashboard'], 'options' => ['class' => 'radius bg-primary text-light']];
         /*
         $menuItems[] = '<li>'
             . Html::beginForm(
@@ -84,7 +84,7 @@ AppAsset::register($this);
         </div>
 
         <?= $content ?>
-        
+
 </main>
 
 <footer class="footer mt-auto py-3 text-muted mt-3">

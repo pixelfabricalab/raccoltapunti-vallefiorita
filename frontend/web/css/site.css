@@ -183,9 +183,6 @@ h1.hero-title {
 .btn-profility {
   background-color: #dbdc2c !important;
   color:#1e2246 !important;
-  padding: 0.28rem 0.5rem;
-  font-size: 0.8rem;
-  border-radius: 7px;
 }
 
 ol.master li::marker {
