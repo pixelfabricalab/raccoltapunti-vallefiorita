@@ -108,9 +108,6 @@ class ProfiloController extends Controller
         if ($model->b2b == $model::B2B_SI) {
             $this->addWarning('Scheda B2B da Validare.');
         }
-        if ($model->b2b == $model::B2B_ATTIVO && !$model->valore_sconto) {
-            $this->addWarning('Scheda B2B Attiva ma il valore dello sconto è nullo.');
-        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             
@@ -134,6 +131,10 @@ class ProfiloController extends Controller
 
             $this->addOk();
             return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        if ($model->b2b == $model::B2B_ATTIVO && !$model->valore_sconto) {
+            $this->addWarning('Scheda B2B Attiva ma il valore dello sconto è nullo.');
         }
 
         return $this->render('/profilo/update', [
