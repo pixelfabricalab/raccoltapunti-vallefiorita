@@ -48,7 +48,7 @@ class Profilo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare'], 'safe'],
+            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email'], 'safe'],
             [['eta', 'b2b', 'valore_sconto'], 'integer'],
             [['tipo_sconto'], 'string', 'max' => 16],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
@@ -144,6 +144,14 @@ class Profilo extends \yii\db\ActiveRecord
     public function getCognomeNomeEmail()
     {
         return $this->cognome . ' ' . $this->nome . ' (' . $this->user->username . ')';
+    }
+
+    public function afterFind()
+    {
+        if ($this->user) {
+            $this->email = $this->user->username;
+        }
+        parent::afterFind();
     }
 
 }

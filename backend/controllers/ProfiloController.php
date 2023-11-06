@@ -62,8 +62,21 @@ class ProfiloController extends Controller
         }
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['/profilo/update', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $user = new User();
+                $user->username = $model->email;
+                $user->email = $model->email;
+                $user->setPassword(\Yii::$app->getSecurity()->generateRandomString(6));
+                $user->generateAuthKey();
+                if ($user->save()) {
+                    $model->creato_il = date('Y-m-d H:i:s');
+                    $model->modificato_il = $profilo->creato_il;
+                    $model->b2b = (int)$model->b2b;
+
+                    $profilo->user_id = $user->id;
+                    $profilo->save(false);
+                    return $this->redirect(['/profilo/update', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -107,6 +120,11 @@ class ProfiloController extends Controller
                     $auth->revoke($business, $model->user_id);
                 }
             }
+
+            $user = User::findOne($model->user_id);
+            $user->username = $model->email;
+            $user->save(false);
+
             $this->addOk();
             return $this->redirect(['view', 'id' => $model->id]);
         }
