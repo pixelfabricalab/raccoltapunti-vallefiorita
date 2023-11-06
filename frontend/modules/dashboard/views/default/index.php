@@ -151,8 +151,10 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
             <div class="col-12 col-md-8">
                 <hr />
                 <?= $this->render('_coupon') ?>
+                <?php if (false) : ?>
                 <hr />
                 <?= $this->render('_attivita') ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
