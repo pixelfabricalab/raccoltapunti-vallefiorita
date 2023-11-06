@@ -54,13 +54,16 @@ class ProfiloController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($b2b = null)
     {
         $model = new Profilo();
+        if ($b2b) {
+            $model->b2b = $b2b;
+        }
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/profilo/update', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();

@@ -136,4 +136,14 @@ class Profilo extends \yii\db\ActiveRecord
         return $this->hasOne(\common\models\User::class, ['id' => 'user_id']);
     }
 
+    public function getCognomeNome()
+    {
+        return $this->cognome . ' ' . $this->nome;
+    }
+
+    public function getCognomeNomeEmail()
+    {
+        return $this->cognome . ' ' . $this->nome . ' (' . $this->user->username . ')';
+    }
+
 }

@@ -29,4 +29,14 @@ class BusinessController extends ProfiloController
         ]);
     }
 
+    /**
+     * Creates a new Profilo model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate($b2b = null)
+    {
+        return $this->redirect(['/profilo/create', 'b2b' => 2]);
+    }
+
 }

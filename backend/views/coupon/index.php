@@ -26,15 +26,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'codice',
             'data_utilizzo',
-            'status',
             'sconto_importo',
             'sconto_percentuale',
+            [
+                'attribute' => 'status',
+                'content' => function ($model) {
+                    $content = '';
+                    if ($model->status) {
+                        $content = '<small class="badge rounded-pill text-bg-success">Attivo</small>';
+                    } else {
+                        $content = '<small class="badge rounded-pill text-bg-danger">Ritirato</small>';
+                    }
+                    return $content;
+                },
+                'format' => 'raw',
+            ],
+            'data_utilizzo',
             'creato_il',
             //'modificato_il',
             //'profile_id',
             //'puntovendita_id',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Coupon $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

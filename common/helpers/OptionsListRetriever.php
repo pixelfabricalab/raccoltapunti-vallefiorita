@@ -22,8 +22,14 @@ class OptionsListRetriever
     /**
      * @return array ID => Nome utente
      */
-    public function getProfili()
+    public function getProfili($withEmail = false)
     {
+        if (!$withEmail) {
+            return ArrayHelper::map(Profilo::find()->all(), 'id', 'cognomeNome');
+        } else {
+            return ArrayHelper::map(Profilo::find()->all(), 'id', 'cognomeNomeEmail');
+        }
+
         $users = \Yii::$app->cache->getOrSet('cache_profili', function () {
             return ArrayHelper::map(Profilo::find()->all(), 'id', 'cognomeNome');
         }, 5);
@@ -41,5 +47,18 @@ class OptionsListRetriever
         });
         */
         return ArrayHelper::map(Puntovendita::find()->all(), 'id', 'ragione_sociale');
+    }
+
+    /**
+     * @return array ID => Ragione Sociale
+     */
+    public function getEsercenti()
+    {
+        /*
+        $users = \Yii::$app->cache->getOrSet('punti_vendita', function () {
+            return ArrayHelper::map(Puntovendita::find()->all(), 'id', 'ragione_sociale');
+        });
+        */
+        return ArrayHelper::map(Profilo::find()->select(['id', 'ragione_sociale'])->where(['!=', 'id', 0])->all(), 'id', 'ragione_sociale');
     }
 }
