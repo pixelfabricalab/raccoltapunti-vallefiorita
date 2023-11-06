@@ -44,6 +44,8 @@ $opts = \Yii::$app->opts;
         <?php if ($model->b2b != $model::B2B_NO) : ?>
         <hr />
 
+        <h6 class="text-info font-weight-bold">Dati aziendali</h6>
+
         <?= $form->field($model, 'ragione_sociale') ?>
 
         <?= $form->field($model, 'partita_iva') ?>
