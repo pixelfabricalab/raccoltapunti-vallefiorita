@@ -9,11 +9,12 @@ use yii\bootstrap5\ActiveForm;
 $opts = \Yii::$app->opts;
 ?>
 
-<div class="card shadow-sm">
-    <div class="card-body">
-        <div class="coupon-form">
+<div class="coupon-form row">
+    <div class="col-md-8 col-xl-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-            <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+            <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'applyOffset' => true]); ?>
 
             <?= $form->field($model, 'codice')->textInput(['maxlength' => true]) ?>
 
@@ -41,6 +42,7 @@ $opts = \Yii::$app->opts;
 
             <?php ActiveForm::end(); ?>
 
+            </div>
         </div>
     </div>
 </div>

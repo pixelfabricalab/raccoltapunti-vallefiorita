@@ -31,6 +31,9 @@ class Profilo extends \yii\db\ActiveRecord
     const B2B_ATTIVO = 2;
     const B2B_RIFIUTATO = -1;
 
+    const SCONTO_PERCENTUALE = 'percentuale';
+    const SCONTO_IMPORTO = 'importo';
+
     /**
      * {@inheritdoc}
      */
@@ -46,7 +49,8 @@ class Profilo extends \yii\db\ActiveRecord
     {
         return [
             [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare'], 'safe'],
-            [['eta', 'b2b',], 'integer'],
+            [['eta', 'b2b', 'valore_sconto'], 'integer'],
+            [['tipo_sconto'], 'string', 'max' => 16],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
         ];
     }

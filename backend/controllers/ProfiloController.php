@@ -40,6 +40,7 @@ class ProfiloController extends Controller
     public function actionIndex()
     {
         $searchModel = new ProfiloSearch();
+        $searchModel->b2b = Profilo::B2B_NO;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -65,7 +66,7 @@ class ProfiloController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->render('/profilo/create', [
             'model' => $model,
         ]);
     }
@@ -80,6 +81,13 @@ class ProfiloController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if ($model->b2b == $model::B2B_SI) {
+            $this->addWarning('Scheda B2B da Validare.');
+        }
+        if ($model->b2b == $model::B2B_ATTIVO && !$model->valore_sconto) {
+            $this->addWarning('Scheda B2B Attiva ma il valore dello sconto è nullo.');
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             
@@ -100,7 +108,7 @@ class ProfiloController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
+        return $this->render('/profilo/update', [
             'model' => $model,
         ]);
     }

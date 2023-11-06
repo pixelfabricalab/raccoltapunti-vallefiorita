@@ -28,8 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'cognome',
             'user.username:email',
             'cellulare',
-            'creato_il',
-            // 'modificato_il',
+            'ragione_sociale',
+            [
+                'attribute' => 'b2b',
+                'content' => function ($model) {
+                    $content = '';
+                    if ($model->b2b == Profilo::B2B_SI) {
+                        $content = '<small class="badge rounded-pill text-bg-warning">Da verificare</small>';
+                    }
+                    if ($model->b2b == Profilo::B2B_ATTIVO) {
+                        $content = '<small class="badge rounded-pill text-bg-success">Verificato</small>';
+                    }
+                    if ($model->b2b == Profilo::B2B_RIFIUTATO) {
+                        $content = '<small class="badge rounded-pill text-bg-danger">Rifiutato</small>';
+                    }
+                    return $content;
+                },
+                'format' => 'raw',
+            ],
+            // 'creato_il',
+            // 'partita_iva',
+            'partita_iva',
+            'indirizzo',
+            'comune',
+            'cap',
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {

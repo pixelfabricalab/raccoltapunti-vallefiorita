@@ -11,13 +11,15 @@ use common\models\Profilo;
  */
 class ProfiloSearch extends Profilo
 {
+    public $business = false;
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'eta'], 'integer'],
+            [['id', 'eta', 'b2b'], 'integer'],
             [['nome', 'cognome', 'data_nascita', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'safe'],
         ];
     }
@@ -62,6 +64,12 @@ class ProfiloSearch extends Profilo
             'data_nascita' => $this->data_nascita,
             'eta' => $this->eta,
         ]);
+
+        if (!$this->business) {
+            $query->andFilterWhere(['=', 'b2b', (int)$this->b2b]);
+        } else {
+            $query->andFilterWhere(['in', 'b2b', [1, 2, -1]]);
+        }
 
         $query->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'cognome', $this->cognome])

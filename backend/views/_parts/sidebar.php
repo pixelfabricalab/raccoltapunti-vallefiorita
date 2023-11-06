@@ -51,6 +51,10 @@ $ctx = $this->context;
                     'url' => ['/profilo/index'], 
                     'active' => ($ctx->id == 'profilo')],
                 [
+                    'label' => 'Aziende', 
+                    'url' => ['/business/index'], 
+                    'active' => ($ctx->id == 'business')],
+                [
                     'label' => 'Coupon', 
                     'url' => ['/coupon/index'], 
                     'active' => ($ctx->id == 'coupon')],
@@ -62,10 +66,12 @@ $ctx = $this->context;
                     'label' => 'Scontrini', 
                     'url' => ['/scontrino/index'], 
                     'active' => ($ctx->id == 'scontrino')],
+                /*
                 [
                     'label' => 'Campagne', 
                     'url' => ['/campagna/index'], 
                     'active' => ($this->context->id == 'campagna')],
+                */
                 [
                     'label' => 'Premi', 
                     'url' => ['/premio/index'], 
