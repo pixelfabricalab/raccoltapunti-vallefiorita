@@ -6,6 +6,9 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Profilo */
 /* @var $form yii\widgets\ActiveForm */
+
+$opts = \Yii::$app->opts;
+
 ?>
 
 <div class="profilo-form card shadow-sm">
