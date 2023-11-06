@@ -4,6 +4,7 @@ use common\models\Profilo;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
+use common\widgets\grid\TextFixedColumn;
 use common\widgets\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
@@ -23,12 +24,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
-            'nome',
-            'cognome',
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cognome',
+                'width' => 150,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'nome',
+                'width' => 150,
+            ],
             'user.username:email',
+            'professione',
             'cellulare',
-            'creato_il',
+            // 'creato_il',
             // 'modificato_il',
             [
                 'class' => ActionColumn::class,

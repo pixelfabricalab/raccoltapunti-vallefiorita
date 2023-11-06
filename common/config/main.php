@@ -6,6 +6,10 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'formatter' => [
+            'class' => \yii\i18n\Formatter::class,
+            'nullDisplay' => '',
+        ],        
         'opts' => [
             'class' => \common\helpers\OptionsListRetriever::class,
         ],

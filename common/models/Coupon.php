@@ -23,6 +23,9 @@ use Yii;
  */
 class Coupon extends \yii\db\ActiveRecord
 {
+    const SCONTO_PERCENTUALE = 'percentuale';
+    const SCONTO_IMPORTO = 'importo';
+
     /**
      * {@inheritdoc}
      */
@@ -56,7 +59,7 @@ class Coupon extends \yii\db\ActiveRecord
             [['status', 'sconto_percentuale', 'profile_id', 'puntovendita_id'], 'integer'],
             [['sconto_importo'], 'number'],
             [['profile_id'], 'required'],
-            [['codice'], 'string', 'max' => 255],
+            [['codice', 'tipo_sconto'], 'string', 'max' => 255],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['profile_id' => 'id']],
             [['puntovendita_id'], 'exist', 'skipOnError' => true, 'targetClass' => Puntovendita::class, 'targetAttribute' => ['puntovendita_id' => 'id']],
         ];

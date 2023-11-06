@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use common\widgets\GridView;
+use common\widgets\grid\TextFixedColumn;
+use common\widgets\grid\EuroColumn;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var common\models\CouponSearch $searchModel */
@@ -25,10 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'codice',
-            'data_utilizzo',
-            'sconto_importo',
-            'sconto_percentuale',
             [
+                'attribute' => 'sconto_importo',
+                'class' => EuroColumn::class,
+                'label' => 'Importo',
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'sconto_percentuale',
+                'label' => '%',
+                'width' => 90,
+                'textAlign' => 'center',
+            ],
+            [
+                'class' => TextFixedColumn::class,
                 'attribute' => 'status',
                 'content' => function ($model) {
                     $content = '';
@@ -40,9 +52,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $content;
                 },
                 'format' => 'raw',
+                'width' => 90,
+                'textAlign' => 'center',
             ],
-            'data_utilizzo',
-            'creato_il',
+            [
+                'attribute' => 'data_utilizzo',
+                'class' => 'common\widgets\grid\DateItColumn',
+            ],
+            [
+                'attribute' => 'creato_il',
+                'class' => 'common\widgets\grid\DateItColumn',
+            ],
             //'modificato_il',
             //'profile_id',
             //'puntovendita_id',

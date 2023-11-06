@@ -4,6 +4,7 @@ namespace common\helpers;
 use yii\helpers\ArrayHelper;
 use common\models\Puntovendita;
 use common\models\Profilo;
+use common\models\Coupon;
 use common\models\User;
 
 class OptionsListRetriever
@@ -60,5 +61,13 @@ class OptionsListRetriever
         });
         */
         return ArrayHelper::map(Profilo::find()->select(['id', 'ragione_sociale'])->where(['!=', 'id', 0])->all(), 'id', 'ragione_sociale');
+    }
+
+    public function getTipiSconto()
+    {
+        return [
+            Coupon::SCONTO_PERCENTUALE => 'Percentuale',
+            Coupon::SCONTO_IMPORTO => 'Importo Fisso',
+        ];
     }
 }

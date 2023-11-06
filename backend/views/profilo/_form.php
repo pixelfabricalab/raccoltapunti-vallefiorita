@@ -70,10 +70,7 @@ $this->registerJs(
 
                     <?= $form->field($model, 'cap')->label('CAP') ?>
 
-                    <?= $form->field($model, 'tipo_sconto')->dropDownList([
-                        $model::SCONTO_PERCENTUALE => 'Percentuale',
-                        $model::SCONTO_IMPORTO => 'Importo fisso',
-                    ]) ?>
+                    <?= $form->field($model, 'tipo_sconto')->dropDownList($opts->getTipiSconto()) ?>
 
                     <?= $form->field($model, 'valore_sconto')->textInput(['type' => 'number', 'min' => 0]) ?>
 

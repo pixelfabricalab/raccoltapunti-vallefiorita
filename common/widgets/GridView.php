@@ -16,6 +16,8 @@ class GridView extends Base
         'class' => 'table table-xs bg-white'
     ];
 
+    public $bordered = false;
+
     public $hideToolbar = false;
 
     public function initGridView()
