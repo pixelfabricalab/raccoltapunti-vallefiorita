@@ -12,8 +12,8 @@ $this->title = 'Accedi / Registrati';
 <div class="site-login container">
     <h4 class="mb-4 text-center"><?= Html::encode($this->title) ?></h4>
 
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
             <div class="card">
                 <div class="card-header">
                     <h5>Accedi</h5>
@@ -43,7 +43,7 @@ $this->title = 'Accedi / Registrati';
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-5">
             <div class="card">
                 <div class="card-header">
                     <h5>Registrati</h5>
