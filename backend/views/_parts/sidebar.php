@@ -58,10 +58,12 @@ $ctx = $this->context;
                     'label' => 'Coupon', 
                     'url' => ['/coupon/index'], 
                     'active' => ($ctx->id == 'coupon')],
+                /*
                 [
                     'label' => 'Punti vendita', 
                     'url' => ['/puntovendita'], 
                     'active' => ($ctx->id == 'puntovendita')],
+                */
                 [
                     'label' => 'Scontrini', 
                     'url' => ['/scontrino/index'], 
