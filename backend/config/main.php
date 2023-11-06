@@ -16,6 +16,7 @@ return [
             \yii\widgets\LinkPager::class => \yii\bootstrap5\LinkPager::class,
             \yii\bootstrap5\ActiveField::class => \common\widgets\form\ActiveField::class,
             \yii\grid\ActionColumn::class => \common\widgets\grid\ActionColumn::class,
+            \yii\bootstrap5\ActiveForm::class => \common\widgets\form\ActiveForm::class,
         ],
     ],
     'components' => [
