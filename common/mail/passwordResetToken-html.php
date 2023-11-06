@@ -8,7 +8,9 @@ use yii\helpers\Html;
 $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->password_reset_token]);
 ?>
 <div class="password-reset">
-    <p>Ciao <?= Html::encode($user->profilo->nome) ?>,</p>
+    <p>Ciao <?= Html::encode($user->profilo->nome) ?>,<br />
+    se non hai richiesto il reset della password puoi tranquillamente cestinare questa mail.</p>
+    
 
     <p>Clicca sul pulsante qui in basso per resettare la tua password di Profility:</p>
 
