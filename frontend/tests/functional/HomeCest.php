@@ -10,8 +10,8 @@ class HomeCest
     {
         $I->amOnPage(\Yii::$app->homeUrl);
         $I->see('Premio 1');
-        $I->seeLink('Servizi');
-        $I->click('Servizi');
+        $I->seeLink('SERVIZI');
+        $I->click('SERVIZI');
         $I->see('Servizi Profility');
     }
 }
