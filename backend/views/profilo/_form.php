@@ -31,6 +31,10 @@ $this->registerJs(
                 <?= $form->field($model, 'cognome')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                
+                <?php if (!$model->id) : ?>
+                <?= $form->field($model, 'password')->textInput() ?>
+                <?php endif; ?>
 
                 <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 

@@ -66,7 +66,7 @@ class ProfiloController extends Controller
                 $user = new User();
                 $user->username = $model->email;
                 $user->email = $model->email;
-                $user->setPassword(\Yii::$app->getSecurity()->generateRandomString(6));
+                $user->setPassword($model->password);
                 $user->status = User::STATUS_ACTIVE;
                 $user->generateAuthKey();
                 if ($user->save()) {

@@ -34,6 +34,8 @@ class Profilo extends \yii\db\ActiveRecord
     const SCONTO_PERCENTUALE = 'percentuale';
     const SCONTO_IMPORTO = 'importo';
 
+    public $password;
+
     /**
      * {@inheritdoc}
      */
@@ -54,9 +56,12 @@ class Profilo extends \yii\db\ActiveRecord
             }, 'whenClient' => "function (attribute, value) {
                 return $('#profilo-b2b').val() != '0';
             }"],
+            [['password'], 'required','when' => function($model) {
+                return is_null($model->id);
+            }],
             [['partita_iva'], 'unique'],
             [['partita_iva'], 'string', 'length' => 11],
-            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email'], 'safe'],
+            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email', 'password'], 'safe'],
             [['eta', 'b2b', 'valore_sconto'], 'integer'],
             [['tipo_sconto'], 'string', 'max' => 16],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],
