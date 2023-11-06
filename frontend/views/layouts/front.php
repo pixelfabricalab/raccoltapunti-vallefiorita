@@ -40,8 +40,8 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'HOME', 'url' => ['/site/index'], 'class' =>'mx-2'],
-        ['label' => 'COME FUNZIONA', 'url' => ['/site/regolamento']],
         ['label' => 'SERVIZI', 'url' => ['/site/servizi']],
+        ['label' => 'REGOLAMENTO', 'url' => ['/site/regolamento']],
         // ['label' => 'Premi', 'url' => ['/site/premi']],
     ];
     if (Yii::$app->user->isGuest) {
@@ -71,9 +71,15 @@ AppAsset::register($this);
 
 <main role="main" class="flex-shrink-0">
         
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
+                </div>
+            </div>
+        </div>
 
         <div class="container">
             <div class="row">
