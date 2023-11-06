@@ -67,14 +67,21 @@ class ProfiloController extends Controller
                 $user->username = $model->email;
                 $user->email = $model->email;
                 $user->setPassword(\Yii::$app->getSecurity()->generateRandomString(6));
+                $user->status = User::STATUS_ACTIVE;
                 $user->generateAuthKey();
                 if ($user->save()) {
                     $model->creato_il = date('Y-m-d H:i:s');
-                    $model->modificato_il = $profilo->creato_il;
+                    $model->modificato_il = $model->creato_il;
                     $model->b2b = (int)$model->b2b;
 
-                    $profilo->user_id = $user->id;
-                    $profilo->save(false);
+                    $auth = \Yii::$app->authManager;
+                    $user_role = $auth->getRole(User::ROLE_SIMPLEUSER);
+                    $auth->assign($user_role, $user->id);
+
+                    $model->user_id = $user->id;
+                    $model->save(false);
+
+                    $this->addOk();
                     return $this->redirect(['/profilo/update', 'id' => $model->id]);
                 }
             }

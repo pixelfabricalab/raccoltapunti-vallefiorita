@@ -48,6 +48,13 @@ class Profilo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nome', 'cognome', 'email'], 'required'],
+            [['partita_iva', 'ragione_sociale'], 'required','when' => function($model) {
+                return (int)$model->b2b != 0;
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#profilo-b2b').val() != '0';
+            }"],
+            [['partita_iva'], 'unique'],
             [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email'], 'safe'],
             [['eta', 'b2b', 'valore_sconto'], 'integer'],
             [['tipo_sconto'], 'string', 'max' => 16],
