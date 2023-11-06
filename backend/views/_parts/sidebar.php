@@ -73,11 +73,11 @@ $ctx = $this->context;
                     'label' => 'Campagne', 
                     'url' => ['/campagna/index'], 
                     'active' => ($this->context->id == 'campagna')],
-                */
                 [
                     'label' => 'Premi', 
                     'url' => ['/premio/index'], 
                     'active' => ($this->context->id == 'premio')],
+                */
             ];
             echo Menu::widget([
                 'options' => [
