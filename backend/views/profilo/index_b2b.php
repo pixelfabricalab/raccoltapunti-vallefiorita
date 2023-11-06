@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /** @var common\models\ProfiloSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Profili';
+$this->title = 'Aziende';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profilo-index">
