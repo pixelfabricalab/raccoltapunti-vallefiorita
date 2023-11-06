@@ -112,6 +112,12 @@ use yii\helpers\Html;
           text-align: center; 
       }
 
+      img.logo {
+        width: 165px;
+        display:block;
+        margin: 10px auto;
+      }
+
       /* -------------------------------------
           TYPOGRAPHY
       ------------------------------------- */
@@ -366,6 +372,9 @@ use yii\helpers\Html;
     </style>
     <?php $this->head() ?>
   </head>
+  <header>
+    <?php  echo Html::img(Yii::$app->urlManager->createAbsoluteUrl(['/']).'/assets/logo/profility-new.png', ['class' => 'logo']) ?>
+  </header>
   <body>
     <span class="preheader">Profility</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
