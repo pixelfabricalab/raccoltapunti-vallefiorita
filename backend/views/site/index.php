@@ -12,7 +12,7 @@ $this->title = 'Profility';
         <p class="lead">L'accesso a quest'area è strettamente riservato.</p>
         -->
     </div>
-
+<!--
     <div class="body-content">
 
         <div class="row">
@@ -39,4 +39,5 @@ $this->title = 'Profility';
         </div>
 
     </div>
+-->
 </div>
