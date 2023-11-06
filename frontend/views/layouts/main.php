@@ -92,6 +92,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                     </button>
 
                     <!-- Topbar Search -->
+                    <!--
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -104,11 +105,13 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                             </div>
                         </div>
                     </form>
+                    -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <?php if (false) : ?>
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -131,6 +134,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                                 </form>
                             </div>
                         </li>
+                        <?php endif; ?>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -204,10 +208,12 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Storico
                                 </a>
+                                <!--
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Impostazioni
                                 </a>
+                                -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
