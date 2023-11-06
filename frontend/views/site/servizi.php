@@ -10,7 +10,7 @@
       <div class="row">
          <div class="col">
             <div class="page-title mt-5">
-               <h1><?= Html::encode($this->title) ?></h1>
+               <h3><?= Html::encode($this->title) ?></h3>
             </div>
          </div>
       </div>
