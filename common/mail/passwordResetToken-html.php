@@ -14,5 +14,5 @@ $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 't
 
     <p>Clicca sul pulsante qui in basso per resettare la tua password di Profility:</p>
 
-    <p><?= Html::a(Html::encode($resetLink), $resetLink, ['class' => 'btn btn-primary']) ?></p>
+    <p><?= Html::a('Reset password', $resetLink, ['class' => 'btn btn-primary']) ?></p>
 </div>
