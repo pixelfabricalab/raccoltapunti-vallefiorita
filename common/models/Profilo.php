@@ -55,7 +55,8 @@ class Profilo extends \yii\db\ActiveRecord
                 return $('#profilo-b2b').val() != '0';
             }"],
             [['partita_iva'], 'unique'],
-            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'partita_iva', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email'], 'safe'],
+            [['partita_iva'], 'string', 'length' => 11],
+            [['data_nascita', 'user_id', 'bio', 'ragione_sociale', 'comune', 'indirizzo', 'cap', 'provincia', 'cellulare', 'email'], 'safe'],
             [['eta', 'b2b', 'valore_sconto'], 'integer'],
             [['tipo_sconto'], 'string', 'max' => 16],
             [['nome', 'cognome', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'string', 'max' => 255],

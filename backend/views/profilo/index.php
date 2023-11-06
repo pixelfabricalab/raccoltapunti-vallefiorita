@@ -7,6 +7,9 @@ use yii\grid\ActionColumn;
 use common\widgets\grid\TextFixedColumn;
 use common\widgets\GridView;
 use yii\widgets\Pjax;
+use yii\grid\DataColumn;
+use common\widgets\grid\DateItColumn;
+
 /** @var yii\web\View $this */
 /** @var common\models\ProfiloSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -39,9 +42,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'nome',
                 'width' => 150,
             ],
-            'user.username:email',
-            'professione',
-            'cellulare',
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'user.username',
+                'width' => 340,
+            ],
+            [
+                'attribute' => 'data_nascita',
+                'class' => DateItColumn::class,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'professione',
+                'width' => 130,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cellulare',
+                'width' => 100,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'residenza_citta',
+                'width' => 200,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'residenza_cap',
+                'width' => 120,
+            ],
+            [
+                'class' => DataColumn::class,
+            ],
             // 'creato_il',
             // 'modificato_il',
         ],
