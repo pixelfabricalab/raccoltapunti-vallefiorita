@@ -33,6 +33,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->showToolbar = false;
         return $this->render('index');
     }
 
