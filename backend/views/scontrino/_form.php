@@ -29,7 +29,7 @@ $opts = \Yii::$app->opts;
     
     <?= $form->field($model, 'indirizzo')->textInput() ?>
     
-    <?= $form->field($model, 'totale')->textInput() ?>
+    <?= $form->field($model, 'totale')->textInput(['type' => 'number']) ?>
     
     <?= $form->field($model, 'data_doc')->textInput() ?>
     

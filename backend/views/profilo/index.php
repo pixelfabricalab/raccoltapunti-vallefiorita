@@ -23,7 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
             [
                 'class' => TextFixedColumn::class,
                 'attribute' => 'cognome',
@@ -39,12 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'cellulare',
             // 'creato_il',
             // 'modificato_il',
-            [
-                'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
         ],
     ]); ?>
 

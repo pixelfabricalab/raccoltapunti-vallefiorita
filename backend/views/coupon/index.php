@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 /** @var common\models\CouponSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Coupons';
+$this->title = 'Coupon';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="coupon-index">
@@ -24,8 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, Coupon $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
             'codice',
             [
                 'attribute' => 'sconto_importo',
@@ -66,12 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'modificato_il',
             //'profile_id',
             //'puntovendita_id',
-            [
-                'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Coupon $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
         ],
     ]); ?>
 

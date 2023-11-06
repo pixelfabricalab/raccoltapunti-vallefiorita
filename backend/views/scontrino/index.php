@@ -5,7 +5,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use common\widgets\GridView;
+use common\widgets\grid\TextFixedColumn;
+use common\widgets\grid\EuroColumn;
+use common\widgets\grid\DateItColumn;
 use yii\widgets\Pjax;
+use yii\grid\DataColumn;
 /** @var yii\web\View $this */
 /** @var common\models\ScontrinoSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -22,17 +26,56 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            // 'id',
-            'profilo_id',
-            'creato_il',
-            'modificato_il',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Scontrino $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
+            ],
+            // ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'ragione_sociale',
+                'width' => 280,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'partita_iva',
+                'width' => 130,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'indirizzo',
+                'width' => 270,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'label' => 'Caricato da',
+                'width' => 150,
+                'content' => function ($model) {
+                    if ($model->profilo) {
+                        return $model->profilo->cognomeNome;
+                    }
+                    return '';
+                },
+            ],
+            [
+                'attribute' => 'data_doc',
+                'class' => DateItColumn::class,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'ora_doc',
+                'label' => 'Ora',
+                'width' => 40,
+                'textAlign' => 'center',
+            ],
+            [
+                'attribute' => 'totale',
+                'class' => EuroColumn::class,
+            ],
+            [
+                'class' => DataColumn::class,
             ],
         ],
     ]); ?>

@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use common\widgets\GridView;
+use common\widgets\grid\TextFixedColumn;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var common\models\ProfiloSearch $searchModel */
@@ -22,13 +23,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            
-            'nome',
-            'cognome',
-            'user.username:email',
-            'cellulare',
+            [
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
             'ragione_sociale',
+            'partita_iva',
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cognome',
+                'width' => 150,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'nome',
+                'width' => 150,
+            ],
+            [
+                'label' => 'Email',
+                'attribute' => 'user.username',
+            ],
+            'cellulare',
             [
                 'attribute' => 'b2b',
                 'content' => function ($model) {
@@ -47,17 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
             ],
             // 'creato_il',
-            // 'partita_iva',
-            'partita_iva',
             'indirizzo',
             'comune',
             'cap',
-            [
-                'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Profilo $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
         ],
     ]); ?>
 

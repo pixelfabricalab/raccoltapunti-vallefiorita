@@ -117,9 +117,10 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                                 <a class="dropdown-item" href="<?= Url::toRoute(['//business/create']) ?>">
                                     <i class="fas fa-file fa-sm fa-fw mr-2 text-primary"></i>Azienda
                                 </a>
-                                <a class="dropdown-item" href="<?= Url::toRoute(['//cliente/create']) ?>">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-primary"></i>Anagrafica
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//profilo/create']) ?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-primary"></i>Profilo
                                 </a>
+                                <!--
                                 <a class="dropdown-item" href="<?= Url::toRoute(['//fatturazione/fattura/create']) ?>">
                                     <i class="fas fa-file-alt fa-sm fa-fw mr-2 text-primary"></i>Fattura
                                 </a>
@@ -129,6 +130,7 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                                 <a class="dropdown-item" href="<?= Url::toRoute(['//fatturazione/articolo/create']) ?>">
                                     <i class="fas fa-store fa-sm fa-fw mr-2 text-primary"></i>Prodotto
                                 </a>
+                                -->
                                 <!--
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>

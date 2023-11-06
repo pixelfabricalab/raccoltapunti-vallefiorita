@@ -60,7 +60,7 @@ $this->registerJs(
 
                 <?= $form->field($model, 'data_utilizzo')->textInput(['type' => 'datetime-local'])->label('Data ritiro') ?>
 
-                <?= $form->field($model, 'esercente_id')->dropDownList($opts->getEsercenti())->label('Ritirato da') ?>
+                <?= $form->field($model, 'esercente_id')->dropDownList($opts->getEsercenti(), ['prompt' => '- Seleziona'])->label('Ritirato da') ?>
 
             </div>
             <div class="card-footer text-end">
