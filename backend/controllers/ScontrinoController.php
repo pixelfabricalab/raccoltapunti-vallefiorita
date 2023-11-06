@@ -56,7 +56,7 @@ class ScontrinoController extends Controller
                     $model->content = null;
                 }
                 if ($model->upload() && $model->save(false)) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    return $this->redirect(['update', 'id' => $model->id]);
                 }
             }
         } else {
@@ -88,7 +88,7 @@ class ScontrinoController extends Controller
             }
             if ($model->save(false)) {
                 $this->addOk();
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         }
 

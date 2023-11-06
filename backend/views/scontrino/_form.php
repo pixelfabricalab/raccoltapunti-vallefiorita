@@ -15,7 +15,9 @@ $opts = \Yii::$app->opts;
 
     <?= $form->field($model, 'profilo_id')->dropDownList($opts->getProfili()) ?>
 
+    <?php if (!$model->id) : ?>
     <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <?php endif; ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
