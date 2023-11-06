@@ -70,6 +70,7 @@ class CouponController extends Controller
         if ((int)$confirm) {
             $model->utilizza();
             $model->esercente_id = \Yii::$app->user->identity->id;
+            $model->data_utilizzo = date('Y-m-d H:i:s');
             $model->save(false);
             $this->addOk('Coupon ' . $codice . ' ritirato con successo.');
         }
@@ -126,10 +127,32 @@ class CouponController extends Controller
         $scontrino = Scontrino::findOne(['sid' => $sid]);
         $model->scontrino_id = $scontrino->id;
 
+        // Ricava l'azienda associata allo scontrino: se esiste, recupera tipo sconto e valore
+        $esercente = $scontrino->esercente;
+        if ($esercente) {
+            $model->status = Coupon::STATUS_ATTIVO;
+            $model->tipo_sconto = $esercente->tipo_sconto;
+            $valore = $esercente->valore_sconto;
+            if ($model->tipo_sconto == Coupon::SCONTO_PERCENTUALE) {
+                $model->sconto_percentuale = $valore;
+            } else {
+                $model->sconto_importo = $valore;
+            }
+        } else {
+            $model->status = Coupon::STATUS_DISATTIVO;
+            $model->sconto_percentuale = 0;
+            $model->sconto_importo = 0;
+            $model->tipo_sconto = Coupon::SCONTO_PERCENTUALE;
+        }
+
         if ($scontrino->coupon) {
             $this->addWarning('Coupon GIA\' richiesto per questo scontrino.');
         } else if ($model->save(false)) {
-            $this->addOk('Coupon creato con successo');
+            if ($model->status == 1) {
+                $this->addOk('Coupon creato con successo');
+            } else {
+                $this->addOk('Coupon creato con successo, in attesa di convalida');
+            }
         }
 
         return $this->redirect(['coupon/index']);

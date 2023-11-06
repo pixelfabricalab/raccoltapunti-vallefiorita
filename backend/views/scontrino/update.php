@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Scontrino $model */
 
-$this->title = 'Update Scontrino: ' . $model->id;
+$this->title = 'Modifica Scontrino';
 $this->params['breadcrumbs'][] = ['label' => 'Scontrini', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

@@ -48,10 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'content' => function ($model) {
                     $content = '';
-                    if ($model->status) {
+                    if ($model->status == Coupon::STATUS_ATTIVO) {
                         $content = '<small class="badge rounded-pill text-bg-success">Attivo</small>';
-                    } else {
-                        $content = '<small class="badge rounded-pill text-bg-danger">Ritirato</small>';
+                    } 
+                    if ($model->status == Coupon::STATUS_DISATTIVO) {
+                        $content = '<small class="badge rounded-pill text-bg-info text-white">Da Convalidare</small>';
+                    } 
+                    if ($model->status == Coupon::STATUS_RITIRATO) {
+                        $content = '<small class="badge rounded-pill text-bg-danger text-white">Ritirato</small>';
                     }
                     return $content;
                 },

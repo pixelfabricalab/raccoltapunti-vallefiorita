@@ -26,6 +26,10 @@ class Coupon extends \yii\db\ActiveRecord
     const SCONTO_PERCENTUALE = 'percentuale';
     const SCONTO_IMPORTO = 'importo';
 
+    const STATUS_ATTIVO = 1;
+    const STATUS_DISATTIVO = -1;
+    const STATUS_RITIRATO = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -40,10 +44,8 @@ class Coupon extends \yii\db\ActiveRecord
     public function loadDefaultValues($skipIfSet = true)
     {
         $this->codice = $key = \Yii::$app->getSecurity()->generateRandomString();
-        $this->status = 1;
         $this->creato_il = date('Y-m-d H:i:s');
         $this->modificato_il = date('Y-m-d H:i:s');
-        $this->sconto_percentuale = 20;
         $this->profile_id = \Yii::$app->user->identity->profilo->id;
         return parent::loadDefaultValues($skipIfSet);
     }

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\web\UploadedFile;
 use yii\helpers\Json;
+use common\models\Profilo;
 
 /**
  * This is the model class for table "scontrino".
@@ -101,6 +102,14 @@ class Scontrino extends \yii\db\ActiveRecord
 
                 $this->ragione_sociale = (isset($scontrino['merchant_name']) && $scontrino['merchant_name'] && !$this->ragione_sociale) ? $scontrino['merchant_name'] : $this->ragione_sociale;
                 $this->partita_iva = (isset($scontrino['merchant_tax_reg_no']) && $scontrino['merchant_tax_reg_no'] && !$this->partita_iva) ? $scontrino['merchant_tax_reg_no'] : $this->partita_iva;
+
+                // Cerca la partita iva dentro il DB delle aziende aderenti
+                if ($this->partita_iva) {
+                    $esercente = Profilo::find()->where(['=', 'partita_iva', $this->partita_iva])->one();
+                    if ($esercente) {
+                        $this->esercente_id = $esercente->id;
+                    }
+                }
                 
                 if (isset($scontrino['items']) && is_array($scontrino['items']) && !empty($scontrino['items'])) {
                     $this->articoli = Json::encode($scontrino['items']);
@@ -185,6 +194,16 @@ class Scontrino extends \yii\db\ActiveRecord
     public function getProfilo()
     {
         return $this->hasOne(Profilo::class, ['id' => 'profilo_id']);
+    }
+
+    /**
+     * Gets query for [[Profilo]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEsercente()
+    {
+        return $this->hasOne(Profilo::class, ['id' => 'esercente_id']);
     }
 
     /**

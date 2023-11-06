@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
-
+use common\models\Coupon;
 /** @var yii\web\View $this */
 /** @var common\models\Coupon $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -54,8 +54,9 @@ $this->registerJs(
                 <hr />
 
                 <?= $form->field($model, 'status')->dropDownList([
-                    '1' => 'Attivo',
-                    '0' => 'Ritirato',
+                    Coupon::STATUS_ATTIVO => 'Attivo',
+                    Coupon::STATUS_RITIRATO => 'Ritirato',
+                    Coupon::STATUS_DISATTIVO => 'Da convalidare',
                 ]) ?>
 
                 <?= $form->field($model, 'data_utilizzo')->textInput(['type' => 'datetime-local'])->label('Data ritiro') ?>
