@@ -114,8 +114,8 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="newDropdown">
-                                <a class="dropdown-item" href="<?= Url::toRoute(['//contratto/create']) ?>">
-                                    <i class="fas fa-file fa-sm fa-fw mr-2 text-primary"></i>Contratto
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//business/create']) ?>">
+                                    <i class="fas fa-file fa-sm fa-fw mr-2 text-primary"></i>Azienda
                                 </a>
                                 <a class="dropdown-item" href="<?= Url::toRoute(['//cliente/create']) ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-primary"></i>Anagrafica
@@ -213,10 +213,11 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                <a class="dropdown-item" href="<?= Url::toRoute(['//site/index']) ?>">
+                                    <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Home
                                 </a>
+                                <!--
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
@@ -225,6 +226,7 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
+                                -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

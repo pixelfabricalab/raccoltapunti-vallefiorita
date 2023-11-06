@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Profilo $model */
 
-$this->title = 'Create Profilo';
+$this->title = 'Nuova scheda';
 $this->params['breadcrumbs'][] = ['label' => 'Profili', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
