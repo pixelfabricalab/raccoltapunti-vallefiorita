@@ -20,7 +20,7 @@ class ProfiloSearch extends Profilo
     {
         return [
             [['id', 'eta', 'b2b'], 'integer'],
-            [['nome', 'cognome', 'data_nascita', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare'], 'safe'],
+            [['nome', 'cognome', 'data_nascita', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare', 'ragione_sociale', 'partita_iva'], 'safe'],
         ];
     }
 
@@ -78,7 +78,10 @@ class ProfiloSearch extends Profilo
             ->andFilterWhere(['like', 'residenza_citta', $this->residenza_citta])
             ->andFilterWhere(['like', 'residenza_cap', $this->residenza_cap])
             ->andFilterWhere(['like', 'residenza_provincia', $this->residenza_provincia])
-            ->andFilterWhere(['like', 'cellulare', $this->cellulare]);
+            ->andFilterWhere(['like', 'cellulare', $this->cellulare])
+            ->andFilterWhere(['like', 'ragione_sociale', $this->ragione_sociale])
+            ->andFilterWhere(['like', 'partita_iva', $this->partita_iva])
+        ;
 
         return $dataProvider;
     }
