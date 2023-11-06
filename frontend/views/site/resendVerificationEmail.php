@@ -1,11 +1,11 @@
 <?php
 
 /** @var yii\web\View$this  */
-/** @var yii\bootstrap4\ActiveForm $form */
+/** @var yii\bootstrap5\ActiveForm $form */
 /** @var \frontend\models\ResetPasswordForm $model */
 
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
 
 $this->title = 'Email di verifica';
 // $this->params['breadcrumbs'][] = $this->title;
@@ -22,11 +22,11 @@ $this->title = 'Email di verifica';
 
                     <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
 
-                    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+                        <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
-                    <div class="form-group">
-                        <?= Html::submitButton('Invia', ['class' => 'btn btn-primary btn-block']) ?>
-                    </div>
+                        <div class="form-group">
+                            <?= Html::submitButton('Invia', ['class' => 'btn btn-primary btn-block']) ?>
+                        </div>
 
                     <?php ActiveForm::end(); ?>
                 </div>

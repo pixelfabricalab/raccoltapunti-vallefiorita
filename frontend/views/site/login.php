@@ -19,12 +19,11 @@ $this->title = 'Accedi / Registrati';
                     <h5>Accedi</h5>
                 </div>
                 <div class="card-body">
-                    <p>Accedi utilizzando nome utente e password:</p>
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Email') ?>
 
-                        <?= $form->field($model, 'password')->passwordInput() ?>
+                        <?= $form->field($model, 'password')->passwordInput(['hint' => 'aaa'])->hint(Html::a('Hai perso la password?', ['site/request-password-reset'])) ?>
 
                         <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
 
@@ -35,8 +34,6 @@ $this->title = 'Accedi / Registrati';
                         <hr />
 
                         <div style="color:#999;" class="mt-2"><small>
-                            Hai dimenticato la password? Puoi eseguire un <?= Html::a('reset', ['site/request-password-reset']) ?>.
-                            <br>
                             Non hai ricevuto la mail di verifica? <?= Html::a('Reivia mail', ['site/resend-verification-email']) ?></small>
                         </div>
                     <?php ActiveForm::end(); ?>
