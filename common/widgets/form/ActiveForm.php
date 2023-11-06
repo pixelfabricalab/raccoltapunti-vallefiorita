@@ -11,4 +11,21 @@ class ActiveForm extends Base
      */
     public $fieldClass = ActiveField::class;
 
+    public $applyOffset = false;
+
+    public function init()
+    {
+        parent::init();
+
+        if ($this->applyOffset) {
+            $this->fieldConfig = [
+                'horizontalCssClasses' => [
+                    'label' => 'col-sm-4',
+                    'offset' => 'col-sm-offset-4',
+                    'wrapper' => 'col-sm-8',
+                ],
+            ];
+        }
+    }
+
 }
