@@ -3,6 +3,7 @@
 namespace frontend\tests\functional;
 
 use common\fixtures\UserFixture;
+use common\fixtures\UserProfileFixture;
 use frontend\tests\FunctionalTester;
 
 class ResendVerificationEmailCest
@@ -21,8 +22,12 @@ class ResendVerificationEmailCest
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
-                'dataFile' => codecept_data_dir() . 'user.php',
+                'class' => UserFixture::class,
+                'dataFile' => codecept_data_dir() . 'user.php'
+            ],
+            'profilo' => [
+                'class' => UserProfileFixture::class,
+                'dataFile' => codecept_data_dir() . 'profile_data.php'
             ],
         ];
     }
