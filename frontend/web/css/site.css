@@ -206,3 +206,7 @@ ol.master li::marker {
 .radius {
   border-radius: 10px;
 }
+
+div.site-login {
+  margin-top: 10px;
+}
