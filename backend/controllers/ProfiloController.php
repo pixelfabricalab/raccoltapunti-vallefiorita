@@ -79,15 +79,15 @@ class ProfiloController extends Controller
                     $auth->assign($user_role, $user->id);
 
                     $business = $auth->getRole(User::ROLE_BUSINESS);
-                    $roles = $auth->getRolesByUser($model->user_id);
+                    $roles = $auth->getRolesByUser($user->id);
 
                     if ($model->b2b == Profilo::B2B_ATTIVO) {
                         if (!isset($roles[User::ROLE_BUSINESS])) {
-                            $auth->assign($business, $model->user_id);
+                            $auth->assign($business, $user->id);
                         }
                     } else {
                         if (isset($roles[User::ROLE_BUSINESS])) {
-                            $auth->revoke($business, $model->user_id);
+                            $auth->revoke($business, $user->id);
                         }
                     }
 
