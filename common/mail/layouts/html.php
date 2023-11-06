@@ -112,6 +112,12 @@ use yii\helpers\Html;
           text-align: center; 
       }
 
+      img.logo {
+        width: 165px;
+        display:block;
+        margin: 10px auto;
+      }
+
       /* -------------------------------------
           TYPOGRAPHY
       ------------------------------------- */
@@ -186,6 +192,29 @@ use yii\helpers\Html;
           text-decoration: none;
           text-transform: capitalize; 
       }
+
+      a.btn {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; 
+      }
+
+      a.btn-primary {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; 
+      }
+
 
       .btn-primary table td {
         background-color: #3498db; 
@@ -343,6 +372,9 @@ use yii\helpers\Html;
     </style>
     <?php $this->head() ?>
   </head>
+  <header>
+    <?php  echo Html::img(Yii::$app->urlManager->createAbsoluteUrl(['/']).'/assets/logo/profility-new.png', ['class' => 'logo']) ?>
+  </header>
   <body>
     <span class="preheader">Profility</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
