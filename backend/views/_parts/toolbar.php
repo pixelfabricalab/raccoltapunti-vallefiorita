@@ -39,7 +39,6 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
         ?>
         <?php if (false) : ?>
         <?= Html::a('<i class="fas fa-fw fa-paperclip text-info"></i> Allegati', ['index'], $btnAttachmentParams) ?>
-        <?php endif; ?>
         <div class="btn-group">
             <div class="dropdown">
             <a class="btn btn-outline-secondary dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,9 +53,11 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
                 <li><?= Html::a('<i class="fas fa-fw fa-sync"></i> Ripristina Arrot.', ['ripristina-arrotondamenti', 'id' => \Yii::$app->request->get('id')], ['class' => 'dropdown-item']) ?></li>
                 <?php endif; ?>
 
+                <!--
                 <?php if (!($ctx->module->id == 'fatturazione' && $ctx->id == 'fattura' && in_array($ctx->action->id, ['report', 'emissione']))) : ?>
                 <li><?= Html::a('<i class="fas fa-fw fa-print"></i> Stampa', ['stampa', 'id' => \Yii::$app->request->get('id')], ['class' => 'dropdown-item', 'target' => '_blank']) ?></li>
                 <?php endif; ?>
+                -->
 
                 <?php if ($ctx->module->id == 'fatturazione' && $ctx->id == 'fattura' && in_array($ctx->action->id, ['', 'update'])) : ?>
                 <?php $model = Fattura::findOne($ctx->request->get('id')); ?>
@@ -88,6 +89,9 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
             </div>
         </div>
         <?php endif; ?>
+
+        <?php endif; ?>
+        <!--
         <?php if (in_array($ctx->action->id, ['update', 'view'])) : ?>
         <?= Html::a('<i class="fas fa-fw fa-paperclip text-danger"></i> Elimina', ['delete', 'id' => \Yii::$app->request->get('id')], [
             'class' => 'btn btn-outline-danger btn-sm',
@@ -97,5 +101,6 @@ $backto = $ctx->id . '/' . $ctx->action->id . '?id=' . $ctx->request->get('id');
             ],
         ]) ?>
         <?php endif; ?>
+        -->
 </div>
 <?php endif; ?>
