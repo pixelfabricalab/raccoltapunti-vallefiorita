@@ -38,6 +38,25 @@ use yii\bootstrap4\ActiveForm;
 
         <?= $form->field($model, 'residenza_provincia') ?>
 
+        <?php if ($model->b2b != $model::B2B_NO) : ?>
+        <hr />
+
+        <?= $form->field($model, 'ragione_sociale') ?>
+
+        <?= $form->field($model, 'partita_iva') ?>
+
+        <?= $form->field($model, 'indirizzo') ?>
+
+        <?= $form->field($model, 'comune') ?>
+
+        <?= $form->field($model, 'cap')->label('CAP') ?>
+
+        <?= $form->field($model, 'tipo_sconto')->dropDownList($opts->getTipiSconto()) ?>
+
+        <?= $form->field($model, 'valore_sconto')->textInput(['type' => 'number', 'min' => 0]) ?>
+
+        <?php endif; ?>
+
         <div class="form-group">
             <?= Html::submitButton('Salva', ['class' => 'btn btn-success']) ?>
         </div>
