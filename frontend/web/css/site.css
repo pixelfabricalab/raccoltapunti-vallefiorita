@@ -28,9 +28,6 @@
   .bg-profility-dark {
     background-color: #1e2246;
   }
-  .bg-profility-light{
-
-  }
 
   .profility-color {
     color: #1e2246;    
@@ -205,4 +202,8 @@ ol.master li::marker {
 
 .radius {
   border-radius: 10px;
+}
+
+div.site-login {
+  margin-top: 10px;
 }
