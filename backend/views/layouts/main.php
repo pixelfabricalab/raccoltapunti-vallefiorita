@@ -66,6 +66,7 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                     </button>
 
                     <!-- Topbar Search -->
+                    <?php if (false) : ?>
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" autocomplete="off" action="<?= Url::toRoute(['//cerca/result']) ?>">
                         <div class="input-group">
@@ -77,7 +78,7 @@ $sidebarToggled = isset($_COOKIE['sidebarToggled']) ? $_COOKIE['sidebarToggled']
                             </div>
                         </div>
                     </form>
-
+                    <?php endif; ?>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
