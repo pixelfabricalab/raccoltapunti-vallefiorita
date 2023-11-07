@@ -45,13 +45,13 @@ $module_id = \Yii::$app->controller->module->id;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Lista coupon ritirati', 
-                    'url' => ['/dashboard/coupon/report'], 
-                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'report')],
-                [
                     'label' => 'Ritira coupon', 
                     'url' => ['/dashboard/coupon/validate', 'mode' => 'manual'], 
                     'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'validate')],
+                [
+                    'label' => 'Coupon ritirati', 
+                    'url' => ['/dashboard/coupon/report'], 
+                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon' && $this->context->action->id == 'report')],
             ];
             echo Menu::widget([
                 'options' => [
@@ -68,46 +68,14 @@ $module_id = \Yii::$app->controller->module->id;
     </li>
     <?php endif; ?>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttivita"
-            aria-expanded="true" aria-controls="collapseAttivita">
-            <i class="fas fa-fw fa-file"></i>
-            <span>Raccolta punti</span>
-        </a>
-        <div id="collapseAttivita" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-            <?php
-            $menu_items = [
-                [
-                    'label' => 'I miei Coupon', 
-                    'url' => ['/dashboard/coupon/index'], 
-                    'active' => ($module_id == 'dashboard' && $this->context->id == 'coupon')],
-                [
-                    'label' => 'Scontrini', 
-                    'url' => ['/dashboard/scontrino/index'], 
-                    'active' => ($module_id == 'dashboard' && $this->context->id == 'articolo')],
-                /*
-                [
-                    'label' => 'Punti vendita', 
-                    'url' => ['/dashboard/puntovendita/index'], 
-                    'active' => ($module_id == 'dashboard' && $this->context->id == 'puntovendita')],
-                */
-            ];
-            echo Menu::widget([
-                'options' => [
-                    'class' => 'list-unstyled',
-                ],
-                'itemOptions' => [
-                    'class' => 'collapse-item',
-                ],
-                'items' => $menu_items,
-            ]);
-            ?>
-            </div>
-        </div>
+    <li class="nav-item <?= ($module_id == 'dashboard' && $this->context->id == 'scontrino') ? 'active' : '' ?>">
+        <?= Html::a( '<i class="fas fa-fw fa-list"></i> <span>Scontrini</span>', ['/dashboard/scontrino/index'], ['class' => 'nav-link']) ?>
     </li>
+
+    <li class="nav-item <?= ($module_id == 'dashboard' && $this->context->id == 'coupon') ? 'active' : '' ?>">
+        <?= Html::a( '<i class="fas fa-fw fa-barcode"></i> <span>Coupon</span>', ['/dashboard/coupon/index'], ['class' => 'nav-link']) ?>
+    </li>
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <?php if (false) : ?>
