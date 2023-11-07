@@ -26,7 +26,7 @@ $profilo = isset(\Yii::$app->user->identity->profilo) && \Yii::$app->user->ident
                                                 <?php if ($profilo->professione) : ?>
                                                 <small><?= $profilo->professione ?></small>
                                                 <?php endif; ?>
-                                                <div class="d-block d-sm-none">SALDO PUNTI<br><strong class="h4 text-success font-weight-bold">670</strong></div>
+                                                <div class="d-block d-sm-none">NUM. SCONTRINI<br><strong class="h4 text-success font-weight-bold"><?= ($profilo) ? $profilo->numScontrini : '' ?></strong></div>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
