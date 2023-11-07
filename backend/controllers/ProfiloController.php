@@ -150,9 +150,13 @@ class ProfiloController extends Controller
 
     protected function process($model)
     {
+        if (!$model->validate()) {
+            return false;
+        }
+
         if (is_null($model->user)) {
             $user = $this->getNewUser($model);
-            if ($user->save()) {
+            if ($user->save(false)) {
                 $model->user_id = $user->id;
             }
         }
@@ -161,7 +165,7 @@ class ProfiloController extends Controller
         $model->modificato_il = $model->creato_il;
         $model->b2b = (int)$model->b2b;
 
-        return $model->save() && $this->assignRevokePermissions($model);
+        return $model->save(false) && $this->assignRevokePermissions($model);
     }
 
     protected function assignRevokePermissions($model)
