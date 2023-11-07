@@ -251,7 +251,7 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
 
                     <?= Alert::widget([
                         'options' => [
-                            'class' => 'my-1',
+                            'class' => 'my-4',
                         ]
                     ]) ?>
 
