@@ -28,6 +28,10 @@ class Controller extends Base
                             'allow' => true,
                         ],
                         [
+                            'actions' => ['validate'],
+                            'allow' => false,
+                        ],
+                        [
                             'allow' => true,
                             'roles' => ['@'],
                         ],
