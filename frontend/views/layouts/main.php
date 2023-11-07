@@ -243,8 +243,10 @@ $this->registerJs("const apiUrl = '" . Yii::getAlias('@web/api') . "';", View::P
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
 
+                        <?php if (!($this->context->id == 'coupon' && $this->context->action->id == 'validate')) : ?>
                         <a href="<?= Url::toRoute('//dashboard/scontrino/create') ?>" class="btn btn-sm btn-success shadow-sm" id="newScontrino"><i
                                 class="fas fa-arrow-up fa-sm text-white-50"></i> Carica</a>
+                        <?php endif; ?>
                     </div>
 
                     <?= Alert::widget([
