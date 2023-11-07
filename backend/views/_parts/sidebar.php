@@ -47,13 +47,13 @@ $ctx = $this->context;
             <?php
             $menu_items = [
                 [
-                    'label' => 'Profili', 
-                    'url' => ['/profilo/index'], 
-                    'active' => ($ctx->id == 'profilo')],
-                [
                     'label' => 'Aziende', 
                     'url' => ['/business/index'], 
                     'active' => ($ctx->id == 'business')],
+                [
+                    'label' => 'Profili', 
+                    'url' => ['/profilo/index'], 
+                    'active' => ($ctx->id == 'profilo')],
                 [
                     'label' => 'Coupon', 
                     'url' => ['/coupon/index'], 
