@@ -7,7 +7,7 @@ use yii\widgets\ListView;
 /** @var common\models\CouponSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Coupon Ritirati';
+$this->title = 'Coupon ritirati';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="coupon-index">
