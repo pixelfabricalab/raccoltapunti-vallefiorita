@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['validate'],
         'method' => 'get',
+        'options' => [
+            'autocomplete' => 'off',
+        ],
     ]); ?>
 
     <?= $form->field($model, 'codice') ?>
