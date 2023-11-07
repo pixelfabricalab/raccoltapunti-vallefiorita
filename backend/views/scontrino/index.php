@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => TextFixedColumn::class,
                 'attribute' => 'indirizzo',
-                'width' => 270,
+                'width' => 390,
             ],
             [
                 'class' => TextFixedColumn::class,
