@@ -1,7 +1,4 @@
 <?php
-
-use yii\helpers\Html;
-
 /** @var yii\web\View $this */
 /** @var common\models\Coupon $model */
 
@@ -24,7 +21,3 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 
 </div>
-
-    <?php if ($model->status) : ?>
-    <?= Html::a("Ritira", ['validate', 'codice' => $model->codice, 'confirm' => 1], ['class' => 'btn btn-lg btn-success btn-block']) ?>
-    <?php endif; ?>

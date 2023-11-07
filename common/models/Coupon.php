@@ -125,12 +125,13 @@ class Coupon extends \yii\db\ActiveRecord
 
     public function getEtichettaValore()
     {
-        if ($this->sconto_importo) {
-            return \Yii::$app->formatter->asCurrency($this->sconto_importo);
+        if ($this->tipo_sconto == self::SCONTO_PERCENTUALE) {
+            return (int)$this->sconto_percentuale . ' %';
         }
-        if ($this->sconto_percentuale) {
-            return $this->sconto_percentuale . ' %';
+        if ($this->tipo_sconto == self::SCONTO_IMPORTO) {
+            return \Yii::$app->formatter->asCurrency((int)$this->sconto_importo);
         }
+
         return 0;
     }
 
@@ -142,6 +143,15 @@ class Coupon extends \yii\db\ActiveRecord
     public function getEsercente()
     {
         return $this->hasOne(Profilo::class, ['id' => 'esercente_id']);
+    }
+
+    public function canBeRitirato()
+    {
+        $user = \Yii::$app->user;
+        $profilo = $user->identity->profilo;
+
+        return $user->can('validateQrCode') && $this->status == self::STATUS_ATTIVO
+            && $profilo && $profilo->id != $this->profile_id;
     }
 
 }

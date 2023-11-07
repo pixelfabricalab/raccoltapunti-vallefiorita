@@ -66,6 +66,10 @@ class CouponController extends Controller
         }
         if ($mode == 'qr') {
             $model = $this->findModel($codice);
+
+            if ($model->profile_id == \Yii::$app->user->identity->profilo->id) {
+                $this->addWarning('Non puoi ritirare un coupon di tua proprietà');
+            }
         }
         if ((int)$confirm) {
             $model->utilizza();
@@ -154,8 +158,7 @@ class CouponController extends Controller
                 $this->addOk('Coupon creato con successo, in attesa di convalida');
             }
         }
-
-        return $this->redirect(['coupon/index']);
+        return $this->redirect(['view', 'id' => $model->codice]);
     }
 
     /**

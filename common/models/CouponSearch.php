@@ -20,6 +20,7 @@ class CouponSearch extends Coupon
     {
         return [
             [['id', 'status', 'sconto_percentuale', 'profile_id', 'puntovendita_id'], 'integer'],
+            [['codice'], 'trim'],
             [['codice', 'data_utilizzo', 'creato_il', 'modificato_il', 'esercente', 'tipo_sconto'], 'safe'],
             [['sconto_importo'], 'number'],
         ];

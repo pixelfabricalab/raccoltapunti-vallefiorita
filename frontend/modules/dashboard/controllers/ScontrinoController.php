@@ -74,9 +74,9 @@ class ScontrinoController extends Controller
         $result = $model->execOcrAnalyze();
 
         if ($result) {
-            $this->addOk('Analisi completata');
+            $this->addOk('Scontrino caricato con successo. Analisi completata');
         } else {
-            $this->addWarning('Analisi non riuscita.');
+            $this->addWarning('Scontrino caricato con successo. Analisi non riuscita.');
         }
 
         return $this->redirect(['index', 'id' => $id]);
@@ -95,7 +95,6 @@ class ScontrinoController extends Controller
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
             $model->profilo_id = $this->getProfilo()->id;
             if ($model->upload() && $model->save(false)) {
-                $this->addOk('Scontrino caricato con successo.');
                 return $this->redirect(['exec', 'id' => $model->id]);
             }
         } else {
