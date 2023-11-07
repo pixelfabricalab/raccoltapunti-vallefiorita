@@ -60,7 +60,7 @@ class VerifyEmailCest
     public function checkSuccessVerification(FunctionalTester $I)
     {
         $I->amOnRoute('site/verify-email', ['token' => '4ch0qbfhvWwkcuWqjN8SWRq72SOw1KYT_1548675330']);
-        $I->canSee(' Raccolta punti');
+        $I->canSee('Gestione');
         $I->see('Esci', 'form button[type=submit]');
 
         $I->seeRecord('common\models\User', [

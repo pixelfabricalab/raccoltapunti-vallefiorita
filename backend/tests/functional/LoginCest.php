@@ -38,7 +38,7 @@ class LoginCest
         $I->click('login-button');
 
         $I->see('erau');
-        $I->see('Congratulations!');
+        $I->see('Profility');
         $I->dontSeeLink('Login');
         $I->dontSeeLink('Signup');
     }

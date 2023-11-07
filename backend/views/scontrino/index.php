@@ -32,16 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
-            // ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'partita_iva',
+                'width' => 100,
+            ],
             [
                 'class' => TextFixedColumn::class,
                 'attribute' => 'ragione_sociale',
                 'width' => 280,
-            ],
-            [
-                'class' => TextFixedColumn::class,
-                'attribute' => 'partita_iva',
-                'width' => 130,
             ],
             [
                 'class' => TextFixedColumn::class,

@@ -65,13 +65,13 @@ class ResendVerificationEmailCest
     public function checkWrongEmail(FunctionalTester $I)
     {
         $I->submitForm($this->formId, $this->formParams('wrong@email.com'));
-        $I->seeValidationError('There is no user with this email address.');
+        $I->seeValidationError('L\'utente per cui stai cercando di verificare la mail non esiste');
     }
 
     public function checkAlreadyVerifiedEmail(FunctionalTester $I)
     {
         $I->submitForm($this->formId, $this->formParams('test2@mail.com'));
-        $I->seeValidationError('There is no user with this email address.');
+        $I->seeValidationError('L\'utente per cui stai cercando di verificare la mail non esiste');
     }
 
     public function checkSendSuccessfully(FunctionalTester $I)
@@ -83,6 +83,6 @@ class ResendVerificationEmailCest
             'username' => 'test.test',
             'status' => \common\models\User::STATUS_INACTIVE
         ]);
-        $I->see('Check your email for further instructions.');
+        $I->see('La mail per il reset della password è stata inviata correttamente');
     }
 }
