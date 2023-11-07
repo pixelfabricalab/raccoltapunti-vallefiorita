@@ -34,9 +34,23 @@ class BusinessController extends ProfiloController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($b2b = null)
+    public function actionCreate()
     {
-        return $this->redirect(['/profilo/create', 'b2b' => 2]);
+        $model = new Profilo();
+        $model->b2b = Profilo::B2B_ATTIVO;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $this->process($model)) {
+                $this->addOk();
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
 }

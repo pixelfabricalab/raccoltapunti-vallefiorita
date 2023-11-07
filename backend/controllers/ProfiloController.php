@@ -54,55 +54,20 @@ class ProfiloController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($b2b = null)
+    public function actionCreate()
     {
         $model = new Profilo();
-        if ($b2b) {
-            $model->b2b = $b2b;
-        }
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $user = new User();
-                $user->username = $model->email;
-                $user->email = $model->email;
-                $user->setPassword($model->password);
-                $user->status = User::STATUS_ACTIVE;
-                $user->generateAuthKey();
-                if ($user->save()) {
-                    $model->creato_il = date('Y-m-d H:i:s');
-                    $model->modificato_il = $model->creato_il;
-                    $model->b2b = (int)$model->b2b;
-
-                    $auth = \Yii::$app->authManager;
-                    $user_role = $auth->getRole(User::ROLE_SIMPLEUSER);
-                    $auth->assign($user_role, $user->id);
-
-                    $business = $auth->getRole(User::ROLE_BUSINESS);
-                    $roles = $auth->getRolesByUser($user->id);
-
-                    if ($model->b2b == Profilo::B2B_ATTIVO) {
-                        if (!isset($roles[User::ROLE_BUSINESS])) {
-                            $auth->assign($business, $user->id);
-                        }
-                    } else {
-                        if (isset($roles[User::ROLE_BUSINESS])) {
-                            $auth->revoke($business, $user->id);
-                        }
-                    }
-
-                    $model->user_id = $user->id;
-                    $model->save(false);
-
-                    $this->addOk();
-                    return $this->redirect(['/profilo/update', 'id' => $model->id]);
-                }
+            if ($model->load($this->request->post()) && $this->process($model)) {
+                $this->addOk();
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('/profilo/create', [
+        return $this->render('create', [
             'model' => $model,
         ]);
     }
@@ -122,21 +87,7 @@ class ProfiloController extends Controller
             $this->addWarning('Scheda B2B da Validare.');
         }
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            
-            $auth = \Yii::$app->authManager;
-            $business = $auth->getRole(User::ROLE_BUSINESS);
-            $roles = $auth->getRolesByUser($model->user_id);
-
-            if ($model->b2b == Profilo::B2B_ATTIVO) {
-                if (!isset($roles[User::ROLE_BUSINESS])) {
-                    $auth->assign($business, $model->user_id);
-                }
-            } else {
-                if (isset($roles[User::ROLE_BUSINESS])) {
-                    $auth->revoke($business, $model->user_id);
-                }
-            }
+        if ($this->request->isPost && $model->load($this->request->post()) && $this->process($model)) {
 
             $user = User::findOne($model->user_id);
             $user->username = $model->email;
@@ -150,7 +101,7 @@ class ProfiloController extends Controller
             $this->addWarning('Scheda B2B Attiva ma il valore dello sconto è nullo.');
         }
 
-        return $this->render('/profilo/update', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -183,5 +134,57 @@ class ProfiloController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function getNewUser($model)
+    {
+        $user = new User();
+        $user->username = $model->email;
+        $user->email = $model->email;
+        $user->setPassword($model->password);
+        $user->status = User::STATUS_ACTIVE;
+        $user->generateAuthKey();
+
+        return $user;
+    }
+
+    protected function process($model)
+    {
+        if (is_null($model->user)) {
+            $user = $this->getNewUser($model);
+            if ($user->save()) {
+                $model->user_id = $user->id;
+            }
+        }
+
+        $model->creato_il = date('Y-m-d H:i:s');
+        $model->modificato_il = $model->creato_il;
+        $model->b2b = (int)$model->b2b;
+
+        return $model->save() && $this->assignRevokePermissions($model);
+    }
+
+    protected function assignRevokePermissions($model)
+    {
+        $auth = \Yii::$app->authManager;
+
+        $roles = $auth->getRolesByUser($model->user_id);
+
+        $user_role = $auth->getRole(User::ROLE_SIMPLEUSER);
+        if (!isset($roles[User::ROLE_SIMPLEUSER])) {
+            $auth->assign($user_role, $model->user_id);
+        }
+
+        $business = $auth->getRole(User::ROLE_BUSINESS);
+        if ($model->b2b == Profilo::B2B_ATTIVO) {
+            if (!isset($roles[User::ROLE_BUSINESS])) {
+                $auth->assign($business, $model->user_id);
+            }
+        } else {
+            if (isset($roles[User::ROLE_BUSINESS])) {
+                $auth->revoke($business, $model->user_id);
+            }
+        }
+        return true;
     }
 }
