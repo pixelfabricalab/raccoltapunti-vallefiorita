@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         'options'=>['enctype'=>'multipart/form-data']] // important
 ); ?>
 
-    <?= $form->field($model, 'nomefile')->fileInput(['class' => 'form-control-file fileinput', 'accept' => 'image/*;capture=camera', 'capture' => true])->label('Carica Scontrino') ?>
+    <?= $form->field($model, 'nomefile')->fileInput(['class' => 'form-control-file fileinput', 'accept' => 'image/*;capture=camera', 'capture' => true])->label(false) ?>
     <div>
         <?= Html::submitButton('Carica', ['class' => 'btn btn-success']) ?>
     </div>

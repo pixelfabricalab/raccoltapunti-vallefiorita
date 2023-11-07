@@ -7,8 +7,6 @@ use yii\helpers\Html;
 
 $this->title = 'Carica scontrino';
 ?>
-<p>Raccogliere punti è semplice. Inquadra e scatta una foto dello scontrino di un punto vendita.<br>
-L'applicazione si occuperà del resto. Se nel tuo scontrino risulteranno determinati prodotti, riceverai un coupon da utilizzare presso il nostro circuito.</p>
 
 <div class="row">
     <div class="col-12 col-md-8">
