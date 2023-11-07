@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 
@@ -9,12 +10,13 @@ use yii\grid\GridView;
 /* @var $datamodel common\models\ScontrinoData */
 /* @var $dataprodottimodel common\models\ProdottiScontrinoData */
 
-$this->title = 'Scontrino id n°'. $model->id;
-
+$this->title = 'Dettagli Scontrino '. $model->sid;
 \yii\web\YiiAsset::register($this);
 ?>
+<a href="<?= Url::to('index') ?>">&#0171; Torna alla lista</a>
+
 <div class="scontrino-view">
     <div class="row">
-        <?= $this->render('_single', ['model' => $model]) ?>
+        <?= $this->render('_single', ['model' => $model, 'full' => true]) ?>
     </div> 
 </div>

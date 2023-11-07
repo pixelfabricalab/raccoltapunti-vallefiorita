@@ -115,7 +115,7 @@ class ScontrinoController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Scontrino::findOne(['id' => $id])) !== null) {
+        if (($model = Scontrino::findOne(['sid' => $id])) !== null || ($model = Scontrino::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
