@@ -12,6 +12,7 @@ use common\models\Profilo;
 class ProfiloSearch extends Profilo
 {
     public $business = false;
+    public $username;
 
     /**
      * {@inheritdoc}
@@ -20,7 +21,8 @@ class ProfiloSearch extends Profilo
     {
         return [
             [['id', 'eta', 'b2b'], 'integer'],
-            [['nome', 'cognome', 'data_nascita', 'professione', 'residenza_indirizzo', 'residenza_citta', 'residenza_cap', 'residenza_provincia', 'cellulare', 'ragione_sociale', 'partita_iva'], 'safe'],
+            [['nome', 'cognome', 'data_nascita', 'professione', 'residenza_indirizzo', 'residenza_citta', 'comune', 'cap',
+                'residenza_cap', 'residenza_provincia', 'cellulare', 'ragione_sociale', 'partita_iva', 'username'], 'safe'],
         ];
     }
 
@@ -43,12 +45,20 @@ class ProfiloSearch extends Profilo
     public function search($params)
     {
         $query = Profilo::find();
+        $query->joinWith(['user']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['username'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['user.username' => SORT_ASC],
+            'desc' => ['user.username' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -81,6 +91,9 @@ class ProfiloSearch extends Profilo
             ->andFilterWhere(['like', 'cellulare', $this->cellulare])
             ->andFilterWhere(['like', 'ragione_sociale', $this->ragione_sociale])
             ->andFilterWhere(['like', 'partita_iva', $this->partita_iva])
+            ->andFilterWhere(['like', 'user.username', $this->username])
+            ->andFilterWhere(['like', 'comune', $this->comune])
+            ->andFilterWhere(['like', 'cap', $this->cap])
         ;
 
         return $dataProvider;

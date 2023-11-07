@@ -29,24 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'partita_iva',
+                'width' => 100,
+            ],
             'ragione_sociale',
-            'partita_iva',
             [
                 'class' => TextFixedColumn::class,
-                'attribute' => 'cognome',
-                'width' => 150,
-            ],
-            [
-                'class' => TextFixedColumn::class,
-                'attribute' => 'nome',
-                'width' => 150,
-            ],
-            [
-                'label' => 'Email',
-                'attribute' => 'user.username',
-            ],
-            'cellulare',
-            [
+                'width' => 110,
+                'textAlign' => 'center',
                 'attribute' => 'b2b',
                 'content' => function ($model) {
                     $content = '';
@@ -63,10 +55,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'raw',
             ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cognome',
+                'width' => 150,
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'nome',
+                'width' => 150,
+            ],
+            [
+                'label' => 'Email',
+                'attribute' => 'username',
+                'value' => 'user.username',
+            ],
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cellulare',
+                'width' => 100,
+            ],
             // 'creato_il',
-            'indirizzo',
+            // 'indirizzo',
+            [
+                'class' => TextFixedColumn::class,
+                'attribute' => 'cap',
+                'width' => 60,
+                'textAlign' => 'center',
+            ],
             'comune',
-            'cap',
         ],
     ]); ?>
 

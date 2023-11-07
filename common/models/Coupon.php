@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\Profilo;
 
 /**
  * This is the model class for table "coupon".
@@ -79,10 +80,12 @@ class Coupon extends \yii\db\ActiveRecord
             'status' => 'Status',
             'sconto_importo' => 'Sconto Importo',
             'sconto_percentuale' => 'Sconto Percentuale',
-            'creato_il' => 'Creato Il',
+            'creato_il' => 'Data emiss.',
             'modificato_il' => 'Modificato Il',
             'profile_id' => 'Profile ID',
             'puntovendita_id' => 'Puntovendita ID',
+            'data_utilizzo' => 'Data ritiro',
+            'esercente.ragione_sociale' => 'Ritirato presso',
         ];
     }
 
@@ -130,4 +133,15 @@ class Coupon extends \yii\db\ActiveRecord
         }
         return 0;
     }
+
+    /**
+     * Gets query for [[Profilo]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEsercente()
+    {
+        return $this->hasOne(Profilo::class, ['id' => 'esercente_id']);
+    }
+
 }

@@ -44,7 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => TextFixedColumn::class,
-                'attribute' => 'user.username',
+                'attribute' => 'username',
+                'value' => 'user.username',
                 'width' => 340,
             ],
             [
@@ -63,13 +64,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => TextFixedColumn::class,
-                'attribute' => 'residenza_citta',
-                'width' => 200,
+                'attribute' => 'residenza_cap',
+                'width' => 70,
+                'textAlign' => 'center',
             ],
             [
                 'class' => TextFixedColumn::class,
-                'attribute' => 'residenza_cap',
-                'width' => 120,
+                'attribute' => 'residenza_citta',
+                'width' => 200,
             ],
             [
                 'class' => DataColumn::class,

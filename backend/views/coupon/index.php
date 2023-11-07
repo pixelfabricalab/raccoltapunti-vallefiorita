@@ -70,6 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'textAlign' => 'center',
             ],
             [
+                'attribute' => 'esercente',
+                'value' => 'esercente.ragione_sociale',
+            ],
+            [
                 'attribute' => 'data_utilizzo',
                 'class' => 'common\widgets\grid\DateItColumn',
             ],

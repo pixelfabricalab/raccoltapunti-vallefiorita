@@ -11,6 +11,8 @@ use common\models\Coupon;
  */
 class CouponSearch extends Coupon
 {
+    public $esercente;
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +20,7 @@ class CouponSearch extends Coupon
     {
         return [
             [['id', 'status', 'sconto_percentuale', 'profile_id', 'puntovendita_id'], 'integer'],
-            [['codice', 'data_utilizzo', 'creato_il', 'modificato_il'], 'safe'],
+            [['codice', 'data_utilizzo', 'creato_il', 'modificato_il', 'esercente', 'tipo_sconto'], 'safe'],
             [['sconto_importo'], 'number'],
         ];
     }
@@ -42,6 +44,7 @@ class CouponSearch extends Coupon
     public function search($params)
     {
         $query = Coupon::find();
+        $query->joinWith(['esercente']);
 
         // add conditions that should always apply here
 
@@ -49,6 +52,13 @@ class CouponSearch extends Coupon
             'query' => $query,
         ]);
 
+        $dataProvider->sort->attributes['esercente'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['profilo.ragione_sociale' => SORT_ASC],
+            'desc' => ['profilo.ragione_sociale' => SORT_DESC],
+        ];
+        
         $this->load($params);
 
         if (!$this->validate()) {
@@ -69,8 +79,9 @@ class CouponSearch extends Coupon
             'profile_id' => $this->profile_id,
             'puntovendita_id' => $this->puntovendita_id,
         ]);
-
         $query->andFilterWhere(['like', 'codice', $this->codice]);
+        $query->andFilterWhere(['like', 'coupon.tipo_sconto', $this->tipo_sconto]);
+        $query->andFilterWhere(['like', 'profilo.ragione_sociale', $this->esercente]);
 
         return $dataProvider;
     }
