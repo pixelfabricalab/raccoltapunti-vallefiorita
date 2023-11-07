@@ -23,7 +23,7 @@ class BusinessController extends ProfiloController
         $searchModel->business = true;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('/profilo/index_b2b', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
