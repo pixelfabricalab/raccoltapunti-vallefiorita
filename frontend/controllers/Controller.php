@@ -29,7 +29,8 @@ class Controller extends Base
                         ],
                         [
                             'actions' => ['validate'],
-                            'allow' => false,
+                            'allow' => true,
+                            'roles' => ['validateQrCode'],
                         ],
                         [
                             'allow' => true,
