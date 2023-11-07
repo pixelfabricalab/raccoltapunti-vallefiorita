@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /* @var $datamodel common\models\ScontrinoData */
 /* @var $dataprodottimodel common\models\ProdottiScontrinoData */
 
-$this->title = 'Dettagli Scontrino '. $model->sid;
+$this->title = 'Dettagli Scontrino';
 \yii\web\YiiAsset::register($this);
 ?>
 <a href="<?= Url::to('index') ?>">&#0171; Torna alla lista</a>
