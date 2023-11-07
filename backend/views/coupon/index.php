@@ -32,6 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'codice',
             [
+                'attribute' => 'tipo_sconto',
+                'class' => TextFixedColumn::class,
+                'label' => 'Tipo Sconto',
+                'textAlign' => 'center',
+            ],
+            [
                 'attribute' => 'sconto_importo',
                 'class' => EuroColumn::class,
                 'label' => 'Importo',
