@@ -6,24 +6,22 @@ use yii\data\ArrayDataProvider;
 $this->title = "Report";
 
 $storico = [
-    ['titolo' => 'Iscrizione', 'descrizione' => 'Data: ' . date('d/m/Y')],
+    ['titolo' => 'Account creato', 'descrizione' => 'Data: ' . date('d/m/Y'), 'negative' => true,],
     ['titolo' => 'Conferma email', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Caricamento foto', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Scontrino caricato', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Scontrino validato', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Punto vendita inserito', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Check-in', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Punto vendita inserito', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Punto vendita inserito', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Scontrino caricato', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Compleanno', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Checkpoint c/o Mongolfiera Lecce', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Bonus', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Scontrino caricato', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Professione inserita', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Biografia registrata', 'descrizione' => 'Data: ' . date('d/m/Y')],
-    ['titolo' => 'Premio riscosso', 'descrizione' => 'Data: ' . date('d/m/Y'), 'negative' => true,]
 ];
+
+foreach (\Yii::$app->user->identity->profilo->scontrini as $scontrino) {
+    $storico[] = [
+        'titolo' => 'Caricato scontrino',
+        'descrizione' => 'Data: ' . date('d/m/Y'),
+    ];
+}
+foreach (\Yii::$app->user->identity->profilo->coupon as $coupon) {
+    $storico[] = [
+        'titolo' => 'Richiesto coupon',
+        'descrizione' => 'Data: ' . date('d/m/Y'),
+    ];
+}
 
 $storico = array_reverse($storico);
 
