@@ -101,6 +101,8 @@ class ScontrinoController extends Controller
             $model->load($this->request->post());
             $model->imageFile = UploadedFile::getInstance($model, 'nomefile');
             $model->profilo_id = $this->getProfilo()->id;
+            $model->creato_il = date('Y-m-d H:i:s');
+            $model->modificato_il = date('Y-m-d H:i:s');
             if ($model->upload() && $model->save(false)) {
                 return $this->redirect(['exec', 'id' => $model->id]);
             }

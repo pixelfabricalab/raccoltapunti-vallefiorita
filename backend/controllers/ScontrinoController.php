@@ -82,6 +82,7 @@ class ScontrinoController extends Controller
         $model->analyze();
 
         if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->modificato_il = date('Y-m-d H:i:s');
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->content == '') {
                 $model->content = null;
