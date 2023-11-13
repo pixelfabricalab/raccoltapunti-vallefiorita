@@ -39,7 +39,7 @@ class CouponController extends Controller
         $provider = new ArrayDataProvider([
             'allModels' => \Yii::$app->user->identity->profilo->coupon,
             'sort' => [
-                'attributes' => ['id', 'username', 'email'],
+                'attributes' => ['id', 'username', 'email', 'creato_il'],
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                     'creato_il' => SORT_DESC,

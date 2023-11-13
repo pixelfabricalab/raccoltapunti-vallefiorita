@@ -30,10 +30,11 @@ class ScontrinoController extends Controller
                 'pageSize' => 50,
             ],
             'sort' => [
+                'attributes' => ['id', 'username', 'email', 'creato_il'],
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                     'creato_il' => SORT_DESC,
-                ]
+                ],
             ],
         ]);
         return $this->render('index', [
