@@ -133,8 +133,8 @@ class CouponController extends Controller
 
         // Ricava l'azienda associata allo scontrino: se esiste, recupera tipo sconto e valore
         $esercente = $scontrino->esercente;
+        $model->status = Coupon::STATUS_ATTIVO;
         if ($esercente) {
-            $model->status = Coupon::STATUS_ATTIVO;
             $model->tipo_sconto = $esercente->tipo_sconto;
             $valore = $esercente->valore_sconto;
             if ($model->tipo_sconto == Coupon::SCONTO_PERCENTUALE) {
@@ -143,8 +143,7 @@ class CouponController extends Controller
                 $model->sconto_importo = $valore;
             }
         } else {
-            $model->status = Coupon::STATUS_DISATTIVO;
-            $model->sconto_percentuale = 0;
+            $model->sconto_percentuale = 10;
             $model->sconto_importo = 0;
             $model->tipo_sconto = Coupon::SCONTO_PERCENTUALE;
         }
