@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         ['vendor/node_modules/quill/dist/quill.min.js', 'position' => \yii\web\View::POS_HEAD],
+        ['js/mark.min.js', 'position' => \yii\web\View::POS_HEAD],
         ['js/core.js', 'position' => \yii\web\View::POS_END],
         ['js/sb-admin-2.js', 'position' => \yii\web\View::POS_END],
     ];
