@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => TextFixedColumn::class,
                 'attribute' => 'ragione_sociale',
-                'width' => 280,
+                'width' => 390,
             ],
             [
                 'class' => TextFixedColumn::class,
