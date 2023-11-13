@@ -48,6 +48,11 @@ class Scontrino extends \yii\db\ActiveRecord
         if (!$this->filename) {
             return null;
         }
+
+        if ($this->base64resized) {
+            return $this->base64resized;
+        }
+
         list($width, $height) = getimagesize($this->filename);
         $r = $width / $height;
         if ($crop) {
@@ -79,6 +84,9 @@ class Scontrino extends \yii\db\ActiveRecord
         ob_end_clean (); 
 
         $image_data_base64 = base64_encode($image_data);
+
+        $this->base64resized = $image_data_base64;
+        $this->save(false);
 
         return $image_data_base64;
     }
