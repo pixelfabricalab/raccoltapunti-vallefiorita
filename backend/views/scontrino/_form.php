@@ -15,7 +15,7 @@ $this->registerJs(
 );
 
 // Ricava le keyword da evidenziare
-$lista_keyword = ['pane', 'latte', 'bicchiere'];
+$lista_keyword = ['pane', 'latte', 'bicchiere', 'patate', 'carne', 'acqua'];
 $command = '';
 foreach ($lista_keyword as $keyword) {
     $command .= ".mark('{$keyword}')";
