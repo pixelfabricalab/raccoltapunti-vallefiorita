@@ -129,6 +129,7 @@ class CouponController extends Controller
         $model = new Coupon();
         $model->loadDefaultValues();
         $scontrino = Scontrino::findOne(['sid' => $sid]);
+        $scontrino->analyze();
         $model->scontrino_id = $scontrino->id;
 
         // Ricava l'azienda associata allo scontrino: se esiste, recupera tipo sconto e valore
