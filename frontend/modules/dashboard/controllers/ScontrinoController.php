@@ -29,6 +29,12 @@ class ScontrinoController extends Controller
             'pagination' => [
                 'pageSize' => 50,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                    'creato_il' => SORT_DESC,
+                ]
+            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $provider,

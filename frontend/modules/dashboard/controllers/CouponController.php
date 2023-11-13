@@ -40,6 +40,10 @@ class CouponController extends Controller
             'allModels' => \Yii::$app->user->identity->profilo->coupon,
             'sort' => [
                 'attributes' => ['id', 'username', 'email'],
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                    'creato_il' => SORT_DESC,
+                ],
             ],
             'pagination' => [
                 'pageSize' => 10,
