@@ -6,6 +6,8 @@ use Yii;
 use yii\web\UploadedFile;
 use yii\helpers\Json;
 use common\models\Profilo;
+use UUID\UUID;
+
 
 /**
  * This is the model class for table "scontrino".
@@ -245,7 +247,7 @@ class Scontrino extends \yii\db\ActiveRecord
 
     public function beforeSave($insert){
         if (!$this->sid) {
-            $this->sid = \Yii::$app->security->generateRandomString();
+            $this->sid = UUID::uuid7();
         }
         return parent::beforeSave($insert);
     }    

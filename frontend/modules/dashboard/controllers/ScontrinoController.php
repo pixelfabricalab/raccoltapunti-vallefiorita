@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use common\components\ScontrinoHelper;
-use Yii;
 
 /**
  * ScontrinoController implements the CRUD actions for Scontrino model.
@@ -104,7 +103,8 @@ class ScontrinoController extends Controller
             $model->creato_il = date('Y-m-d H:i:s');
             $model->modificato_il = date('Y-m-d H:i:s');
             if ($model->upload() && $model->save(false)) {
-                return $this->redirect(['exec', 'id' => $model->id]);
+                $this->addOk('Scontrino caricato con successo.');
+                return $this->redirect(['index', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
