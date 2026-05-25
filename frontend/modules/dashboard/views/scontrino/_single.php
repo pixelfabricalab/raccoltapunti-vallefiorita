@@ -11,7 +11,13 @@ $count = count($items);
             <div class="row">
                 <div class="col-12 col-md-4">
                     <a href="<?= Url::to(['view', 'id' => $model->sid]) ?>">
-                    <img src="data:<?= $model->mimeType ?>;base64,<?= $model->resized ?>" class="img-fluid shadow p-1" />
+                        <?php if (!$model->fileExists()) : ?>
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <span class="text-muted">Immagine non disponibile</span>
+                        </div>
+                        <?php else: ?>
+                            <img src="data:<?= $model->mimeType ?>;base64,<?= $model->resized ?>" class="img-fluid shadow p-1" />
+                        <?php endif; ?>
                     </a>
                 </div>
                 <div class="col">

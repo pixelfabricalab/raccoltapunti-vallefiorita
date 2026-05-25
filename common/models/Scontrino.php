@@ -135,6 +135,11 @@ class Scontrino extends \yii\db\ActiveRecord
         return false;
     }
 
+    public function fileExists()
+    {
+        return file_exists($this->filename);
+    }
+
     public function getFileEncode()
     {
         $fileEncode = base64_encode(file_get_contents($this->filename));
