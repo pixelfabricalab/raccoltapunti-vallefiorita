@@ -24,6 +24,8 @@ class Scontrino extends \yii\db\ActiveRecord
 {
     public $imageFile;
 
+    public $uuid;
+
     /**
      * {@inheritdoc}
      */
@@ -161,6 +163,8 @@ class Scontrino extends \yii\db\ActiveRecord
 
     public function upload()
     {
+        $this->uuid = UUID::uuid7();
+
         if ($this->validate() && !is_null($this->imageFile)) {
             /* Vecchia implementazione
             $fileparams = [];
@@ -177,7 +181,7 @@ class Scontrino extends \yii\db\ActiveRecord
             $logger->logUpload($logcontent);
             return $fileparams;
             */
-            $this->filename = Yii::getAlias('@runtime') . '/uploads/' . Yii::$app->getSecurity()->generateRandomString(16) . '.' . $this->imageFile->extension;
+            $this->filename = Yii::getAlias('@runtime') . '/uploads/' . $this->uuid . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($this->filename);
             return true;
         } else if (is_null($this->imageFile) && $this->id) {
@@ -247,7 +251,7 @@ class Scontrino extends \yii\db\ActiveRecord
 
     public function beforeSave($insert){
         if (!$this->sid) {
-            $this->sid = UUID::uuid7();
+            $this->sid = $this->uuid;
         }
         return parent::beforeSave($insert);
     }    
