@@ -1,4 +1,5 @@
 # Composer
+composer.lock
 # escludi i vendor
 vendor
 vendor/*
