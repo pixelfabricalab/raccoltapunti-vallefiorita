@@ -13,7 +13,7 @@ class ActiveForm extends Base
 
     public $applyOffset = false;
 
-    public function init()
+    public function init(): void
     {
         parent::init();
 
